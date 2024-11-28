@@ -1,0 +1,10 @@
+package_rename_config:
+  android:
+    app_name: Preny
+    package_name: com.preny.preny
+    lang: kotlin
+
+  ios:
+    app_name: Preny
+    bundle_name: preny
+    package_name: com.preny.preny

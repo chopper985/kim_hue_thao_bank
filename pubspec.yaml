@@ -1,0 +1,101 @@
+name: preny
+description: "Preny App"
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.5.4
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # The following adds the Cupertino Icons font to your application.
+  # Use with the CupertinoIcons class for iOS style icons.
+  cupertino_icons: ^1.0.8
+
+  # State management
+  flutter_bloc: ^8.1.6
+  bloc_concurrency: ^0.2.5
+
+  # Dependency Injection
+  get_it: ^8.0.2
+  injectable: ^2.5.0
+
+  # Storage
+  hive: ^2.2.3
+  path_provider: ^2.1.5
+
+  # Network
+  dio: ^5.7.0
+
+  # Media
+  image_picker: ^1.1.2
+
+  # Utils
+  flutter_localizations:
+    sdk: flutter
+  flutter_native_splash: ^2.4.3
+  intl: ^0.19.0
+  i18n_extension: ^13.0.2
+  permission_handler: ^11.3.1
+  phosphor_flutter: ^2.1.0
+  cached_network_image: ^3.4.1
+
+  # Helper
+  collection: ^1.18.0
+  
+
+dev_dependencies:
+  # Test
+  flutter_test:
+    sdk: flutter
+  mockito: ^5.4.4
+
+  # Config app
+  flutter_launcher_icons: ^0.13.1
+  package_rename: ^1.7.1
+ 
+
+  # Code Generator
+  injectable_generator: ^2.6.2
+  build_runner: ^2.4.13
+  flutter_gen_runner: ^5.8.0
+
+  # Lints
+  import_sorter: ^4.6.0
+  flutter_lints: ^5.0.0
+
+flutter:
+
+  # The following line ensures that the Material Icons font is
+  # included with your application, so that you can use the icons in
+  # the material Icons class.
+  uses-material-design: true
+
+  assets:
+    - assets/images/
+    - assets/icons/
+  
+  fonts:
+    - family: Inter
+      fonts:
+        - asset: assets/fonts/Inter_100.ttf
+          weight: 100
+        - asset: assets/fonts/Inter_200.ttf
+          weight: 200
+        - asset: assets/fonts/Inter_300.ttf
+          weight: 300
+        - asset: assets/fonts/Inter_400.ttf
+          weight: 400
+        - asset: assets/fonts/Inter_500.ttf
+          weight: 500
+        - asset: assets/fonts/Inter_600.ttf
+          weight: 600
+        - asset: assets/fonts/Inter_700.ttf
+          weight: 700
+        - asset: assets/fonts/Inter_800.ttf
+          weight: 800
+        - asset: assets/fonts/Inter_900.ttf
+          weight: 900
