@@ -11,7 +11,6 @@
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 
-import '../../features/home/bloc/home_bloc.dart' as _i854;
 import '../utils/datasources/base_repository.dart' as _i961;
 import '../utils/dio_api/dio_configuration.dart' as _i721;
 
@@ -26,7 +25,6 @@ _i174.GetIt $initGetIt(
     environment,
     environmentFilter,
   );
-  gh.factory<_i854.HomeCubit>(() => _i854.HomeCubit());
   gh.lazySingleton<_i721.DioConfiguration>(() => _i721.DioConfiguration());
   gh.lazySingleton<_i961.BaseRepository>(
       () => _i961.BaseRepository(gh<_i721.DioConfiguration>()));
