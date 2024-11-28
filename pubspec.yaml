@@ -29,6 +29,7 @@ dependencies:
 
   # Network
   dio: ^5.7.0
+  dio_smart_retry: ^6.0.0
 
   # Media
   image_picker: ^1.1.2
@@ -42,9 +43,14 @@ dependencies:
   permission_handler: ^11.3.1
   phosphor_flutter: ^2.1.0
   cached_network_image: ^3.4.1
+  sizer: ^3.0.5
+  pull_to_refresh: ^2.0.0
+  super_sliver_list: ^0.4.1
 
   # Helper
   collection: ^1.18.0
+  share_plus: ^10.1.2
+  equatable: ^2.0.7
   
 
 dev_dependencies:

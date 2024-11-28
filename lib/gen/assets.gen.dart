@@ -12,22 +12,42 @@ import 'package:flutter/widgets.dart';
 class $AssetsIconsGen {
   const $AssetsIconsGen();
 
+  /// File path: assets/icons/ic_check.png
+  AssetGenImage get icCheck => const AssetGenImage('assets/icons/ic_check.png');
+
   /// File path: assets/icons/ic_launcher.png
   AssetGenImage get icLauncher =>
       const AssetGenImage('assets/icons/ic_launcher.png');
 
-  /// File path: assets/icons/ic_launcher_name.png
-  AssetGenImage get icLauncherName =>
-      const AssetGenImage('assets/icons/ic_launcher_name.png');
+  /// File path: assets/icons/ic_launcher_ios.png
+  AssetGenImage get icLauncherIos =>
+      const AssetGenImage('assets/icons/ic_launcher_ios.png');
+
+  /// File path: assets/icons/ic_splash_android_12.png
+  AssetGenImage get icSplashAndroid12 =>
+      const AssetGenImage('assets/icons/ic_splash_android_12.png');
 
   /// List of all assets
-  List<AssetGenImage> get values => [icLauncher, icLauncherName];
+  List<AssetGenImage> get values =>
+      [icCheck, icLauncher, icLauncherIos, icSplashAndroid12];
+}
+
+class $AssetsImagesGen {
+  const $AssetsImagesGen();
+
+  /// File path: assets/images/img_splash_screen.png
+  AssetGenImage get imgSplashScreen =>
+      const AssetGenImage('assets/images/img_splash_screen.png');
+
+  /// List of all assets
+  List<AssetGenImage> get values => [imgSplashScreen];
 }
 
 class Assets {
   Assets._();
 
   static const $AssetsIconsGen icons = $AssetsIconsGen();
+  static const $AssetsImagesGen images = $AssetsImagesGen();
 }
 
 class AssetGenImage {

@@ -1,7 +1,11 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'package:i18n_extension/i18n_extension.dart';
+import 'package:preny/core/app/application/application.dart';
+import 'package:preny/core/app/languages/service/service.dart';
 import 'package:preny/features/app/app.dart';
 
 Future<void> main() async {
@@ -11,8 +15,24 @@ Future<void> main() async {
           WidgetsFlutterBinding.ensureInitialized();
       // Keep native splash screen up until app is finished bootstrapping
       FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
-      runApp(const MyApp());
+
+      SystemChrome.setSystemUIOverlayStyle(
+        const SystemUiOverlayStyle(
+          statusBarColor: Colors.transparent,
+        ),
+      );
+
+      await Application.initialAppLication();
+
+      runApp(
+        I18n(
+          initialLocale: LanguageService().getLocale().locale,
+          child: const App(),
+        ),
+      );
     },
-    (error, stackTrack) {},
+    (error, stackTrack) {
+      debugPrint("stackTrack $error");
+    },
   );
 }
