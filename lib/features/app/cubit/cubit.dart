@@ -1,11 +1,13 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:preny/core/injection/injection_container.dart';
+import 'package:preny/features/auth/cubit/auth_cubit.dart';
 import 'package:preny/features/home/cubit/home_cubit.dart';
 import 'package:preny/features/theme/cubit/theme_cubit.dart';
 
 class AppCubit {
   static final HomeCubit homeCubit = getIt<HomeCubit>();
   static final ThemeCubit themeCubit = getIt<ThemeCubit>();
+  static final AuthCubit authCubit = getIt<AuthCubit>();
 
   static final List<BlocProvider> providers = [
     BlocProvider<HomeCubit>(
@@ -13,6 +15,9 @@ class AppCubit {
     ),
     BlocProvider<ThemeCubit>(
       create: (context) => themeCubit,
+    ),
+    BlocProvider<AuthCubit>(
+      create: (context) => authCubit,
     ),
   ];
 
