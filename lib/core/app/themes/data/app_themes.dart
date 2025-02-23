@@ -14,7 +14,7 @@ class AppTheme {
     final appColors = AppColor.light();
     final themeData = ThemeData(
       colorSchemeSeed: colorSeed.color,
-      cardColor: Colors.black.withOpacity(0.04),
+      cardColor: Colors.black.withValues(alpha: 0.04),
       textTheme: TextTheme(
         labelMedium: TextStyle(color: fCD),
       ),
@@ -34,7 +34,7 @@ class AppTheme {
       bottomSheetTheme: ThemeData.dark().bottomSheetTheme.copyWith(
             elevation: 0,
             modalElevation: 0,
-            modalBarrierColor: Colors.blueGrey.withOpacity(.2),
+            modalBarrierColor: Colors.blueGrey.withValues(alpha: .2),
           ),
       appBarTheme: AppBarTheme(
         scrolledUnderElevation: 0,
