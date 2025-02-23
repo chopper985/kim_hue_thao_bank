@@ -1,12 +1,17 @@
+// Dart imports:
 import 'dart:ui';
 
+// Flutter imports:
 import 'package:flutter/material.dart';
 
+// Package imports:
+import 'package:sizer/sizer.dart';
+
+// Project imports:
 import 'package:preny/core/helpers/device_utils.dart';
 import 'package:preny/core/navigator/app_navigator.dart';
 import 'package:preny/core/types/extensions/int_extension.dart';
 import 'package:preny/gen/assets.gen.dart';
-import 'package:sizer/sizer.dart';
 
 Future showDialogDone({
   required String text,

@@ -1,5 +1,10 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:flutter_native_splash/flutter_native_splash.dart';
+
+// Project imports:
 import 'package:preny/core/injection/injection_container.dart';
 import 'package:preny/core/utils/datasources/base_local_data.dart';
 

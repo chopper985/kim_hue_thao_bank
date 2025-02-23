@@ -1,4 +1,7 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Project imports:
 import 'package:preny/core/app/languages/data/localization.dart';
 import 'package:preny/core/utils/app_bar/app_bar_title_back.dart';
 

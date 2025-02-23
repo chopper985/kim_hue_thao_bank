@@ -1,4 +1,7 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Project imports:
 import 'package:preny/core/utils/cached_network_image/default_avatar.dart';
 import 'package:preny/gen/assets.gen.dart';
 

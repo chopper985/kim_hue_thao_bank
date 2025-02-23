@@ -1,5 +1,7 @@
+// Dart imports:
 import 'dart:ui';
 
+// Project imports:
 import 'package:preny/core/app/languages/data/localization.dart';
 
 enum Language {

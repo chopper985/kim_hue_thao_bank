@@ -1,14 +1,19 @@
+// Dart imports:
 import 'dart:ui';
 
+// Flutter imports:
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:preny/core/types/extensions/int_extension.dart';
-import 'package:preny/core/utils/sizer/sizer_util.dart';
-import 'package:pull_to_refresh/pull_to_refresh.dart';
 
+// Package imports:
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:sizer/sizer.dart';
 import 'package:super_sliver_list/super_sliver_list.dart';
+
+// Project imports:
+import 'package:preny/core/types/extensions/int_extension.dart';
+import 'package:preny/core/utils/sizer/sizer_util.dart';
 
 class PaginationListView extends StatefulWidget {
   final int itemCount;

@@ -1,4 +1,7 @@
+// Package imports:
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+// Project imports:
 import 'package:preny/core/injection/injection_container.dart';
 import 'package:preny/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:preny/features/home/presentation/cubit/home_cubit.dart';

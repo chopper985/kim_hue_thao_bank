@@ -1,11 +1,16 @@
+// Dart imports:
 import 'dart:io';
 
+// Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+// Package imports:
 import 'package:phosphor_flutter/phosphor_flutter.dart';
-import 'package:preny/core/navigator/app_navigator.dart';
 import 'package:sizer/sizer.dart';
+
+// Project imports:
+import 'package:preny/core/navigator/app_navigator.dart';
 
 AppBar appBarTitleBack(
   BuildContext context, {

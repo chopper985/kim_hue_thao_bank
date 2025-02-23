@@ -1,3 +1,4 @@
+// Project imports:
 import 'package:preny/core/error/failure.dart';
 
 class Result<T> {

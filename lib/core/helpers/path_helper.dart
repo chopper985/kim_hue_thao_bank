@@ -1,10 +1,13 @@
 // ignore_for_file: depend_on_referenced_packages
 
+// Dart imports:
 import 'dart:io';
 
+// Flutter imports:
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 
+// Package imports:
 import 'package:path_provider/path_provider.dart';
 
 class PathHelper {

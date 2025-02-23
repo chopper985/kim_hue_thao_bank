@@ -1,8 +1,12 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:preny/core/helpers/device_utils.dart';
 
+// Package imports:
 import 'package:share_plus/share_plus.dart';
 import 'package:sizer/sizer.dart';
+
+// Project imports:
+import 'package:preny/core/helpers/device_utils.dart';
 
 class ShareUtils {
   Future<void> share({

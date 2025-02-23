@@ -1,9 +1,15 @@
+// Dart imports:
 import 'dart:async';
 
+// Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
+// Package imports:
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:i18n_extension/i18n_extension.dart';
+
+// Project imports:
 import 'package:preny/core/app/application/application.dart';
 import 'package:preny/core/app/languages/service/service.dart';
 import 'package:preny/features/app/app.dart';

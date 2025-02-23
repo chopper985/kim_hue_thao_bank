@@ -1,7 +1,12 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
 
+// Package imports:
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:sizer/sizer.dart';
+
+// Project imports:
 import 'package:preny/core/app/languages/service/service.dart';
 import 'package:preny/core/app/themes/data/app_themes.dart';
 import 'package:preny/core/navigator/app_navigator.dart';
@@ -9,7 +14,6 @@ import 'package:preny/core/navigator/app_navigator_observer.dart';
 import 'package:preny/core/navigator/app_routes.dart';
 import 'package:preny/features/app/cubit/cubit.dart';
 import 'package:preny/features/theme/presentation/cubit/theme_cubit.dart';
-import 'package:sizer/sizer.dart';
 
 class App extends StatefulWidget {
   const App({super.key});

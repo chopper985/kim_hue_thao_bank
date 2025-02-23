@@ -1,4 +1,7 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Project imports:
 import 'package:preny/core/navigator/app_navigator_observer.dart';
 import 'package:preny/core/navigator/app_routes.dart';
 import 'package:preny/core/navigator/app_scaffold.dart';

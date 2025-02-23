@@ -1,4 +1,7 @@
+// Package imports:
 import 'package:i18n_extension/i18n_extension.dart';
+
+// Project imports:
 import 'package:preny/core/app/languages/data/english.dart';
 import 'package:preny/core/app/languages/data/vietnamese.dart';
 
