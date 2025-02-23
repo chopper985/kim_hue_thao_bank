@@ -8,7 +8,7 @@ import 'package:preny/core/navigator/app_navigator.dart';
 import 'package:preny/core/navigator/app_navigator_observer.dart';
 import 'package:preny/core/navigator/app_routes.dart';
 import 'package:preny/features/app/cubit/cubit.dart';
-import 'package:preny/features/theme/cubit/theme_cubit.dart';
+import 'package:preny/features/theme/presentation/cubit/theme_cubit.dart';
 import 'package:sizer/sizer.dart';
 
 class App extends StatefulWidget {

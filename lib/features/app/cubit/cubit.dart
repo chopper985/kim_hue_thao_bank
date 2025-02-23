@@ -1,8 +1,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:preny/core/injection/injection_container.dart';
-import 'package:preny/features/auth/cubit/auth_cubit.dart';
-import 'package:preny/features/home/cubit/home_cubit.dart';
-import 'package:preny/features/theme/cubit/theme_cubit.dart';
+import 'package:preny/features/auth/presentation/cubit/auth_cubit.dart';
+import 'package:preny/features/home/presentation/cubit/home_cubit.dart';
+import 'package:preny/features/theme/presentation/cubit/theme_cubit.dart';
 
 class AppCubit {
   static final HomeCubit homeCubit = getIt<HomeCubit>();

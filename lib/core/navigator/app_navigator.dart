@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:preny/core/navigator/app_navigator_observer.dart';
 import 'package:preny/core/navigator/app_routes.dart';
 import 'package:preny/core/navigator/app_scaffold.dart';
-import 'package:preny/features/home/screens/home_screen.dart';
+import 'package:preny/features/home/presentation/screens/home_screen.dart';
 
 class AppNavigator extends RouteObserver<PageRoute<dynamic>> {
   static GlobalKey<NavigatorState> navigatorKey = GlobalKey();
