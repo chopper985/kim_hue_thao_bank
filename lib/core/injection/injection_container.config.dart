@@ -1,4 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// dart format width=80
 
 // **************************************************************************
 // InjectableConfigGenerator
@@ -8,9 +9,12 @@
 // coverage:ignore-file
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
+
+// Package imports:
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 
+// Project imports:
 import '../../features/auth/presentation/cubit/auth_cubit.dart' as _i117;
 import '../../features/home/presentation/cubit/home_cubit.dart' as _i9;
 import '../../features/theme/presentation/cubit/theme_cubit.dart' as _i5;
@@ -28,8 +32,8 @@ _i174.GetIt $initGetIt(
     environment,
     environmentFilter,
   );
-  gh.factory<_i9.HomeCubit>(() => _i9.HomeCubit());
   gh.factory<_i117.AuthCubit>(() => _i117.AuthCubit());
+  gh.factory<_i9.HomeCubit>(() => _i9.HomeCubit());
   gh.factory<_i5.ThemeCubit>(() => _i5.ThemeCubit());
   gh.lazySingleton<_i721.DioConfiguration>(() => _i721.DioConfiguration());
   gh.lazySingleton<_i961.BaseRepository>(

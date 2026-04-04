@@ -10,7 +10,7 @@ import 'package:phosphor_flutter/phosphor_flutter.dart';
 import 'package:sizer/sizer.dart';
 
 // Project imports:
-import 'package:preny/core/navigator/app_navigator.dart';
+import 'package:AppName/core/navigator/app_router.dart';
 
 AppBar appBarTitleBack(
   BuildContext context, {
@@ -60,7 +60,7 @@ AppBar appBarTitleBack(
             fontWeight: FontWeight.w600,
           ),
         ),
-    leading: !isVisibleBackButton || !AppNavigator.canPop
+    leading: !isVisibleBackButton || !AppRouter.instance.canPop
         ? null
         : leading ??
             GestureDetector(
@@ -68,7 +68,7 @@ AppBar appBarTitleBack(
                 if (onBackPressed != null) {
                   onBackPressed();
                 } else {
-                  AppNavigator.pop();
+                  AppRouter.instance.pop();
                 }
               },
               child: Container(

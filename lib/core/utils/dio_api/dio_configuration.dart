@@ -10,11 +10,11 @@ import 'package:dio_smart_retry/dio_smart_retry.dart' as retry;
 import 'package:injectable/injectable.dart';
 
 // Project imports:
-import 'package:preny/core/constants/api_endpoints.dart';
-import 'package:preny/core/constants/http_status_code.dart';
-import 'package:preny/core/types/extensions/int_extension.dart';
-import 'package:preny/core/utils/datasources/base_repository.dart';
-import 'package:preny/core/utils/dio_api/completer_queue.dart';
+import 'package:AppName/core/constants/api_endpoints.dart';
+import 'package:AppName/core/constants/http_status_code.dart';
+import 'package:AppName/core/types/extensions/int_extension.dart';
+import 'package:AppName/core/utils/datasources/base_repository.dart';
+import 'package:AppName/core/utils/dio_api/completer_queue.dart';
 
 @lazySingleton
 class DioConfiguration {

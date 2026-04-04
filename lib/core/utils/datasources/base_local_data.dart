@@ -1,13 +1,13 @@
 // Package imports:
-import 'package:hive/hive.dart';
+import 'package:hive_ce/hive.dart';
 
 // Project imports:
-import 'package:preny/core/constants/storage_key.dart';
-import 'package:preny/core/helpers/path_helper.dart';
+import 'package:AppName/core/constants/storage_key.dart';
+import 'package:AppName/core/helpers/path_helper.dart';
 
 class BaseLocalData {
   static Future<void> initialBox() async {
-    final String? path = await PathHelper.localStoreDirPreny;
+    final String? path = await PathHelper.localStoreDirAppName;
     Hive.init(path);
 
     await openBoxApp();

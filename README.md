@@ -1,4 +1,4 @@
-# Preny
+# AppName
 
 
 
@@ -15,14 +15,14 @@ Already a pro? Just edit this README.md and make it your own. Want to make it ea
 
 ```
 cd existing_repo
-git remote add origin https://gitlab.askany.vn/chopper189/preny.git
+git remote add origin https://gitlab.askany.vn/chopper189/AppName.git
 git branch -M main
 git push -uf origin main
 ```
 
 ## Integrate with your tools
 
-- [ ] [Set up project integrations](https://gitlab.askany.vn/chopper189/preny/-/settings/integrations)
+- [ ] [Set up project integrations](https://gitlab.askany.vn/chopper189/AppName/-/settings/integrations)
 
 ## Collaborate with your team
 

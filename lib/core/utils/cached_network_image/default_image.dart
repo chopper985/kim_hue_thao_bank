@@ -2,8 +2,8 @@
 import 'package:flutter/material.dart';
 
 // Project imports:
-import 'package:preny/core/utils/cached_network_image/default_avatar.dart';
-import 'package:preny/gen/assets.gen.dart';
+import 'package:AppName/core/utils/cached_network_image/default_avatar.dart';
+import 'package:AppName/gen/assets.gen.dart';
 
 class DefaultImage extends StatelessWidget {
   final double height;

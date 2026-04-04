@@ -7,9 +7,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 // Project imports:
-import 'package:preny/core/app/colors/app_colors.dart';
-import 'package:preny/core/app/colors/color_seed.dart';
-import 'package:preny/gen/fonts.gen.dart';
+import 'package:AppName/core/app/colors/app_colors.dart';
+import 'package:AppName/core/app/colors/color_seed.dart';
+import 'package:AppName/gen/fonts.gen.dart';
 
 class AppTheme {
   AppTheme({required this.data});
@@ -65,7 +65,7 @@ class AppTheme {
         space: 0,
         thickness: .4,
       ),
-      dialogTheme: DialogTheme(
+      dialogTheme: DialogThemeData(
         backgroundColor: appColors.background,
         elevation: 0,
         shadowColor: Colors.transparent,
@@ -127,7 +127,7 @@ class AppTheme {
         space: 0,
         thickness: .4,
       ),
-      dialogTheme: const DialogTheme(
+      dialogTheme: const DialogThemeData(
         elevation: 0,
         shadowColor: Colors.transparent,
       ),

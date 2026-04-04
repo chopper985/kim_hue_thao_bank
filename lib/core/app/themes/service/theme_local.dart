@@ -1,8 +1,8 @@
 // Package imports:
-import 'package:hive/hive.dart';
+import 'package:hive_ce/hive.dart';
 
 // Project imports:
-import 'package:preny/core/constants/storage_key.dart';
+import 'package:AppName/core/constants/storage_key.dart';
 
 class ThemeLocalData {
   final Box hiveBox = Hive.box(StorageKeys.theme);

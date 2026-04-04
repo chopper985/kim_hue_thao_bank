@@ -1,4 +1,4 @@
-package com.preny.preny
+package com.AppName.AppName
 
 import io.flutter.embedding.android.FlutterActivity
 

@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 
 // Project imports:
-import 'package:preny/core/navigator/app_navigator.dart';
+import 'package:AppName/core/navigator/app_router.dart';
 
 class AppScaffold extends StatelessWidget {
   final Widget child;
@@ -78,7 +78,7 @@ class AppScaffold extends StatelessWidget {
     );
   }
 
-  bool get _canBackward => AppNavigator.canPop;
+  bool get _canBackward => AppRouter.instance.canPop;
 
   void _onPopInvoked(bool canPop, _) {}
 }

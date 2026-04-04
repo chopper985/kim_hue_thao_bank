@@ -7,7 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
 // Project imports:
-import 'package:preny/core/app/themes/service/theme_service.dart';
+import 'package:AppName/core/app/themes/service/theme_service.dart';
 
 part 'theme_state.dart';
 

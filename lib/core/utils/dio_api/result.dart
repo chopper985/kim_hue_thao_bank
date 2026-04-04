@@ -1,5 +1,5 @@
 // Project imports:
-import 'package:preny/core/error/failure.dart';
+import 'package:AppName/core/error/failure.dart';
 
 class Result<T> {
   final T? value;

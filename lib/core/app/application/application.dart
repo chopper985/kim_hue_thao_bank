@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 
 // Project imports:
-import 'package:preny/core/injection/injection_container.dart';
-import 'package:preny/core/utils/datasources/base_local_data.dart';
+import 'package:AppName/core/injection/injection_container.dart';
+import 'package:AppName/core/utils/datasources/base_local_data.dart';
 
 class Application {
   /// [Production - Dev]

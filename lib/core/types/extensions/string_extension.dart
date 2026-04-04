@@ -1,5 +1,5 @@
 // Project imports:
-import 'package:preny/core/constants/constants.dart';
+import 'package:AppName/core/constants/constants.dart';
 
 extension StringExtension on String {
   String formatVietnamese() {

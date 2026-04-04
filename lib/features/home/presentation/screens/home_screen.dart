@@ -2,8 +2,8 @@
 import 'package:flutter/material.dart';
 
 // Project imports:
-import 'package:preny/core/app/languages/data/localization.dart';
-import 'package:preny/core/utils/app_bar/app_bar_title_back.dart';
+import 'package:AppName/core/app/languages/data/localization.dart';
+import 'package:AppName/core/utils/app_bar/app_bar_title_back.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});

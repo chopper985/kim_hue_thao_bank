@@ -7,7 +7,6 @@
 
 # The following line activates a set of recommended lints for Flutter apps,
 # packages, and plugins designed to encourage good coding practices.
-include: package:flutter_lints/flutter.yaml
 
 analyzer:
   exclude:
@@ -74,7 +73,6 @@ linter:
     cast_nullable_to_non_nullable: false
     combinators_ordering: true
     conditional_uri_does_not_exist: true
-    enable_null_safety: true
     eol_at_end_of_file: true
     exhaustive_cases: true
     prefer_is_empty: true

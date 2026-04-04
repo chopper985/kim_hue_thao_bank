@@ -1,5 +1,5 @@
 // Project imports:
-import 'package:preny/core/app/languages/data/localization.dart';
+import 'package:AppName/core/app/languages/data/localization.dart';
 
 Map<String, String> english = {
   Strings.home: "Home",

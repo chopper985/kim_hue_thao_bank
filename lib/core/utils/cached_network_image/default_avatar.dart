@@ -3,8 +3,8 @@ import 'dart:core';
 import 'dart:ui';
 
 // Project imports:
-import 'package:preny/core/constants/colors_constants.dart';
-import 'package:preny/core/types/extensions/string_extension.dart';
+import 'package:AppName/core/constants/colors_constants.dart';
+import 'package:AppName/core/types/extensions/string_extension.dart';
 
 class DefaultAvatarByText {
   final String keyword;

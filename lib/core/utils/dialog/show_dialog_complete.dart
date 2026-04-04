@@ -8,10 +8,10 @@ import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
 // Project imports:
-import 'package:preny/core/helpers/device_utils.dart';
-import 'package:preny/core/navigator/app_navigator.dart';
-import 'package:preny/core/types/extensions/int_extension.dart';
-import 'package:preny/gen/assets.gen.dart';
+import 'package:AppName/core/helpers/device_utils.dart';
+import 'package:AppName/core/navigator/app_router.dart';
+import 'package:AppName/core/types/extensions/int_extension.dart';
+import 'package:AppName/gen/assets.gen.dart';
 
 Future showDialogDone({
   required String text,
@@ -20,14 +20,14 @@ Future showDialogDone({
 }) {
   if (timeForDismiss != null) {
     Future.delayed(timeForDismiss.milliseconds, () {
-      AppNavigator.pop();
+      AppRouter.instance.pop();
     });
   }
 
   DeviceUtils().lightImpact();
 
   return showDialog(
-    context: AppNavigator.context!,
+    context: AppRouter.context!,
     barrierColor: Colors.transparent,
     builder: (context) {
       return Material(

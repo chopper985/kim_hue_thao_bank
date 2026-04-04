@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 // Project imports:
-import 'package:preny/core/app/themes/service/theme_local.dart';
+import 'package:AppName/core/app/themes/service/theme_local.dart';
 
 enum ThemeOptions { light, dark }
 
