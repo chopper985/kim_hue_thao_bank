@@ -2,12 +2,12 @@
 import 'package:hive_ce/hive.dart';
 
 // Project imports:
-import 'package:AppName/core/constants/storage_key.dart';
-import 'package:AppName/core/helpers/path_helper.dart';
+import 'package:kim_hue_thao_bank/core/constants/storage_key.dart';
+import 'package:kim_hue_thao_bank/core/helpers/path_helper.dart';
 
 class BaseLocalData {
   static Future<void> initialBox() async {
-    final String? path = await PathHelper.localStoreDirAppName;
+    final String? path = await PathHelper.localStoreDirkim_hue_thao_bank;
     Hive.init(path);
 
     await openBoxApp();

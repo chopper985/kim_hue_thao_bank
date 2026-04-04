@@ -7,9 +7,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 // Project imports:
-import 'package:AppName/core/app/colors/app_colors.dart';
-import 'package:AppName/core/app/colors/color_seed.dart';
-import 'package:AppName/gen/fonts.gen.dart';
+import 'package:kim_hue_thao_bank/core/app/colors/app_colors.dart';
+import 'package:kim_hue_thao_bank/core/app/colors/color_seed.dart';
+import 'package:kim_hue_thao_bank/gen/fonts.gen.dart';
 
 class AppTheme {
   AppTheme({required this.data});

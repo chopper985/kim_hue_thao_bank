@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 // Project imports:
-import 'package:AppName/core/app/themes/service/theme_local.dart';
+import 'package:kim_hue_thao_bank/core/app/themes/service/theme_local.dart';
 
 enum ThemeOptions { light, dark }
 

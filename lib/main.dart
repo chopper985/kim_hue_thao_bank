@@ -10,9 +10,9 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:i18n_extension/i18n_extension.dart';
 
 // Project imports:
-import 'package:AppName/core/app/application/application.dart';
-import 'package:AppName/core/app/languages/service/service.dart';
-import 'package:AppName/features/app/app.dart';
+import 'package:kim_hue_thao_bank/core/app/application/application.dart';
+import 'package:kim_hue_thao_bank/core/app/languages/service/service.dart';
+import 'package:kim_hue_thao_bank/features/app/app.dart';
 
 Future<void> main() async {
   await runZonedGuarded(

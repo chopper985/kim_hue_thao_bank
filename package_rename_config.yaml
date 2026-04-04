@@ -1,10 +1,10 @@
 package_rename_config:
   android:
-    AppName: AppName
-    package_name: com.AppName.AppName
+    kim_hue_thao_bank: kim_hue_thao_bank
+    package_name: com.kim_hue_thao_bank.kim_hue_thao_bank
     lang: kotlin
 
   ios:
-    AppName: AppName
-    bundle_name: AppName
-    package_name: com.AppName.AppName
+    kim_hue_thao_bank: kim_hue_thao_bank
+    bundle_name: kim_hue_thao_bank
+    package_name: com.kim_hue_thao_bank.kim_hue_thao_bank

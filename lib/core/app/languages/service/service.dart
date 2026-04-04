@@ -2,8 +2,8 @@
 import 'dart:ui';
 
 // Project imports:
-import 'package:AppName/core/app/languages/service/lang_local.dart';
-import 'package:AppName/core/app/languages/service/model.dart';
+import 'package:kim_hue_thao_bank/core/app/languages/service/lang_local.dart';
+import 'package:kim_hue_thao_bank/core/app/languages/service/model.dart';
 
 class LanguageService {
   static List<Locale> supportLanguages = [

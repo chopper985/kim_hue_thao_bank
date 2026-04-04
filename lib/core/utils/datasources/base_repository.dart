@@ -7,10 +7,10 @@ import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 
 // Project imports:
-import 'package:AppName/core/constants/api_endpoints.dart';
-import 'package:AppName/core/constants/http_status_code.dart';
-import 'package:AppName/core/types/extensions/int_extension.dart';
-import 'package:AppName/core/utils/dio_api/dio_configuration.dart';
+import 'package:kim_hue_thao_bank/core/constants/api_endpoints.dart';
+import 'package:kim_hue_thao_bank/core/constants/http_status_code.dart';
+import 'package:kim_hue_thao_bank/core/types/extensions/int_extension.dart';
+import 'package:kim_hue_thao_bank/core/utils/dio_api/dio_configuration.dart';
 
 @lazySingleton
 class BaseRepository {

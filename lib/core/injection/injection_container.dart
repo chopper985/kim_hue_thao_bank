@@ -3,7 +3,7 @@ import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
 
 // Project imports:
-import 'package:AppName/core/injection/injection_container.config.dart';
+import 'package:kim_hue_thao_bank/core/injection/injection_container.config.dart';
 
 final getIt = GetIt.instance;
 
