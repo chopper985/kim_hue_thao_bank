@@ -6,7 +6,7 @@ import 'package:share_plus/share_plus.dart';
 import 'package:sizer/sizer.dart';
 
 // Project imports:
-import 'package:kim_hue_thao_bank/core/helpers/device_utils.dart';
+import 'package:kim_hue_thao_gold/core/helpers/device_utils.dart';
 
 class ShareUtils {
   Future<void> share({

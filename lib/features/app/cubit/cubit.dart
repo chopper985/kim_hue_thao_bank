@@ -2,10 +2,10 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 // Project imports:
-import 'package:kim_hue_thao_bank/core/injection/injection_container.dart';
-import 'package:kim_hue_thao_bank/features/auth/presentation/cubit/auth_cubit.dart';
-import 'package:kim_hue_thao_bank/features/home/presentation/cubit/home_cubit.dart';
-import 'package:kim_hue_thao_bank/features/theme/presentation/cubit/theme_cubit.dart';
+import 'package:kim_hue_thao_gold/core/injection/injection_container.dart';
+import 'package:kim_hue_thao_gold/features/auth/presentation/cubit/auth_cubit.dart';
+import 'package:kim_hue_thao_gold/features/home/presentation/cubit/home_cubit.dart';
+import 'package:kim_hue_thao_gold/features/theme/presentation/cubit/theme_cubit.dart';
 
 class AppCubit {
   static final HomeCubit homeCubit = getIt<HomeCubit>();

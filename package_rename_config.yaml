@@ -1,10 +1,10 @@
 package_rename_config:
   android:
-    kim_hue_thao_bank: kim_hue_thao_bank
-    package_name: com.kim_hue_thao_bank.kim_hue_thao_bank
+    kim_hue_thao_gold: kim_hue_thao_gold
+    package_name: com.kim_hue_thao_gold.kim_hue_thao_gold
     lang: kotlin
 
   ios:
-    kim_hue_thao_bank: kim_hue_thao_bank
-    bundle_name: kim_hue_thao_bank
-    package_name: com.kim_hue_thao_bank.kim_hue_thao_bank
+    kim_hue_thao_gold: kim_hue_thao_gold
+    bundle_name: kim_hue_thao_gold
+    package_name: com.kim_hue_thao_gold.kim_hue_thao_gold

@@ -12,8 +12,8 @@ import 'package:sizer/sizer.dart';
 import 'package:super_sliver_list/super_sliver_list.dart';
 
 // Project imports:
-import 'package:kim_hue_thao_bank/core/types/extensions/int_extension.dart';
-import 'package:kim_hue_thao_bank/core/utils/sizer/sizer_util.dart';
+import 'package:kim_hue_thao_gold/core/types/extensions/int_extension.dart';
+import 'package:kim_hue_thao_gold/core/utils/sizer/sizer_util.dart';
 
 class PaginationListView extends StatefulWidget {
   final int itemCount;

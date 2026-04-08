@@ -2,8 +2,8 @@
 import 'package:i18n_extension/i18n_extension.dart';
 
 // Project imports:
-import 'package:kim_hue_thao_bank/core/app/languages/data/english.dart';
-import 'package:kim_hue_thao_bank/core/app/languages/data/vietnamese.dart';
+import 'package:kim_hue_thao_gold/core/app/languages/data/english.dart';
+import 'package:kim_hue_thao_gold/core/app/languages/data/vietnamese.dart';
 
 class Strings {
   static const String home = "home";

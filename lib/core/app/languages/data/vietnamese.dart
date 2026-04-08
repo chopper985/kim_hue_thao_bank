@@ -1,5 +1,5 @@
 // Project imports:
-import 'package:kim_hue_thao_bank/core/app/languages/data/localization.dart';
+import 'package:kim_hue_thao_gold/core/app/languages/data/localization.dart';
 
 Map<String, String> vietnamese = {
   Strings.home: "Trang chủ",

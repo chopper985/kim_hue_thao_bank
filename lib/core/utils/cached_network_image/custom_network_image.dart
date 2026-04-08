@@ -6,9 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
 // Project imports:
-import 'package:kim_hue_thao_bank/core/utils/cached_network_image/default_avatar.dart';
-import 'package:kim_hue_thao_bank/core/utils/cached_network_image/default_image.dart';
-import 'package:kim_hue_thao_bank/core/utils/cached_network_image/place_holder.dart';
+import 'package:kim_hue_thao_gold/core/utils/cached_network_image/default_avatar.dart';
+import 'package:kim_hue_thao_gold/core/utils/cached_network_image/default_image.dart';
+import 'package:kim_hue_thao_gold/core/utils/cached_network_image/place_holder.dart';
 
 class CustomNetworkImage extends StatelessWidget {
   final String? urlToImage;

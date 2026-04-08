@@ -2,9 +2,9 @@
 import 'package:flutter/services.dart';
 
 // Project imports:
-import 'package:kim_hue_thao_bank/core/app/languages/data/localization.dart';
-import 'package:kim_hue_thao_bank/core/helpers/device_utils.dart';
-import 'package:kim_hue_thao_bank/core/utils/dialog/show_dialog_complete.dart';
+import 'package:kim_hue_thao_gold/core/app/languages/data/localization.dart';
+import 'package:kim_hue_thao_gold/core/helpers/device_utils.dart';
+import 'package:kim_hue_thao_gold/core/utils/dialog/show_dialog_complete.dart';
 
 /// A Flutter Clipboard Plugin.
 class ClipboardUtils {

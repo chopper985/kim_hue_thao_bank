@@ -1,6 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <application
-        android:label="kim_hue_thao_bank"
+        android:label="kim_hue_thao_gold"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

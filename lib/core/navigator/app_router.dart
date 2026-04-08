@@ -6,9 +6,9 @@ import 'package:go_router/go_router.dart';
 import 'package:sizer/sizer.dart';
 
 // Project imports:
-import 'package:kim_hue_thao_bank/core/app/colors/app_colors.dart';
-import 'package:kim_hue_thao_bank/core/navigator/app_routes.dart';
-import 'package:kim_hue_thao_bank/features/home/presentation/screens/home_screen.dart';
+import 'package:kim_hue_thao_gold/core/app/colors/app_colors.dart';
+import 'package:kim_hue_thao_gold/core/navigator/app_routes.dart';
+import 'package:kim_hue_thao_gold/features/home/presentation/screens/home_screen.dart';
 
 part 'app_router.g.dart';
 

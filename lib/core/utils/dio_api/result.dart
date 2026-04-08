@@ -1,5 +1,5 @@
 // Project imports:
-import 'package:kim_hue_thao_bank/core/error/failure.dart';
+import 'package:kim_hue_thao_gold/core/error/failure.dart';
 
 class Result<T> {
   final T? value;

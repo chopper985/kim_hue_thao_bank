@@ -18,17 +18,17 @@ class PathHelper {
     }
   }
 
-  static Future<void> createDirkim_hue_thao_bank() async {
+  static Future<void> createDirkim_hue_thao_gold() async {
     if (kIsWeb) return;
 
-    final String? tempkim_hue_thao_bankDir = await tempDirkim_hue_thao_bank;
-    final String? localStorekim_hue_thao_bankDir =
-        await localStoreDirkim_hue_thao_bank;
-    if (tempkim_hue_thao_bankDir == null ||
-        localStorekim_hue_thao_bankDir == null) return;
+    final String? tempkim_hue_thao_goldDir = await tempDirkim_hue_thao_gold;
+    final String? localStorekim_hue_thao_goldDir =
+        await localStoreDirkim_hue_thao_gold;
+    if (tempkim_hue_thao_goldDir == null ||
+        localStorekim_hue_thao_goldDir == null) return;
 
-    final Directory myDir = Directory(tempkim_hue_thao_bankDir);
-    final Directory localDir = Directory(localStorekim_hue_thao_bankDir);
+    final Directory myDir = Directory(tempkim_hue_thao_goldDir);
+    final Directory localDir = Directory(localStorekim_hue_thao_goldDir);
     final Directory? appDirectory = await appDir;
 
     if (!myDir.existsSync()) {
@@ -44,13 +44,13 @@ class PathHelper {
     }
   }
 
-  static Future<String?> get tempDirkim_hue_thao_bank async {
+  static Future<String?> get tempDirkim_hue_thao_gold async {
     if (kIsWeb) return null;
 
-    return '${(await getTemporaryDirectory()).path}/kim_hue_thao_bank';
+    return '${(await getTemporaryDirectory()).path}/kim_hue_thao_gold';
   }
 
-  static Future<String?> get localStoreDirkim_hue_thao_bank async {
+  static Future<String?> get localStoreDirkim_hue_thao_gold async {
     if (kIsWeb) return null;
 
     return '${(await getTemporaryDirectory()).path}/hive';
@@ -78,11 +78,11 @@ class PathHelper {
   }
 
   static Future<int> getTempSize() async {
-    final String? tempkim_hue_thao_bankDir = await tempDirkim_hue_thao_bank;
+    final String? tempkim_hue_thao_goldDir = await tempDirkim_hue_thao_gold;
 
-    if (tempkim_hue_thao_bankDir == null) return 0;
+    if (tempkim_hue_thao_goldDir == null) return 0;
 
-    final Directory myDir = Directory(tempkim_hue_thao_bankDir);
+    final Directory myDir = Directory(tempkim_hue_thao_goldDir);
 
     if (!myDir.existsSync()) return 0;
 
@@ -90,11 +90,11 @@ class PathHelper {
   }
 
   static Future<void> clearTempDir() async {
-    final String? tempkim_hue_thao_bankDir = await tempDirkim_hue_thao_bank;
+    final String? tempkim_hue_thao_goldDir = await tempDirkim_hue_thao_gold;
 
-    if (tempkim_hue_thao_bankDir == null) return;
+    if (tempkim_hue_thao_goldDir == null) return;
 
-    final Directory myDir = Directory(tempkim_hue_thao_bankDir);
+    final Directory myDir = Directory(tempkim_hue_thao_goldDir);
 
     if (!myDir.existsSync()) return;
 
