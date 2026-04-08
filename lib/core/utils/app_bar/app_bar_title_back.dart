@@ -36,11 +36,13 @@ AppBar appBarTitleBack(
     toolbarHeight: toolbarHeight,
     systemOverlayStyle: SystemUiOverlayStyle(
       statusBarColor: Colors.transparent,
-      statusBarBrightness: (brightness ?? Theme.of(context).brightness) ==
+      statusBarBrightness:
+          (brightness ?? Theme.of(context).brightness) ==
               (Platform.isAndroid ? Brightness.dark : Brightness.light)
           ? Brightness.light
           : Brightness.dark,
-      statusBarIconBrightness: (brightness ?? Theme.of(context).brightness) ==
+      statusBarIconBrightness:
+          (brightness ?? Theme.of(context).brightness) ==
               (Platform.isAndroid ? Brightness.dark : Brightness.light)
           ? Brightness.light
           : Brightness.dark,
@@ -51,7 +53,8 @@ AppBar appBarTitleBack(
     centerTitle: centerTitle,
     leadingWidth: leadingWidth ?? 30.sp,
     titleSpacing: titleSpacing,
-    title: titleWidget ??
+    title:
+        titleWidget ??
         Text(
           title,
           maxLines: 2,
@@ -63,24 +66,24 @@ AppBar appBarTitleBack(
     leading: !isVisibleBackButton || !AppRouter.instance.canPop
         ? null
         : leading ??
-            GestureDetector(
-              onTap: () {
-                if (onBackPressed != null) {
-                  onBackPressed();
-                } else {
-                  AppRouter.instance.pop();
-                }
-              },
-              child: Container(
-                alignment: Alignment.center,
-                padding: EdgeInsets.only(left: paddingLeft ?? 3.sp),
-                child: Icon(
-                  PhosphorIcons.caretLeft(),
-                  size: 20.sp,
-                  color: colorChild,
+              GestureDetector(
+                onTap: () {
+                  if (onBackPressed != null) {
+                    onBackPressed();
+                  } else {
+                    AppRouter.instance.pop();
+                  }
+                },
+                child: Container(
+                  alignment: Alignment.center,
+                  padding: EdgeInsets.only(left: paddingLeft ?? 3.sp),
+                  child: Icon(
+                    PhosphorIcons.caretLeft(),
+                    size: 20.sp,
+                    color: colorChild,
+                  ),
                 ),
               ),
-            ),
     actions: actions,
     bottom: bottom,
   );

@@ -51,11 +51,7 @@ class BaseRepository {
     FormData formData,
   ) async {
     try {
-      return await dio.post(
-        gateway,
-        data: formData,
-        options: getOptions,
-      );
+      return await dio.post(gateway, data: formData, options: getOptions);
     } on DioException catch (exception) {
       return catchDioError(exception: exception, gateway: gateway);
     }
@@ -66,11 +62,7 @@ class BaseRepository {
     FormData formData,
   ) async {
     try {
-      return await dio.put(
-        gateway,
-        data: formData,
-        options: getOptions,
-      );
+      return await dio.put(gateway, data: formData, options: getOptions);
     } on DioException catch (exception) {
       return catchDioError(exception: exception, gateway: gateway);
     }
@@ -85,8 +77,9 @@ class BaseRepository {
       final Map<String, String> paramsObject = {};
       if (query != null) {
         query.split('&').forEach((element) {
-          paramsObject[element.split('=')[0].toString()] =
-              element.split('=')[1].toString();
+          paramsObject[element.split('=')[0].toString()] = element
+              .split('=')[1]
+              .toString();
         });
       }
 
@@ -110,8 +103,9 @@ class BaseRepository {
       final Map<String, String> paramsObject = {};
       if (query != null) {
         query.split('&').forEach((element) {
-          paramsObject[element.split('=')[0].toString()] =
-              element.split('=')[1].toString();
+          paramsObject[element.split('=')[0].toString()] = element
+              .split('=')[1]
+              .toString();
         });
       }
 
@@ -135,8 +129,9 @@ class BaseRepository {
       final Map<String, String> paramsObject = {};
       if (query != null) {
         query.split('&').forEach((element) {
-          paramsObject[element.split('=')[0].toString()] =
-              element.split('=')[1].toString();
+          paramsObject[element.split('=')[0].toString()] = element
+              .split('=')[1]
+              .toString();
         });
       }
 
@@ -162,8 +157,9 @@ class BaseRepository {
       final Map<String, String> paramsObject = {};
       if (query != null) {
         query.split('&').forEach((element) {
-          paramsObject[element.split('=')[0].toString()] =
-              element.split('=')[1].toString();
+          paramsObject[element.split('=')[0].toString()] = element
+              .split('=')[1]
+              .toString();
         });
       }
 
@@ -189,8 +185,9 @@ class BaseRepository {
       final Map<String, String> paramsObject = {};
       if (query != null) {
         query.split('&').forEach((element) {
-          paramsObject[element.split('=')[0].toString()] =
-              element.split('=')[1].toString();
+          paramsObject[element.split('=')[0].toString()] = element
+              .split('=')[1]
+              .toString();
         });
       }
 
@@ -217,10 +214,7 @@ class BaseRepository {
   }
 
   Options get getOptions {
-    return Options(
-      validateStatus: (status) => true,
-      headers: getHeaders,
-    );
+    return Options(validateStatus: (status) => true, headers: getHeaders);
   }
 
   Map<String, String> getHeadersLogout(String deviceUuid) {

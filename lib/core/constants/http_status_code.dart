@@ -37,6 +37,10 @@ class StatusCode {
   static const int notImplemented = 501;
   static const int badGateway = 502;
 
-  static List<int> get validateStatus =>
-      [unauthorized, notFound, internalServerError, badGateway];
+  static List<int> get validateStatus => [
+    unauthorized,
+    notFound,
+    internalServerError,
+    badGateway,
+  ];
 }

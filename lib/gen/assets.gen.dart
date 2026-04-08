@@ -31,8 +31,12 @@ class $AssetsIconsGen {
       const AssetGenImage('assets/icons/ic_splash_android_12.png');
 
   /// List of all assets
-  List<AssetGenImage> get values =>
-      [icCheck, icLauncher, icLauncherIos, icSplashAndroid12];
+  List<AssetGenImage> get values => [
+    icCheck,
+    icLauncher,
+    icLauncherIos,
+    icSplashAndroid12,
+  ];
 }
 
 class $AssetsImagesGen {
@@ -120,15 +124,8 @@ class AssetGenImage {
     );
   }
 
-  ImageProvider provider({
-    AssetBundle? bundle,
-    String? package,
-  }) {
-    return AssetImage(
-      _assetName,
-      bundle: bundle,
-      package: package,
-    );
+  ImageProvider provider({AssetBundle? bundle, String? package}) {
+    return AssetImage(_assetName, bundle: bundle, package: package);
   }
 
   String get path => _assetName;

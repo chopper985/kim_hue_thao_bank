@@ -1,15 +1,16 @@
 flutter_native_splash:
   web: false
-  background_image: assets/images/img_splash_screen.png
   fullscreen: true
+
+  color: "#F5F5F5"
+  image: assets/icons/ic_kht_gold.png
+
   android_gravity: center
   ios_content_mode: center
+  icon_background_color: "#F5F5F5"
 
   android_12:
-    image: assets/icons/ic_splash_android_12.png
+    image: assets/icons/ic_kht_gold.png
     android_gravity: center
-    # Splash screen background color.
     color: "#F5F5F5"
-
-    # App icon background color.
     icon_background_color: "#F5F5F5"

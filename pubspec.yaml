@@ -1,12 +1,13 @@
 name: kht_gold
-description: "Kim Hue Thao Bank"
+description: "Kim Hue Thao Gold"
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
 version: 1.0.0+1
 
 environment:
-  sdk: ^3.5.4
-
+  sdk: ">=3.10.0 <4.0.0"
+  flutter: ">=3.38.1"
+  
 dependencies:
   flutter:
     sdk: flutter
@@ -20,13 +21,13 @@ dependencies:
   bloc_concurrency: ^0.3.0
 
   # Dependency Injection
-  get_it: ^8.0.3
+  get_it: ^9.2.1
   injectable: ^2.5.0
 
   # Storage
   hive_ce: ^2.11.3
   path_provider: ^2.1.5
-  flutter_secure_storage: ^9.2.4
+  flutter_secure_storage: ^10.0.0
 
   # Network
   dio: ^5.8.0+1
@@ -52,11 +53,11 @@ dependencies:
 
   # Helper
   collection: ^1.19.0
-  share_plus: ^11.1.0
+  share_plus: ^12.0.2
   equatable: ^2.0.7
 
   # Go router
-  go_router: ^16.2.2
+  go_router: ^17.2.0
 
   
 

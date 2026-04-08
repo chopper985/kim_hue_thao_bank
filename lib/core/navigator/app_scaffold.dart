@@ -7,10 +7,7 @@ import 'package:kht_gold/core/navigator/app_router.dart';
 class AppScaffold extends StatelessWidget {
   final Widget child;
 
-  const AppScaffold({
-    super.key,
-    required this.child,
-  });
+  const AppScaffold({super.key, required this.child});
 
   void _hideKeyboard(BuildContext context) {
     FocusManager.instance.primaryFocus?.unfocus();
@@ -45,11 +42,7 @@ class AppScaffold extends StatelessWidget {
       child is Scaffold ? child as Scaffold : null;
 
   Widget _child(BuildContext context) {
-    return SafeArea(
-      top: false,
-      bottom: false,
-      child: _getBody(context),
-    );
+    return SafeArea(top: false, bottom: false, child: _getBody(context));
   }
 
   Widget _getBody(BuildContext context) {

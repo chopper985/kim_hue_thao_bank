@@ -46,8 +46,8 @@ class DioConfiguration {
       InterceptorsWrapper(
         onResponse: (response, handler) async {
           if (response.statusCode == StatusCode.unauthorized
-              // && _userLocal.getRefreshToken.isNotEmpty
-              ) {
+          // && _userLocal.getRefreshToken.isNotEmpty
+          ) {
             try {
               final String oldAccessToken =
                   (response.requestOptions.headers['Authorization'] ?? '')
@@ -55,8 +55,9 @@ class DioConfiguration {
                       .split(' ')
                       .last;
 
-              final (String accessToken, String _) =
-                  await onRefreshToken(oldAccessToken: oldAccessToken);
+              final (String accessToken, String _) = await onRefreshToken(
+                oldAccessToken: oldAccessToken,
+              );
 
               response.requestOptions.headers['Authorization'] =
                   'Bearer $accessToken';
@@ -82,10 +83,7 @@ class DioConfiguration {
 
   Future<(String, String)> onRefreshToken({
     String oldAccessToken = '',
-    Function(
-      String accessToken,
-      String refreshToken,
-    )? callback,
+    Function(String accessToken, String refreshToken)? callback,
   }) async {
     // if (oldAccessToken != _userLocal.getAccessToken &&
     //     oldAccessToken.isNotEmpty) {
@@ -98,8 +96,9 @@ class DioConfiguration {
     if (!_isRefreshing) {
       _isRefreshing = true;
 
-      final (String, String) result =
-          await _performRefreshToken(callback: callback);
+      final (String, String) result = await _performRefreshToken(
+        callback: callback,
+      );
 
       _isRefreshing = false;
       _refreshTokenCompleters.completeAllQueue(result);
@@ -110,10 +109,7 @@ class DioConfiguration {
 
   // MARK: Private methods
   Future<(String, String)> _performRefreshToken({
-    Function(
-      String accessToken,
-      String refreshToken,
-    )? callback,
+    Function(String accessToken, String refreshToken)? callback,
   }) async {
     // if (_userLocal.getRefreshToken.isEmpty) {
     //   if (_userLocal.getAccessToken.isNotEmpty) {

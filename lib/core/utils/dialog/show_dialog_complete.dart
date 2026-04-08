@@ -41,10 +41,7 @@ Future showDialogDone({
               height: 135.sp,
               child: ClipRRect(
                 child: BackdropFilter(
-                  filter: ImageFilter.blur(
-                    sigmaX: 4.0,
-                    sigmaY: 4.0,
-                  ),
+                  filter: ImageFilter.blur(sigmaX: 4.0, sigmaY: 4.0),
                   child: Container(
                     width: 115.sp,
                     height: 115.sp,
@@ -64,11 +61,11 @@ Future showDialogDone({
                         ),
                         Text(
                           text,
-                          style:
-                              Theme.of(context).textTheme.labelMedium?.copyWith(
-                                    fontSize: 14.sp,
-                                    fontWeight: FontWeight.w400,
-                                  ),
+                          style: Theme.of(context).textTheme.labelMedium
+                              ?.copyWith(
+                                fontSize: 14.sp,
+                                fontWeight: FontWeight.w400,
+                              ),
                         ),
                       ],
                     ),

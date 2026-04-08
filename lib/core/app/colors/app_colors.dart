@@ -1,6 +1,8 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
 
+const Color colorText = Color.fromARGB(255, 175, 137, 0);
+
 const Color colorBlack = Color(0xFF121212);
 const Color colorPrimaryBlack = Color(0xFF14171A);
 const Color colorBlackGlassmorphism = Color(0xFF292929);

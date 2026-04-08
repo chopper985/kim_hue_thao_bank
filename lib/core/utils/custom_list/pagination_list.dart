@@ -71,19 +71,17 @@ class _PaginationListViewState extends State<PaginationListView> {
     if (widget.controller != null) {
       _scrollController = widget.controller!;
     }
-    _scrollController.addListener(
-      () {
-        if (widget.isLoadMore) return;
+    _scrollController.addListener(() {
+      if (widget.isLoadMore) return;
 
-        if (_refreshController.isRefresh) return;
+      if (_refreshController.isRefresh) return;
 
-        if (_scrollController.position.maxScrollExtent > 0 &&
-            _scrollController.position.pixels >=
-                _scrollController.position.maxScrollExtent - 2.sp) {
-          widget.callBackLoadMore?.call();
-        }
-      },
-    );
+      if (_scrollController.position.maxScrollExtent > 0 &&
+          _scrollController.position.pixels >=
+              _scrollController.position.maxScrollExtent - 2.sp) {
+        widget.callBackLoadMore?.call();
+      }
+    });
   }
 
   @override
@@ -110,30 +108,28 @@ class _PaginationListViewState extends State<PaginationListView> {
   }
 
   Widget get _buildSmartListView => SmartRefresher(
-        physics: widget.physics ?? const BouncingScrollPhysics(),
-        controller: _refreshController,
-        enablePullDown: widget.callBackRefresh != null,
-        header: WaterDropHeader(
-          refresh: const CupertinoActivityIndicator(),
-          complete: const SizedBox(),
-          completeDuration: 100.milliseconds,
-        ),
-        onRefresh: () async {
-          if (widget.callBackRefresh != null) {
-            HapticFeedback.lightImpact();
-            widget.callBackRefresh?.call(
-              () {
-                _refreshController.refreshCompleted();
-              },
-            );
-          } else {
-            await Future.delayed(500.milliseconds);
-            _refreshController.refreshCompleted();
-          }
-        },
-        onLoading: () {},
-        child: _buildListView,
-      );
+    physics: widget.physics ?? const BouncingScrollPhysics(),
+    controller: _refreshController,
+    enablePullDown: widget.callBackRefresh != null,
+    header: WaterDropHeader(
+      refresh: const CupertinoActivityIndicator(),
+      complete: const SizedBox(),
+      completeDuration: 100.milliseconds,
+    ),
+    onRefresh: () async {
+      if (widget.callBackRefresh != null) {
+        HapticFeedback.lightImpact();
+        widget.callBackRefresh?.call(() {
+          _refreshController.refreshCompleted();
+        });
+      } else {
+        await Future.delayed(500.milliseconds);
+        _refreshController.refreshCompleted();
+      }
+    },
+    onLoading: () {},
+    child: _buildListView,
+  );
 
   Widget get _buildListView {
     return widget.isDesktopLandscape
@@ -142,101 +138,101 @@ class _PaginationListViewState extends State<PaginationListView> {
             controller: _scrollController,
             scrollDirection: widget.scrollDirection,
             physics: widget.physics ?? const BouncingScrollPhysics(),
-            itemCount: widget.itemCount +
+            itemCount:
+                widget.itemCount +
                 (widget.isLoadMore ? widget.crossAxisCount : 0),
-            gridDelegate: widget.gridDelegate ??
+            gridDelegate:
+                widget.gridDelegate ??
                 SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: widget.crossAxisCount,
                   mainAxisSpacing: 8.sp,
                   crossAxisSpacing: 8.sp,
                   childAspectRatio: 4.5,
                 ),
-            itemBuilder: (context, index) => widget.isLoadMore &&
+            itemBuilder: (context, index) =>
+                widget.isLoadMore &&
                     (index == widget.itemCount || index == widget.itemCount + 1)
                 ? widget.childShimmer
                 : widget.itemBuilder(context, index),
           )
         : widget.onReorder != null
-            ? SingleChildScrollView(
-                controller: _scrollController,
-                physics: widget.physics ?? const BouncingScrollPhysics(),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    ReorderableListView.builder(
-                      shrinkWrap: true,
-                      proxyDecorator: (child, index, animation) {
-                        return AnimatedBuilder(
-                          animation: animation,
-                          builder: (context, child) {
-                            final double animValue =
-                                Curves.easeInOut.transform(animation.value);
-                            final double scale =
-                                lerpDouble(1, 1.02, animValue)!;
-                            return Transform.scale(
-                              scale: scale,
-                              child: child,
-                            );
-                          },
-                          child: child,
+        ? SingleChildScrollView(
+            controller: _scrollController,
+            physics: widget.physics ?? const BouncingScrollPhysics(),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                ReorderableListView.builder(
+                  shrinkWrap: true,
+                  proxyDecorator: (child, index, animation) {
+                    return AnimatedBuilder(
+                      animation: animation,
+                      builder: (context, child) {
+                        final double animValue = Curves.easeInOut.transform(
+                          animation.value,
                         );
+                        final double scale = lerpDouble(1, 1.02, animValue)!;
+                        return Transform.scale(scale: scale, child: child);
                       },
-                      itemBuilder: (context, index) =>
-                          widget.isLoadMore && index == widget.itemCount
-                              ? widget.childShimmer
-                              : widget.itemBuilder(context, index),
-                      scrollController: _mScrollController,
-                      padding: widget.padding,
-                      scrollDirection: widget.scrollDirection,
-                      physics: const NeverScrollableScrollPhysics(),
-                      itemCount: widget.itemCount + (widget.isLoadMore ? 1 : 0),
-                      onReorder: widget.onReorder!,
-                    ),
-                    widget.extentItem ?? const SizedBox(),
-                  ],
+                      child: child,
+                    );
+                  },
+                  itemBuilder: (context, index) =>
+                      widget.isLoadMore && index == widget.itemCount
+                      ? widget.childShimmer
+                      : widget.itemBuilder(context, index),
+                  scrollController: _mScrollController,
+                  padding: widget.padding,
+                  scrollDirection: widget.scrollDirection,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemCount: widget.itemCount + (widget.isLoadMore ? 1 : 0),
+                  onReorder: widget.onReorder!,
                 ),
-              )
-            : widget.scrollDirection == Axis.horizontal
-                ? ListView.builder(
-                    shrinkWrap: widget.shrinkWrap,
-                    controller: _mScrollController,
-                    padding: widget.padding,
-                    scrollDirection: widget.scrollDirection,
-                    physics: widget.physics ?? const BouncingScrollPhysics(),
-                    itemCount: widget.itemCount + (widget.isLoadMore ? 1 : 0),
-                    itemBuilder: (context, index) =>
-                        widget.isLoadMore && index == widget.itemCount
-                            ? widget.childShimmer
-                            : widget.itemBuilder(context, index),
-                    findChildIndexCallback: widget.findChildIndexCallback,
-                  )
-                : _sliver;
+                widget.extentItem ?? const SizedBox(),
+              ],
+            ),
+          )
+        : widget.scrollDirection == Axis.horizontal
+        ? ListView.builder(
+            shrinkWrap: widget.shrinkWrap,
+            controller: _mScrollController,
+            padding: widget.padding,
+            scrollDirection: widget.scrollDirection,
+            physics: widget.physics ?? const BouncingScrollPhysics(),
+            itemCount: widget.itemCount + (widget.isLoadMore ? 1 : 0),
+            itemBuilder: (context, index) =>
+                widget.isLoadMore && index == widget.itemCount
+                ? widget.childShimmer
+                : widget.itemBuilder(context, index),
+            findChildIndexCallback: widget.findChildIndexCallback,
+          )
+        : _sliver;
   }
 
   Widget get _sliver => CustomScrollView(
-        semanticChildCount: widget.itemCount + (widget.isLoadMore ? 1 : 0),
-        physics: widget.physics ?? const BouncingScrollPhysics(),
-        controller: _mScrollController,
-        shrinkWrap: widget.shrinkWrap,
-        slivers: [
-          SliverPadding(
-            padding: widget.padding ?? EdgeInsets.zero,
-            sliver: SuperSliverList(
-              delegate: SliverChildBuilderDelegate(
-                (context, index) {
-                  if (widget.isLoadMore && index == widget.itemCount) {
-                    return widget.childShimmer;
-                  } else {
-                    return widget.itemBuilder(context, index);
-                  }
-                },
-                findChildIndexCallback: widget.findChildIndexCallback,
-                childCount: widget.itemCount + (widget.isLoadMore ? 1 : 0),
-              ),
-            ),
+    semanticChildCount: widget.itemCount + (widget.isLoadMore ? 1 : 0),
+    physics: widget.physics ?? const BouncingScrollPhysics(),
+    controller: _mScrollController,
+    shrinkWrap: widget.shrinkWrap,
+    slivers: [
+      SliverPadding(
+        padding: widget.padding ?? EdgeInsets.zero,
+        sliver: SuperSliverList(
+          delegate: SliverChildBuilderDelegate(
+            (context, index) {
+              if (widget.isLoadMore && index == widget.itemCount) {
+                return widget.childShimmer;
+              } else {
+                return widget.itemBuilder(context, index);
+              }
+            },
+            findChildIndexCallback: widget.findChildIndexCallback,
+            childCount: widget.itemCount + (widget.isLoadMore ? 1 : 0),
           ),
-        ],
-      );
+        ),
+      ),
+    ],
+  );
 
   ScrollController? get _mScrollController =>
       widget.preventAttachController ? null : _scrollController;

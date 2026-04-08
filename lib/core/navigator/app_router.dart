@@ -8,7 +8,9 @@ import 'package:sizer/sizer.dart';
 // Project imports:
 import 'package:kht_gold/core/app/colors/app_colors.dart';
 import 'package:kht_gold/core/navigator/app_routes.dart';
+import 'package:kht_gold/features/auth/presentation/screens/login_screen.dart';
 import 'package:kht_gold/features/home/presentation/screens/home_screen.dart';
+import 'package:kht_gold/features/management/presentation/screens/management_screen.dart';
 
 part 'app_router.g.dart';
 
@@ -87,6 +89,25 @@ class RootRoute extends GoRouteData with $RootRoute {
   @override
   Widget build(BuildContext context, GoRouterState state) {
     return const HomeScreen();
+  }
+}
+
+@TypedGoRoute<LoginRoute>(path: Routes.loginRoute, name: Routes.loginRoute)
+class LoginRoute extends GoRouteData with $LoginRoute {
+  @override
+  Widget build(BuildContext context, GoRouterState state) {
+    return const LoginScreen();
+  }
+}
+
+@TypedGoRoute<ManagementRoute>(
+  path: Routes.managementRoute,
+  name: Routes.managementRoute,
+)
+class ManagementRoute extends GoRouteData with $ManagementRoute {
+  @override
+  Widget build(BuildContext context, GoRouterState state) {
+    return const ManagementScreen();
   }
 }
 

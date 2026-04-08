@@ -8,10 +8,7 @@ class LanguagesLocalData {
   final Box hiveBox = Hive.box(StorageKeys.language);
 
   void setLocale({required String langCode}) {
-    hiveBox.put(
-      StorageKeys.language,
-      langCode,
-    );
+    hiveBox.put(StorageKeys.language, langCode);
   }
 
   String? getLocale() {

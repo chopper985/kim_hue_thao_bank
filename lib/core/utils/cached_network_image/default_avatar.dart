@@ -10,10 +10,7 @@ class DefaultAvatarByText {
   final String keyword;
   final Color backgroundColor;
 
-  DefaultAvatarByText({
-    required this.keyword,
-    required this.backgroundColor,
-  });
+  DefaultAvatarByText({required this.keyword, required this.backgroundColor});
 
   factory DefaultAvatarByText.fromFullName(String name) {
     return DefaultAvatarByText(

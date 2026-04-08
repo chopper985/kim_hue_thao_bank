@@ -1,10 +1,10 @@
 package_rename_config:
   android:
     kht_gold: kht_gold
-    package_name: com.kht_gold.kht_gold
+    package_name: com.kht.goldx
     lang: kotlin
 
   ios:
     kht_gold: kht_gold
     bundle_name: kht_gold
-    package_name: com.kht_gold.kht_gold
+    package_name: com.kht.goldx

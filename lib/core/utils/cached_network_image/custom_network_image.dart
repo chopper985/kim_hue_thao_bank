@@ -101,23 +101,19 @@ class CustomNetworkImage extends StatelessWidget {
   }
 
   Widget get _defaultImage => DefaultImage(
-        height: height ?? width!,
-        width: width ?? height!,
-        margin: margin,
-        shape: borderRadius != null ? BoxShape.rectangle : shape,
-        borderRadius: borderRadius,
-        defaultAvatar: defaultAvatar,
-      );
+    height: height ?? width!,
+    width: width ?? height!,
+    margin: margin,
+    shape: borderRadius != null ? BoxShape.rectangle : shape,
+    borderRadius: borderRadius,
+    defaultAvatar: defaultAvatar,
+  );
 
   Widget get _placeHolder => Container(
-        margin: margin,
-        child: ClipRRect(
-          borderRadius: borderRadius ?? BorderRadius.zero,
-          child: PlaceHolder(
-            shape: shape,
-            height: height,
-            width: width,
-          ),
-        ),
-      );
+    margin: margin,
+    child: ClipRRect(
+      borderRadius: borderRadius ?? BorderRadius.zero,
+      child: PlaceHolder(shape: shape, height: height, width: width),
+    ),
+  );
 }

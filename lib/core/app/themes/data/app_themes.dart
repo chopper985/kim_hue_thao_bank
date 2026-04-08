@@ -19,9 +19,7 @@ class AppTheme {
     final themeData = ThemeData(
       colorSchemeSeed: colorSeed.color,
       cardColor: Colors.black.withValues(alpha: 0.04),
-      textTheme: TextTheme(
-        labelMedium: TextStyle(color: fCD),
-      ),
+      textTheme: TextTheme(labelMedium: TextStyle(color: fCD)),
       pageTransitionsTheme: kIsWeb
           ? null
           : const PageTransitionsTheme(
@@ -36,28 +34,28 @@ class AppTheme {
         behavior: SnackBarBehavior.floating,
       ),
       bottomSheetTheme: ThemeData.dark().bottomSheetTheme.copyWith(
-            elevation: 0,
-            modalElevation: 0,
-            modalBarrierColor: Colors.blueGrey.withValues(alpha: .2),
-          ),
+        elevation: 0,
+        modalElevation: 0,
+        modalBarrierColor: Colors.blueGrey.withValues(alpha: .2),
+      ),
       appBarTheme: AppBarTheme(
         scrolledUnderElevation: 0,
         surfaceTintColor: appColors.background,
         backgroundColor: appColors.background,
         systemOverlayStyle: SystemUiOverlayStyle(
           statusBarColor: Colors.transparent,
-          statusBarBrightness: Brightness.light ==
+          statusBarBrightness:
+              Brightness.light ==
                   (Platform.isAndroid ? Brightness.dark : Brightness.light)
               ? Brightness.light
               : Brightness.dark,
-          statusBarIconBrightness: Brightness.light ==
+          statusBarIconBrightness:
+              Brightness.light ==
                   (Platform.isAndroid ? Brightness.dark : Brightness.light)
               ? Brightness.light
               : Brightness.dark,
         ),
-        iconTheme: IconThemeData(
-          color: appColors.contentText1,
-        ),
+        iconTheme: IconThemeData(color: appColors.contentText1),
       ),
       dividerColor: appColors.divider,
       dividerTheme: DividerThemeData(
@@ -72,9 +70,7 @@ class AppTheme {
       ),
       fontFamily: FontFamily.inter,
     );
-    return AppTheme(
-      data: themeData,
-    );
+    return AppTheme(data: themeData);
   }
 
   factory AppTheme.dark({ColorSeed colorSeed = ColorSeed.blue}) {
@@ -82,9 +78,7 @@ class AppTheme {
     final themeData = ThemeData(
       colorSchemeSeed: colorSeed.color,
       cardColor: mGD,
-      textTheme: TextTheme(
-        labelMedium: TextStyle(color: mCU),
-      ),
+      textTheme: TextTheme(labelMedium: TextStyle(color: mCU)),
       pageTransitionsTheme: kIsWeb
           ? null
           : const PageTransitionsTheme(
@@ -99,27 +93,27 @@ class AppTheme {
         behavior: SnackBarBehavior.floating,
       ),
       bottomSheetTheme: ThemeData.dark().bottomSheetTheme.copyWith(
-            elevation: 0,
-            modalElevation: 0,
-          ),
+        elevation: 0,
+        modalElevation: 0,
+      ),
       appBarTheme: AppBarTheme(
         scrolledUnderElevation: 0,
         surfaceTintColor: appColors.background,
         backgroundColor: appColors.background,
         systemOverlayStyle: SystemUiOverlayStyle(
           statusBarColor: Colors.transparent,
-          statusBarBrightness: Brightness.dark ==
+          statusBarBrightness:
+              Brightness.dark ==
                   (Platform.isAndroid ? Brightness.dark : Brightness.light)
               ? Brightness.light
               : Brightness.dark,
-          statusBarIconBrightness: Brightness.dark ==
+          statusBarIconBrightness:
+              Brightness.dark ==
                   (Platform.isAndroid ? Brightness.dark : Brightness.light)
               ? Brightness.light
               : Brightness.dark,
         ),
-        iconTheme: IconThemeData(
-          color: appColors.contentText1,
-        ),
+        iconTheme: IconThemeData(color: appColors.contentText1),
       ),
       dividerColor: appColors.divider,
       dividerTheme: DividerThemeData(
@@ -133,9 +127,7 @@ class AppTheme {
       ),
       fontFamily: FontFamily.inter,
     );
-    return AppTheme(
-      data: themeData,
-    );
+    return AppTheme(data: themeData);
   }
 
   final ThemeData data;

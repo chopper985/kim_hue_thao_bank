@@ -27,16 +27,13 @@ _i174.GetIt $initGetIt(
   String? environment,
   _i526.EnvironmentFilter? environmentFilter,
 }) {
-  final gh = _i526.GetItHelper(
-    getIt,
-    environment,
-    environmentFilter,
-  );
+  final gh = _i526.GetItHelper(getIt, environment, environmentFilter);
   gh.factory<_i117.AuthCubit>(() => _i117.AuthCubit());
   gh.factory<_i9.HomeCubit>(() => _i9.HomeCubit());
   gh.factory<_i5.ThemeCubit>(() => _i5.ThemeCubit());
   gh.lazySingleton<_i721.DioConfiguration>(() => _i721.DioConfiguration());
   gh.lazySingleton<_i961.BaseRepository>(
-      () => _i961.BaseRepository(gh<_i721.DioConfiguration>()));
+    () => _i961.BaseRepository(gh<_i721.DioConfiguration>()),
+  );
   return getIt;
 }

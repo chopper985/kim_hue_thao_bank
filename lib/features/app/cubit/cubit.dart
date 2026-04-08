@@ -13,15 +13,9 @@ class AppCubit {
   static final AuthCubit authCubit = getIt<AuthCubit>();
 
   static final List<BlocProvider> providers = [
-    BlocProvider<HomeCubit>(
-      create: (context) => homeCubit,
-    ),
-    BlocProvider<ThemeCubit>(
-      create: (context) => themeCubit,
-    ),
-    BlocProvider<AuthCubit>(
-      create: (context) => authCubit,
-    ),
+    BlocProvider<HomeCubit>(create: (context) => homeCubit),
+    BlocProvider<ThemeCubit>(create: (context) => themeCubit),
+    BlocProvider<AuthCubit>(create: (context) => authCubit),
   ];
 
   Future<void> bootstrap() async {}

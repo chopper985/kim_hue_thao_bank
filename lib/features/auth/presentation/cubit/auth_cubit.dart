@@ -7,5 +7,13 @@ part 'auth_state.dart';
 
 @injectable
 class AuthCubit extends Cubit<AuthState> {
-  AuthCubit() : super(AuthInitial());
+  AuthCubit() : super(AuthUnauthenticated());
+
+  void login() {
+    emit(AuthAuthenticated());
+  }
+
+  void logout() {
+    emit(AuthUnauthenticated());
+  }
 }
