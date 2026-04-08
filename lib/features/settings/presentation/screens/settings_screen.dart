@@ -86,7 +86,7 @@ class SettingsContent extends StatelessWidget {
             isSelected: selectedLanguage == Language.vietnam,
             onTap: () => onLanguageSelected(Language.vietnam),
           ),
-          SizedBox(height: 8.sp),
+          SizedBox(height: 12.sp),
           _LanguageTile(
             language: Language.english,
             isSelected: selectedLanguage == Language.english,
@@ -111,24 +111,67 @@ class _LanguageTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
+    return GestureWrapper(
       onTap: onTap,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(8.sp),
-        side: BorderSide(color: isSelected ? colorText : Colors.grey.shade300),
-      ),
-      title: Text(
-        language.text.i18n,
-        style: TextStyle(
-          color: isSelected ? const Color(0xFF5A0500) : Colors.grey.shade800,
-          fontSize: 13.5.sp,
-          fontWeight: isSelected ? .w700 : .w500,
+      child: Container(
+        width: double.infinity,
+        padding: EdgeInsets.symmetric(horizontal: 14.sp, vertical: 10.sp),
+        decoration: BoxDecoration(
+          color: isSelected
+              ? colorText.withValues(alpha: 0.08)
+              : Colors.transparent,
+          borderRadius: BorderRadius.circular(10.sp),
+          border: Border.all(color: isSelected ? colorText : mCU),
+        ),
+        child: Row(
+          children: [
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    language.text.i18n,
+                    style: TextStyle(
+                      color: isSelected
+                          ? const Color(0xFF5A0500)
+                          : Colors.grey.shade800,
+                      fontSize: 14.5.sp,
+                      fontWeight: isSelected ? .w700 : .w500,
+                    ),
+                  ),
+                  SizedBox(height: 2.sp),
+                  Text(
+                    language.base,
+                    style: TextStyle(
+                      color: fCD,
+                      fontSize: 13.5.sp,
+                      fontWeight: .w400,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            if (isSelected)
+              Icon(Icons.check_circle, color: colorText, size: 18.sp),
+          ],
         ),
       ),
-      subtitle: Text(language.base),
-      trailing: isSelected
-          ? Icon(Icons.check_circle, color: colorText, size: 18.sp)
-          : null,
+    );
+  }
+}
+
+class GestureWrapper extends StatelessWidget {
+  final Widget child;
+  final VoidCallback? onTap;
+
+  const GestureWrapper({super.key, required this.child, this.onTap});
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      behavior: HitTestBehavior.opaque,
+      onTap: onTap,
+      child: child,
     );
   }
 }

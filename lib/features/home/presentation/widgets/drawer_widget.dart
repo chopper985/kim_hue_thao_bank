@@ -9,6 +9,7 @@ import 'package:sizer/sizer.dart';
 import 'package:kht_gold/core/app/colors/app_colors.dart';
 import 'package:kht_gold/core/app/languages/data/localization.dart';
 import 'package:kht_gold/core/constants/constants.dart';
+import 'package:kht_gold/gen/assets.gen.dart';
 
 enum HomeDrawerDestination { home, settings, management }
 
@@ -57,13 +58,14 @@ class DrawerWidget extends StatelessWidget {
                   height: 26.sp,
                   width: 26.sp,
                   decoration: BoxDecoration(
-                    color: colorText.withValues(alpha: 0.12),
                     borderRadius: BorderRadius.circular(8.sp),
                   ),
-                  child: Icon(
-                    Icons.diamond_outlined,
-                    color: colorText,
-                    size: 20.sp,
+                  child: Padding(
+                    padding: EdgeInsets.all(3.sp),
+                    child: Image.asset(
+                      Assets.icons.icKhtGold.path,
+                      fit: BoxFit.contain,
+                    ),
                   ),
                 ),
                 SizedBox(width: 16.sp),
@@ -87,6 +89,7 @@ class DrawerWidget extends StatelessWidget {
               padding: EdgeInsets.symmetric(vertical: 8.sp),
               children: [
                 ListTile(
+                  selectedColor: colorText,
                   leading: const Icon(Icons.home_outlined),
                   title: Text(Strings.home.i18n),
                   selected: selectedDestination == HomeDrawerDestination.home,
@@ -95,6 +98,7 @@ class DrawerWidget extends StatelessWidget {
                   },
                 ),
                 ListTile(
+                  selectedColor: colorText,
                   leading: const Icon(Icons.settings_outlined),
                   title: Text(Strings.settings.i18n),
                   selected:
@@ -105,6 +109,7 @@ class DrawerWidget extends StatelessWidget {
                 ),
                 if (isAuthenticated)
                   ListTile(
+                    selectedColor: colorText,
                     leading: const Icon(Icons.dashboard_outlined),
                     title: Text(Strings.management.i18n),
                     selected:
@@ -118,6 +123,7 @@ class DrawerWidget extends StatelessWidget {
                   )
                 else
                   ListTile(
+                    selectedColor: colorText,
                     leading: const Icon(Icons.login_outlined),
                     title: Text(Strings.login.i18n),
                     onTap: () {
@@ -127,6 +133,7 @@ class DrawerWidget extends StatelessWidget {
                   ),
                 if (isAuthenticated)
                   ListTile(
+                    selectedColor: colorText,
                     leading: const Icon(Icons.logout_outlined),
                     title: Text(Strings.logout.i18n),
                     onTap: () {

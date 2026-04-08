@@ -11,6 +11,7 @@ import 'package:kht_gold/core/app/languages/data/localization.dart';
 import 'package:kht_gold/core/constants/constants.dart';
 import 'package:kht_gold/core/navigator/app_router.dart';
 import 'package:kht_gold/features/auth/presentation/cubit/auth_cubit.dart';
+import 'package:kht_gold/gen/assets.gen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -74,24 +75,25 @@ class _LoginScreenState extends State<LoginScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  SizedBox(height: 18.sp),
+                  SizedBox(height: 32.sp),
                   Container(
                     padding: EdgeInsets.all(16.sp),
                     decoration: BoxDecoration(
                       color: const Color(0xFFFFFCF2),
-                      borderRadius: BorderRadius.circular(10.sp),
+                      borderRadius: BorderRadius.circular(12.sp),
                       border: Border.all(
                         color: colorText.withValues(alpha: 0.45),
                       ),
                     ),
                     child: Column(
                       children: [
-                        Icon(
-                          Icons.diamond_outlined,
-                          color: colorText,
-                          size: 34.sp,
+                        Image.asset(
+                          Assets.icons.icKhtGold.path,
+                          height: 38.sp,
+                          width: 38.sp,
+                          fit: BoxFit.contain,
                         ),
-                        SizedBox(height: 10.sp),
+                        SizedBox(height: 12.sp),
                         Text(
                           appName,
                           textAlign: TextAlign.center,
@@ -104,20 +106,21 @@ class _LoginScreenState extends State<LoginScreen> {
                       ],
                     ),
                   ),
-                  SizedBox(height: 20.sp),
+                  SizedBox(height: 26.sp),
                   TextField(
                     controller: _usernameController,
                     enabled: !isLoading,
                     textInputAction: TextInputAction.next,
                     decoration: InputDecoration(
+                      contentPadding: EdgeInsets.symmetric(vertical: 12.sp),
                       labelText: Strings.username.i18n,
                       prefixIcon: const Icon(Icons.person_outline),
                       border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(8.sp),
+                        borderRadius: BorderRadius.circular(10.sp),
                       ),
                     ),
                   ),
-                  SizedBox(height: 12.sp),
+                  SizedBox(height: 14.sp),
                   TextField(
                     controller: _passwordController,
                     enabled: !isLoading,
@@ -125,6 +128,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     textInputAction: TextInputAction.done,
                     onSubmitted: (_) => isLoading ? null : _login(),
                     decoration: InputDecoration(
+                      contentPadding: EdgeInsets.symmetric(vertical: 12.sp),
                       labelText: Strings.password.i18n,
                       prefixIcon: const Icon(Icons.lock_outline),
                       suffixIcon: IconButton(
@@ -142,20 +146,20 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                       ),
                       border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(8.sp),
+                        borderRadius: BorderRadius.circular(12.sp),
                       ),
                     ),
                   ),
-                  SizedBox(height: 18.sp),
+                  SizedBox(height: 25.sp),
                   SizedBox(
-                    height: 38.sp,
+                    height: 28.sp,
                     child: ElevatedButton(
                       onPressed: isLoading ? null : _login,
                       style: ElevatedButton.styleFrom(
                         backgroundColor: const Color(0xFF5A0500),
                         foregroundColor: colorText,
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8.sp),
+                          borderRadius: BorderRadius.circular(12.sp),
                         ),
                       ),
                       child: isLoading
@@ -171,6 +175,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               style: TextStyle(
                                 fontSize: 15.sp,
                                 fontWeight: .w700,
+                                color: lightColorText,
                               ),
                             ),
                     ),

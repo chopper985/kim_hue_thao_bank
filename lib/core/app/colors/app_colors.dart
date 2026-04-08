@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 
 const Color colorText = Color.fromARGB(255, 175, 137, 0);
+const Color lightColorText = Color.fromARGB(255, 255, 218, 84);
 
 const Color colorBlack = Color(0xFF121212);
 const Color colorPrimaryBlack = Color(0xFF14171A);
