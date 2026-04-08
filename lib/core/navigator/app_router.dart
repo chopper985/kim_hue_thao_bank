@@ -11,6 +11,7 @@ import 'package:kht_gold/core/navigator/app_routes.dart';
 import 'package:kht_gold/features/auth/presentation/screens/login_screen.dart';
 import 'package:kht_gold/features/home/presentation/screens/home_screen.dart';
 import 'package:kht_gold/features/management/presentation/screens/management_screen.dart';
+import 'package:kht_gold/features/settings/presentation/screens/settings_screen.dart';
 
 part 'app_router.g.dart';
 
@@ -108,6 +109,17 @@ class ManagementRoute extends GoRouteData with $ManagementRoute {
   @override
   Widget build(BuildContext context, GoRouterState state) {
     return const ManagementScreen();
+  }
+}
+
+@TypedGoRoute<SettingsRoute>(
+  path: Routes.settingsRoute,
+  name: Routes.settingsRoute,
+)
+class SettingsRoute extends GoRouteData with $SettingsRoute {
+  @override
+  Widget build(BuildContext context, GoRouterState state) {
+    return const SettingsScreen();
   }
 }
 

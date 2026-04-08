@@ -10,6 +10,7 @@ import 'package:sizer/sizer.dart';
 import 'package:kht_gold/core/app/languages/service/service.dart';
 import 'package:kht_gold/core/app/themes/data/app_themes.dart';
 import 'package:kht_gold/core/navigator/app_router.dart';
+import 'package:kht_gold/core/utils/sizer/sizer_util.dart';
 import 'package:kht_gold/features/app/cubit/cubit.dart';
 import 'package:kht_gold/features/theme/presentation/cubit/theme_cubit.dart';
 
@@ -35,19 +36,27 @@ class _AppState extends State<App> {
         builder: (context, theme) {
           return Sizer(
             builder: (context, orientation, deviceType) {
-              return MaterialApp.router(
-                title: "KHT Bank",
-                routerConfig: AppRouter.instance.router,
-                debugShowCheckedModeBanner: false,
-                theme: AppTheme.light().data,
-                darkTheme: AppTheme.dark().data,
-                themeMode: theme is ThemeUpdated ? theme.mode : ThemeMode.light,
-                supportedLocales: LanguageService.supportLanguages,
-                localizationsDelegates: const [
-                  GlobalMaterialLocalizations.delegate,
-                  GlobalWidgetsLocalizations.delegate,
-                  GlobalCupertinoLocalizations.delegate,
-                ],
+              return LayoutBuilder(
+                builder: (context, constraints) {
+                  SizerUtil.setScreenSize(constraints, orientation);
+
+                  return MaterialApp.router(
+                    title: "KHT Bank",
+                    routerConfig: AppRouter.instance.router,
+                    debugShowCheckedModeBanner: false,
+                    theme: AppTheme.light().data,
+                    darkTheme: AppTheme.dark().data,
+                    themeMode: theme is ThemeUpdated
+                        ? theme.mode
+                        : ThemeMode.light,
+                    supportedLocales: LanguageService.supportLanguages,
+                    localizationsDelegates: const [
+                      GlobalMaterialLocalizations.delegate,
+                      GlobalWidgetsLocalizations.delegate,
+                      GlobalCupertinoLocalizations.delegate,
+                    ],
+                  );
+                },
               );
             },
           );

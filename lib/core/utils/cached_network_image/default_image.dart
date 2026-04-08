@@ -1,9 +1,11 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
-
-// Project imports:
+import 'package:kht_gold/core/app/colors/app_colors.dart';
 import 'package:kht_gold/core/utils/cached_network_image/default_avatar.dart';
 import 'package:kht_gold/gen/assets.gen.dart';
+
+// Package imports:
+import 'package:sizer/sizer.dart';
 
 class DefaultImage extends StatelessWidget {
   final double height;
@@ -27,51 +29,59 @@ class DefaultImage extends StatelessWidget {
   });
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: height,
-      width: width,
-      margin: margin,
-      child: Stack(
-        alignment: Alignment.center,
-        children: [
-          Align(
-            child: Container(
-              height: height,
-              width: width,
-              decoration: defaultAvatar != null
-                  ? BoxDecoration(
+    return defaultAvatar == null
+        ? Container(
+            height: height,
+            width: width,
+            margin: margin,
+            decoration: BoxDecoration(
+              color: Theme.of(context).brightness == Brightness.dark
+                  ? fCD
+                  : mCU,
+            ),
+            child: Center(
+              child: Image.asset(
+                Assets.icons.icKhtGold.path,
+                width: 30.sp,
+                height: 30.sp,
+                color: Theme.of(context).brightness == Brightness.dark
+                    ? mGD
+                    : mGB,
+              ),
+            ),
+          )
+        : Container(
+            height: height,
+            width: width,
+            margin: margin,
+            child: Stack(
+              alignment: Alignment.center,
+              children: [
+                Align(
+                  child: Container(
+                    height: height,
+                    width: width,
+                    decoration: BoxDecoration(
                       color: defaultAvatar!.backgroundColor,
                       shape: shape,
                       border: border,
-                    )
-                  : BoxDecoration(
-                      shape: shape,
-                      border: border,
-                      borderRadius: borderRadius,
-                      image: DecorationImage(
-                        image: AssetImage(Assets.icons.icLauncherIos.path),
-                        fit: shape == BoxShape.circle
-                            ? BoxFit.fitHeight
-                            : BoxFit.contain,
-                      ),
                     ),
-              alignment: Alignment.bottomRight,
-              child: childInAvatar,
-            ),
-          ),
-          defaultAvatar == null
-              ? const SizedBox()
-              : Text(
-                  defaultAvatar!.keyword,
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: width / 2.85,
-                    fontWeight: FontWeight.w500,
-                    color: Colors.white,
+                    alignment: Alignment.bottomRight,
+                    child: childInAvatar,
                   ),
                 ),
-        ],
-      ),
-    );
+                if (defaultAvatar != null)
+                  Text(
+                    defaultAvatar!.keyword,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: width / 2,
+                      fontWeight: FontWeight.w700,
+                      color: defaultAvatar!.textColor,
+                    ),
+                  ),
+              ],
+            ),
+          );
   }
 }

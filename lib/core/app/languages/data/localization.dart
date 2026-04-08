@@ -11,6 +11,23 @@ class Strings {
   static const String vietnamese = 'vietnamese';
   static const String english = 'english';
   static const String copied = "copied";
+  static const String goldStore = 'goldStore';
+  static const String management = 'management';
+  static const String settings = 'settings';
+  static const String login = 'login';
+  static const String loginFailed = 'loginFailed';
+  static const String logout = 'logout';
+  static const String versionLabel = 'versionLabel';
+  static const String selectDate = 'selectDate';
+  static const String loadGoldPriceFailed = 'loadGoldPriceFailed';
+  static const String emptyGoldPrice = 'emptyGoldPrice';
+  static const String lastUpdated = 'lastUpdated';
+  static const String goldType = 'goldType';
+  static const String buyPrice = 'buyPrice';
+  static const String sellPrice = 'sellPrice';
+  static const String spread = 'spread';
+  static const String username = 'username';
+  static const String password = 'password';
 }
 
 class MyI18n {

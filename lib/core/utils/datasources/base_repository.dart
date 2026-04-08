@@ -27,7 +27,6 @@ class BaseRepository {
       connectTimeout: 10000.milliseconds,
       receiveTimeout: 10000.milliseconds,
       sendTimeout: 10000.milliseconds,
-      responseType: ResponseType.bytes,
     ),
   ); // with default Options
 
@@ -72,6 +71,7 @@ class BaseRepository {
     String gateway,
     body, {
     String? query,
+    Options? options,
   }) async {
     try {
       final Map<String, String> paramsObject = {};
@@ -86,7 +86,7 @@ class BaseRepository {
       return await dio.post(
         gateway,
         data: convert.jsonEncode(body),
-        options: getOptions,
+        options: options ?? getOptions,
         queryParameters: query == null ? null : paramsObject,
       );
     } on DioException catch (exception) {
@@ -162,7 +162,6 @@ class BaseRepository {
               .toString();
         });
       }
-
       return await dio.get(
         gateway,
         data: body == null ? null : convert.jsonEncode(body),
@@ -170,6 +169,7 @@ class BaseRepository {
         queryParameters: query == null ? null : paramsObject,
       );
     } on DioException catch (exception) {
+      print("exception $exception");
       return catchDioError(exception: exception, gateway: gateway);
     }
   }
@@ -224,7 +224,6 @@ class BaseRepository {
       'Content-Type': 'application/json; charset=UTF-8',
       'Connection': 'keep-alive',
       'Accept': '*/*',
-      'Accept-Encoding': 'gzip, deflate, br',
       'X-Device-ID': deviceUuid,
     };
   }
@@ -236,7 +235,6 @@ class BaseRepository {
       'Content-Type': 'application/json; charset=UTF-8',
       'Connection': 'keep-alive',
       'Accept': '*/*',
-      'Accept-Encoding': 'gzip, deflate, br',
     };
   }
 

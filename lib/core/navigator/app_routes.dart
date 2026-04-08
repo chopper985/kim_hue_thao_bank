@@ -4,4 +4,5 @@ class Routes {
   static const String authenticationRoute = '/authentication';
   static const String loginRoute = '/login';
   static const String managementRoute = '/management';
+  static const String settingsRoute = '/settings';
 }

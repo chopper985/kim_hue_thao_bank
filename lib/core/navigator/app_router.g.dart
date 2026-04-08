@@ -6,7 +6,12 @@ part of 'app_router.dart';
 // GoRouterGenerator
 // **************************************************************************
 
-List<RouteBase> get $appRoutes => [$rootRoute, $loginRoute, $managementRoute];
+List<RouteBase> get $appRoutes => [
+  $rootRoute,
+  $loginRoute,
+  $managementRoute,
+  $settingsRoute,
+];
 
 RouteBase get $rootRoute =>
     GoRouteData.$route(path: '/', name: '/', factory: $RootRoute._fromState);
@@ -68,6 +73,32 @@ mixin $ManagementRoute on GoRouteData {
 
   @override
   String get location => GoRouteData.$location('/management');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $settingsRoute => GoRouteData.$route(
+  path: '/settings',
+  name: '/settings',
+  factory: $SettingsRoute._fromState,
+);
+
+mixin $SettingsRoute on GoRouteData {
+  static SettingsRoute _fromState(GoRouterState state) => SettingsRoute();
+
+  @override
+  String get location => GoRouteData.$location('/settings');
 
   @override
   void go(BuildContext context) => context.go(location);
