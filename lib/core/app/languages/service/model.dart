@@ -2,7 +2,7 @@
 import 'dart:ui';
 
 // Project imports:
-import 'package:kim_hue_thao_gold/core/app/languages/data/localization.dart';
+import 'package:kht_gold/core/app/languages/data/localization.dart';
 
 enum Language {
   vietnam(Locale('vi', 'VN'), Strings.vietnamese, 'vi', 'Tiếng Việt'),

@@ -1,5 +1,5 @@
 // Project imports:
-import 'package:kim_hue_thao_gold/core/constants/constants.dart';
+import 'package:kht_gold/core/constants/constants.dart';
 
 extension StringExtension on String {
   String formatVietnamese() {

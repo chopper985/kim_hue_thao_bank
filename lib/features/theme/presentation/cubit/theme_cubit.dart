@@ -7,7 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
 // Project imports:
-import 'package:kim_hue_thao_gold/core/app/themes/service/theme_service.dart';
+import 'package:kht_gold/core/app/themes/service/theme_service.dart';
 
 part 'theme_state.dart';
 

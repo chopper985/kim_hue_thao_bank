@@ -8,10 +8,10 @@ import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
 // Project imports:
-import 'package:kim_hue_thao_gold/core/helpers/device_utils.dart';
-import 'package:kim_hue_thao_gold/core/navigator/app_router.dart';
-import 'package:kim_hue_thao_gold/core/types/extensions/int_extension.dart';
-import 'package:kim_hue_thao_gold/gen/assets.gen.dart';
+import 'package:kht_gold/core/helpers/device_utils.dart';
+import 'package:kht_gold/core/navigator/app_router.dart';
+import 'package:kht_gold/core/types/extensions/int_extension.dart';
+import 'package:kht_gold/gen/assets.gen.dart';
 
 Future showDialogDone({
   required String text,

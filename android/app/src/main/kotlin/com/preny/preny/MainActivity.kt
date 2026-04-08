@@ -1,4 +1,4 @@
-package com.kim_hue_thao_gold.kim_hue_thao_gold
+package com.kht_gold.kht_gold
 
 import io.flutter.embedding.android.FlutterActivity
 

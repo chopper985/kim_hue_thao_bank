@@ -10,11 +10,11 @@ import 'package:dio_smart_retry/dio_smart_retry.dart' as retry;
 import 'package:injectable/injectable.dart';
 
 // Project imports:
-import 'package:kim_hue_thao_gold/core/constants/api_endpoints.dart';
-import 'package:kim_hue_thao_gold/core/constants/http_status_code.dart';
-import 'package:kim_hue_thao_gold/core/types/extensions/int_extension.dart';
-import 'package:kim_hue_thao_gold/core/utils/datasources/base_repository.dart';
-import 'package:kim_hue_thao_gold/core/utils/dio_api/completer_queue.dart';
+import 'package:kht_gold/core/constants/api_endpoints.dart';
+import 'package:kht_gold/core/constants/http_status_code.dart';
+import 'package:kht_gold/core/types/extensions/int_extension.dart';
+import 'package:kht_gold/core/utils/datasources/base_repository.dart';
+import 'package:kht_gold/core/utils/dio_api/completer_queue.dart';
 
 @lazySingleton
 class DioConfiguration {

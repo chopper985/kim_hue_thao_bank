@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 
 // Project imports:
-import 'package:kim_hue_thao_gold/core/injection/injection_container.dart';
-import 'package:kim_hue_thao_gold/core/utils/datasources/base_local_data.dart';
+import 'package:kht_gold/core/injection/injection_container.dart';
+import 'package:kht_gold/core/utils/datasources/base_local_data.dart';
 
 class Application {
   /// [Production - Dev]

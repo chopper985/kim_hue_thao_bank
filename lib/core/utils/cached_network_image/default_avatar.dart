@@ -3,8 +3,8 @@ import 'dart:core';
 import 'dart:ui';
 
 // Project imports:
-import 'package:kim_hue_thao_gold/core/constants/colors_constants.dart';
-import 'package:kim_hue_thao_gold/core/types/extensions/string_extension.dart';
+import 'package:kht_gold/core/constants/colors_constants.dart';
+import 'package:kht_gold/core/types/extensions/string_extension.dart';
 
 class DefaultAvatarByText {
   final String keyword;

@@ -2,8 +2,8 @@
 import 'package:flutter/material.dart';
 
 // Project imports:
-import 'package:kim_hue_thao_gold/core/app/languages/data/localization.dart';
-import 'package:kim_hue_thao_gold/core/utils/app_bar/app_bar_title_back.dart';
+import 'package:kht_gold/core/app/languages/data/localization.dart';
+import 'package:kht_gold/core/utils/app_bar/app_bar_title_back.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});

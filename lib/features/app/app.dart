@@ -7,11 +7,11 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:sizer/sizer.dart';
 
 // Project imports:
-import 'package:kim_hue_thao_gold/core/app/languages/service/service.dart';
-import 'package:kim_hue_thao_gold/core/app/themes/data/app_themes.dart';
-import 'package:kim_hue_thao_gold/core/navigator/app_router.dart';
-import 'package:kim_hue_thao_gold/features/app/cubit/cubit.dart';
-import 'package:kim_hue_thao_gold/features/theme/presentation/cubit/theme_cubit.dart';
+import 'package:kht_gold/core/app/languages/service/service.dart';
+import 'package:kht_gold/core/app/themes/data/app_themes.dart';
+import 'package:kht_gold/core/navigator/app_router.dart';
+import 'package:kht_gold/features/app/cubit/cubit.dart';
+import 'package:kht_gold/features/theme/presentation/cubit/theme_cubit.dart';
 
 class App extends StatefulWidget {
   const App({super.key});

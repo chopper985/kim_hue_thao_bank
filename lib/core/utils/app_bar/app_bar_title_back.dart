@@ -10,7 +10,7 @@ import 'package:phosphor_flutter/phosphor_flutter.dart';
 import 'package:sizer/sizer.dart';
 
 // Project imports:
-import 'package:kim_hue_thao_gold/core/navigator/app_router.dart';
+import 'package:kht_gold/core/navigator/app_router.dart';
 
 AppBar appBarTitleBack(
   BuildContext context, {

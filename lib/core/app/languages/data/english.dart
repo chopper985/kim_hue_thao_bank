@@ -1,5 +1,5 @@
 // Project imports:
-import 'package:kim_hue_thao_gold/core/app/languages/data/localization.dart';
+import 'package:kht_gold/core/app/languages/data/localization.dart';
 
 Map<String, String> english = {
   Strings.home: "Home",

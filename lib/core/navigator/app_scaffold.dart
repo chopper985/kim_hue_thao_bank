@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 
 // Project imports:
-import 'package:kim_hue_thao_gold/core/navigator/app_router.dart';
+import 'package:kht_gold/core/navigator/app_router.dart';
 
 class AppScaffold extends StatelessWidget {
   final Widget child;

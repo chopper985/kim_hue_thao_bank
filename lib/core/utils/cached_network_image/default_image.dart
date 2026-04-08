@@ -2,8 +2,8 @@
 import 'package:flutter/material.dart';
 
 // Project imports:
-import 'package:kim_hue_thao_gold/core/utils/cached_network_image/default_avatar.dart';
-import 'package:kim_hue_thao_gold/gen/assets.gen.dart';
+import 'package:kht_gold/core/utils/cached_network_image/default_avatar.dart';
+import 'package:kht_gold/gen/assets.gen.dart';
 
 class DefaultImage extends StatelessWidget {
   final double height;

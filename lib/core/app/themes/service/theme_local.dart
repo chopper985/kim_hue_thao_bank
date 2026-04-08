@@ -2,7 +2,7 @@
 import 'package:hive_ce/hive.dart';
 
 // Project imports:
-import 'package:kim_hue_thao_gold/core/constants/storage_key.dart';
+import 'package:kht_gold/core/constants/storage_key.dart';
 
 class ThemeLocalData {
   final Box hiveBox = Hive.box(StorageKeys.theme);
