@@ -15,15 +15,20 @@ import 'package:flutter/widgets.dart';
 class $AssetsIconsGen {
   const $AssetsIconsGen();
 
-  /// File path: assets/icons/ic_check.png
-  AssetGenImage get icCheck => const AssetGenImage('assets/icons/ic_check.png');
+  /// File path: assets/icons/ic_check.webp
+  AssetGenImage get icCheck =>
+      const AssetGenImage('assets/icons/ic_check.webp');
 
-  /// File path: assets/icons/ic_kht_gold.png
+  /// File path: assets/icons/ic_kht_gold.webp
   AssetGenImage get icKhtGold =>
-      const AssetGenImage('assets/icons/ic_kht_gold.png');
+      const AssetGenImage('assets/icons/ic_kht_gold.webp');
+
+  /// File path: assets/icons/ic_kht_gold_android_12.webp
+  AssetGenImage get icKhtGoldAndroid12 =>
+      const AssetGenImage('assets/icons/ic_kht_gold_android_12.webp');
 
   /// List of all assets
-  List<AssetGenImage> get values => [icCheck, icKhtGold];
+  List<AssetGenImage> get values => [icCheck, icKhtGold, icKhtGoldAndroid12];
 }
 
 class $AssetsImagesGen {

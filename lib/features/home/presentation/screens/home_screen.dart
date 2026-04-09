@@ -5,9 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:i18n_extension/i18n_extension.dart';
 import 'package:intl/intl.dart';
-import 'package:kht_gold/features/home/presentation/widgets/drawer_widget.dart';
-import 'package:skeletonizer/skeletonizer.dart';
 import 'package:sizer/sizer.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 // Project imports:
 import 'package:kht_gold/core/app/colors/app_colors.dart';
@@ -20,6 +19,7 @@ import 'package:kht_gold/core/utils/custom_list/pagination_list.dart';
 import 'package:kht_gold/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:kht_gold/features/home/data/models/index.dart';
 import 'package:kht_gold/features/home/presentation/cubit/home_cubit.dart';
+import 'package:kht_gold/features/home/presentation/widgets/drawer_widget.dart';
 import 'package:kht_gold/features/settings/presentation/screens/settings_screen.dart';
 
 const List<PriceBoardModel> _skeletonPriceBoard = [

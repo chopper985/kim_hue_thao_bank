@@ -3,14 +3,14 @@ flutter_native_splash:
   fullscreen: true
 
   color: "#F5F5F5"
-  image: assets/icons/ic_kht_gold.png
+  image: assets/icons-old/ic_kht_gold.png
 
   android_gravity: center
   ios_content_mode: center
   icon_background_color: "#F5F5F5"
 
   android_12:
-    image: assets/icons/ic_kht_gold.png
+    image: assets/icons-old/ic_kht_gold_android_12.png
     android_gravity: center
     color: "#F5F5F5"
     icon_background_color: "#F5F5F5"

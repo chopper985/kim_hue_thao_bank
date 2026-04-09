@@ -1,11 +1,13 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:kht_gold/core/app/colors/app_colors.dart';
-import 'package:kht_gold/core/utils/cached_network_image/default_avatar.dart';
-import 'package:kht_gold/gen/assets.gen.dart';
 
 // Package imports:
 import 'package:sizer/sizer.dart';
+
+// Project imports:
+import 'package:kht_gold/core/app/colors/app_colors.dart';
+import 'package:kht_gold/core/utils/cached_network_image/default_avatar.dart';
+import 'package:kht_gold/gen/assets.gen.dart';
 
 class DefaultImage extends StatelessWidget {
   final double height;
