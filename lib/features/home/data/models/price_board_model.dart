@@ -27,4 +27,22 @@ class PriceBoardModel {
       updatedAt: DateTime.tryParse(json['updatedAt']?.toString() ?? ''),
     );
   }
+
+  PriceBoardModel copyWith({
+    String? goldTypeId,
+    String? goldTypeName,
+    int? sortOrder,
+    String? buyPriceDisplay,
+    String? sellPriceDisplay,
+    DateTime? updatedAt,
+  }) {
+    return PriceBoardModel(
+      goldTypeId: goldTypeId ?? this.goldTypeId,
+      goldTypeName: goldTypeName ?? this.goldTypeName,
+      sortOrder: sortOrder ?? this.sortOrder,
+      buyPriceDisplay: buyPriceDisplay ?? this.buyPriceDisplay,
+      sellPriceDisplay: sellPriceDisplay ?? this.sellPriceDisplay,
+      updatedAt: updatedAt ?? this.updatedAt,
+    );
+  }
 }

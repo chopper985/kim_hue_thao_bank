@@ -7,16 +7,12 @@ import 'package:kht_gold/features/home/data/models/index.dart';
 import 'package:kht_gold/features/home/data/repositories/gold_repository.dart';
 
 @lazySingleton
-class GoldUsecase {
+class GetPriceBoardUsecase {
   final GoldRepository _goldRepository;
 
-  GoldUsecase(this._goldRepository);
+  GetPriceBoardUsecase(this._goldRepository);
 
-  Future<Result<List<PriceBoardModel>>> getPriceBoard({required String date}) {
+  Future<Result<List<PriceBoardModel>>> call({required String date}) {
     return _goldRepository.getPriceBoard(date: date);
-  }
-
-  Future<Result<List<GoldTypeModel>>> getGoldTypes() {
-    return _goldRepository.getGoldTypes();
   }
 }

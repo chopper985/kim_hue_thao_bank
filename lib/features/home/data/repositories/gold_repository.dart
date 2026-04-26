@@ -1,8 +1,4 @@
-// Dart imports:
-import 'dart:convert';
-
 // Package imports:
-import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 
 // Project imports:
@@ -24,57 +20,87 @@ class GoldRepository {
   }) async {
     final response = await _baseRepository.getRoute(
       ApiEndpoints.priceBoard,
-      options: Options(responseType: ResponseType.plain),
       query: 'date=$date',
     );
+    print(
+      "response ${response.data.map((item) => PriceBoardModel.fromJson(item)).toList()}",
+    );
 
-    if (response.statusCode != StatusCode.ok) {
+    if (!StatusCode.success.contains(response.statusCode)) {
       return Result.failure(ServerFailure());
     }
-    print("response ${response.runtimeType}");
-    final List<dynamic> data = _decodeListResponse(response.data);
-    final priceBoard =
-        data.map((item) => PriceBoardModel.fromJson(_asJsonMap(item))).toList()
-          ..sort((a, b) => a.sortOrder.compareTo(b.sortOrder));
 
-    return Result.success(priceBoard);
+    final List rawList = response.data;
+
+    return Result.success(
+      rawList.map((item) => PriceBoardModel.fromJson(item)).toList(),
+    );
   }
 
   Future<Result<List<GoldTypeModel>>> getGoldTypes() async {
-    final response = await _baseRepository.getRoute(
-      ApiEndpoints.goldTypes,
-      options: Options(responseType: ResponseType.plain),
-    );
+    final response = await _baseRepository.getRoute(ApiEndpoints.goldTypes);
 
-    if (response.statusCode != StatusCode.ok) {
+    if (!StatusCode.success.contains(response.statusCode)) {
       return Result.failure(ServerFailure());
     }
-
-    final List<dynamic> data = _decodeListResponse(response.data);
-    final goldTypes =
-        data.map((item) => GoldTypeModel.fromJson(_asJsonMap(item))).toList()
-          ..sort((a, b) => a.sortOrder.compareTo(b.sortOrder));
-
+    final List rawList = response.data;
+    final List<GoldTypeModel> goldTypes = rawList
+        .map((item) => GoldTypeModel.fromJson(item))
+        .toList();
+    goldTypes.sort((a, b) => a.sortOrder.compareTo(b.sortOrder));
     return Result.success(goldTypes);
   }
 
-  List<dynamic> _decodeListResponse(data) {
-    if (data is List<int>) {
-      return jsonDecode(utf8.decode(data)) as List<dynamic>;
+  Future<Result<GoldTypeModel>> createGoldType({
+    required CreateGoldTypeRequestModel request,
+  }) async {
+    final response = await _baseRepository.postRoute(
+      ApiEndpoints.goldTypes,
+      request.toJson(),
+    );
+
+    if (!StatusCode.success.contains(response.statusCode)) {
+      return Result.failure(ServerFailure());
     }
 
-    if (data is String) {
-      return jsonDecode(data) as List<dynamic>;
-    }
-
-    if (data is List<dynamic>) {
-      return data;
-    }
-
-    return [];
+    return Result.success(
+      GoldTypeModel(
+        id: response.data['id']?.toString() ?? '',
+        name: request.name,
+        sortOrder: request.sortOrder,
+      ),
+    );
   }
 
-  Map<String, dynamic> _asJsonMap(data) {
-    return Map<String, dynamic>.from(data as Map);
+  Future<Result<bool>> updateGoldTypes({
+    required List<GoldTypeModel> goldTypes,
+  }) async {
+    final response = await _baseRepository.putRoute(
+      ApiEndpoints.goldTypes,
+      goldTypes.map((item) => item.toJson()).toList(),
+    );
+
+    if (!StatusCode.success.contains(response.statusCode)) {
+      return Result.failure(ServerFailure());
+    }
+
+    return Result.success(true);
+  }
+
+  Future<Result<bool>> updateGoldPrices({
+    required UpdateGoldPricesRequestModel request,
+  }) async {
+    print("effectiveDate ${request.toJson()}");
+
+    final response = await _baseRepository.putRoute(
+      ApiEndpoints.goldPricesBatch,
+      request.toJson(),
+    );
+    print("response ${response.statusCode}");
+    if (!StatusCode.success.contains(response.statusCode)) {
+      return Result.failure(ServerFailure());
+    }
+
+    return Result.success(true);
   }
 }

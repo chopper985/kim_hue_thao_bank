@@ -10,6 +10,7 @@ import 'package:kht_gold/core/app/colors/app_colors.dart';
 import 'package:kht_gold/core/app/languages/data/localization.dart';
 import 'package:kht_gold/core/app/languages/service/model.dart';
 import 'package:kht_gold/core/app/languages/service/service.dart';
+import 'package:kht_gold/core/app/styles/app_style_colors.dart';
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
@@ -75,7 +76,7 @@ class SettingsContent extends StatelessWidget {
           Text(
             Strings.language.i18n,
             style: TextStyle(
-              color: const Color(0xFF5A0500),
+              color: AppStyleColors.textSecondary,
               fontSize: 15.sp,
               fontWeight: .w700,
             ),
@@ -133,7 +134,7 @@ class _LanguageTile extends StatelessWidget {
                     language.text.i18n,
                     style: TextStyle(
                       color: isSelected
-                          ? const Color(0xFF5A0500)
+                          ? AppStyleColors.textSecondary
                           : Colors.grey.shade800,
                       fontSize: 14.5.sp,
                       fontWeight: isSelected ? .w700 : .w500,

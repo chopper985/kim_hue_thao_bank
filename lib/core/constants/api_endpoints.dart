@@ -1,5 +1,6 @@
 class ApiEndpoints {
-  static const String baseUrl = 'http://gold-store-api.runasp.net/api/v1/';
+  static const String baseUrl =
+      'http://gold-store-api-stage.runasp.net/api/v1/';
 
   // Auth
   static const String auth = 'auth';
@@ -9,4 +10,5 @@ class ApiEndpoints {
   // Gold
   static const String goldTypes = 'gold-types';
   static const String priceBoard = 'price-board';
+  static const String goldPricesBatch = 'gold-prices/batch';
 }

@@ -42,13 +42,13 @@ class AppRouter {
     router.pop();
   }
 
-  bool get canPop => state.canPop();
+  bool get canPop => state?.canPop() ?? false;
 
   String get currentRoute => router.state.matchedLocation;
 
   static BuildContext? get context => _rootNavigatorKey.currentContext;
 
-  static NavigatorState get state => _rootNavigatorKey.currentState!;
+  static NavigatorState? get state => _rootNavigatorKey.currentState;
 
   void popLoading() {
     if (_rootNavigatorKey.currentState == null) return;

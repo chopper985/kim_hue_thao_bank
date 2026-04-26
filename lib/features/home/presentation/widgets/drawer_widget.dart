@@ -6,8 +6,8 @@ import 'package:package_info_plus/package_info_plus.dart';
 import 'package:sizer/sizer.dart';
 
 // Project imports:
-import 'package:kht_gold/core/app/colors/app_colors.dart';
 import 'package:kht_gold/core/app/languages/data/localization.dart';
+import 'package:kht_gold/core/app/styles/app_style_colors.dart';
 import 'package:kht_gold/core/constants/constants.dart';
 import 'package:kht_gold/gen/assets.gen.dart';
 
@@ -45,11 +45,11 @@ class DrawerWidget extends StatelessWidget {
         children: [
           Container(
             width: double.infinity,
-            padding: EdgeInsets.all(14.sp).add(EdgeInsets.only(top: 24.sp)),
+            padding: EdgeInsets.all(14.sp).add(EdgeInsets.only(top: 28.sp)),
             decoration: BoxDecoration(
-              color: const Color(0xFFFFFCF2),
+              color: AppStyleColors.surfaceWarm,
               border: Border(
-                bottom: BorderSide(color: colorText.withValues(alpha: 0.35)),
+                bottom: const BorderSide(color: AppStyleColors.borderSoft),
               ),
             ),
             child: Row(
@@ -75,7 +75,7 @@ class DrawerWidget extends StatelessWidget {
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
-                      color: const Color(0xFF5A0500),
+                      color: AppStyleColors.textSecondary,
                       fontSize: 16.sp,
                       fontWeight: .w700,
                     ),
@@ -89,7 +89,7 @@ class DrawerWidget extends StatelessWidget {
               padding: EdgeInsets.symmetric(vertical: 8.sp),
               children: [
                 ListTile(
-                  selectedColor: colorText,
+                  selectedColor: AppStyleColors.brandGoldDark,
                   leading: const Icon(Icons.home_outlined),
                   title: Text(Strings.home.i18n),
                   selected: selectedDestination == HomeDrawerDestination.home,
@@ -97,19 +97,9 @@ class DrawerWidget extends StatelessWidget {
                     _selectDestination(context, HomeDrawerDestination.home);
                   },
                 ),
-                ListTile(
-                  selectedColor: colorText,
-                  leading: const Icon(Icons.settings_outlined),
-                  title: Text(Strings.settings.i18n),
-                  selected:
-                      selectedDestination == HomeDrawerDestination.settings,
-                  onTap: () {
-                    _selectDestination(context, HomeDrawerDestination.settings);
-                  },
-                ),
                 if (isAuthenticated)
                   ListTile(
-                    selectedColor: colorText,
+                    selectedColor: AppStyleColors.brandGoldDark,
                     leading: const Icon(Icons.dashboard_outlined),
                     title: Text(Strings.management.i18n),
                     selected:
@@ -120,25 +110,35 @@ class DrawerWidget extends StatelessWidget {
                         HomeDrawerDestination.management,
                       );
                     },
-                  )
-                else
-                  ListTile(
-                    selectedColor: colorText,
-                    leading: const Icon(Icons.login_outlined),
-                    title: Text(Strings.login.i18n),
-                    onTap: () {
-                      Navigator.of(context).pop();
-                      onLoginSelected();
-                    },
                   ),
+                ListTile(
+                  selectedColor: AppStyleColors.brandGoldDark,
+                  leading: const Icon(Icons.settings_outlined),
+                  title: Text(Strings.settings.i18n),
+                  selected:
+                      selectedDestination == HomeDrawerDestination.settings,
+                  onTap: () {
+                    _selectDestination(context, HomeDrawerDestination.settings);
+                  },
+                ),
                 if (isAuthenticated)
                   ListTile(
-                    selectedColor: colorText,
+                    selectedColor: AppStyleColors.brandGoldDark,
                     leading: const Icon(Icons.logout_outlined),
                     title: Text(Strings.logout.i18n),
                     onTap: () {
                       Navigator.of(context).pop();
                       onLogoutSelected();
+                    },
+                  )
+                else
+                  ListTile(
+                    selectedColor: AppStyleColors.brandGoldDark,
+                    leading: const Icon(Icons.login_outlined),
+                    title: Text(Strings.login.i18n),
+                    onTap: () {
+                      Navigator.of(context).pop();
+                      onLoginSelected();
                     },
                   ),
               ],
@@ -157,7 +157,7 @@ class DrawerWidget extends StatelessWidget {
                   child: Text(
                     '${Strings.versionLabel.i18n}$version',
                     style: TextStyle(
-                      color: Colors.grey.shade600,
+                      color: AppStyleColors.textMutedDark,
                       fontSize: 13.5.sp,
                       fontWeight: .w500,
                     ),

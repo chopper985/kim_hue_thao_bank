@@ -13,6 +13,7 @@ import 'package:kht_gold/core/app/colors/app_colors.dart';
 import 'package:kht_gold/core/app/languages/data/localization.dart';
 import 'package:kht_gold/core/app/languages/service/model.dart';
 import 'package:kht_gold/core/app/languages/service/service.dart';
+import 'package:kht_gold/core/app/styles/app_style_colors.dart';
 import 'package:kht_gold/core/constants/constants.dart';
 import 'package:kht_gold/core/navigator/app_router.dart';
 import 'package:kht_gold/core/utils/custom_list/pagination_list.dart';
@@ -20,6 +21,7 @@ import 'package:kht_gold/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:kht_gold/features/home/data/models/index.dart';
 import 'package:kht_gold/features/home/presentation/cubit/home_cubit.dart';
 import 'package:kht_gold/features/home/presentation/widgets/drawer_widget.dart';
+import 'package:kht_gold/features/management/presentation/screens/management_screen.dart';
 import 'package:kht_gold/features/settings/presentation/screens/settings_screen.dart';
 
 const List<PriceBoardModel> _skeletonPriceBoard = [
@@ -68,6 +70,7 @@ class _HomeScreenState extends State<HomeScreen> {
   DateTime _selectedDate = DateTime.now();
   HomeDrawerDestination _selectedDestination = HomeDrawerDestination.home;
   late Language _selectedLanguage = LanguageService().getLocale();
+  ManagementAppBarState _managementAppBarState = const ManagementAppBarState();
 
   String get _selectedDateText =>
       DateFormat('dd/MM/yyyy').format(_selectedDate);
@@ -119,7 +122,8 @@ class _HomeScreenState extends State<HomeScreen> {
   String _titleForDestination(HomeDrawerDestination destination) {
     return switch (destination) {
       HomeDrawerDestination.settings => Strings.settings.i18n,
-      HomeDrawerDestination.management => Strings.management.i18n,
+      HomeDrawerDestination.management =>
+        _managementAppBarState.title ?? Strings.management.i18n,
       HomeDrawerDestination.home => appName,
     };
   }
@@ -133,9 +137,14 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
       HomeDrawerDestination.management => Center(
-        child: Text(
-          Strings.management.i18n,
-          style: TextStyle(fontSize: 16.sp, fontWeight: .w700),
+        child: ManagementScreen(
+          embedded: true,
+          onAppBarStateChanged: (state) {
+            if (!mounted) return;
+            setState(() {
+              _managementAppBarState = state;
+            });
+          },
         ),
       ),
       HomeDrawerDestination.home => _HomePriceBoardBody(
@@ -156,9 +165,19 @@ class _HomeScreenState extends State<HomeScreen> {
                 _selectedDestination == HomeDrawerDestination.management
             ? HomeDrawerDestination.home
             : _selectedDestination;
+        final bool showManagementBack =
+            selectedDestination == HomeDrawerDestination.management &&
+            _managementAppBarState.canPop;
 
         return Scaffold(
           appBar: AppBar(
+            automaticallyImplyLeading: !showManagementBack,
+            leading: showManagementBack
+                ? IconButton(
+                    onPressed: _managementAppBarState.onBackPressed,
+                    icon: const Icon(Icons.arrow_back_ios_new_rounded),
+                  )
+                : null,
             backgroundColor: colorText.withValues(alpha: 0.05),
             foregroundColor: colorText,
             iconTheme: const IconThemeData(color: colorText),
@@ -170,6 +189,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 fontSize: 17.sp,
               ),
             ),
+            actions: selectedDestination == HomeDrawerDestination.management
+                ? _managementAppBarState.actions
+                : null,
           ),
           drawer: Drawer(
             child: DrawerWidget(
@@ -228,14 +250,14 @@ class _HomePriceBoardBody extends StatelessWidget {
                   children: [
                     Icon(
                       Icons.calendar_today_outlined,
-                      color: const Color(0xFF5A0500),
+                      color: AppStyleColors.textSecondary,
                       size: 18.sp,
                     ),
                     SizedBox(width: 8.sp),
                     Text(
-                      '${Strings.selectDate.i18n}:',
+                      '${Strings.chooseDate.i18n}:',
                       style: TextStyle(
-                        color: const Color(0xFF5A0500),
+                        color: AppStyleColors.textSecondary,
                         fontWeight: FontWeight.w700,
                         fontSize: 15.sp,
                       ),

@@ -43,4 +43,6 @@ class StatusCode {
     internalServerError,
     badGateway,
   ];
+
+  static List<int> get success => [ok, created, noContent, notModified];
 }

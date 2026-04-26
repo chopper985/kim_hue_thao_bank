@@ -19,6 +19,13 @@ class $AssetsIconsGen {
   AssetGenImage get icCheck =>
       const AssetGenImage('assets/icons/ic_check.webp');
 
+  /// File path: assets/icons/ic_gold.webp
+  AssetGenImage get icGold => const AssetGenImage('assets/icons/ic_gold.webp');
+
+  /// File path: assets/icons/ic_gold_2.webp
+  AssetGenImage get icGold2 =>
+      const AssetGenImage('assets/icons/ic_gold_2.webp');
+
   /// File path: assets/icons/ic_kht_gold.webp
   AssetGenImage get icKhtGold =>
       const AssetGenImage('assets/icons/ic_kht_gold.webp');
@@ -28,7 +35,13 @@ class $AssetsIconsGen {
       const AssetGenImage('assets/icons/ic_kht_gold_android_12.webp');
 
   /// List of all assets
-  List<AssetGenImage> get values => [icCheck, icKhtGold, icKhtGoldAndroid12];
+  List<AssetGenImage> get values => [
+    icCheck,
+    icGold,
+    icGold2,
+    icKhtGold,
+    icKhtGoldAndroid12,
+  ];
 }
 
 class $AssetsImagesGen {

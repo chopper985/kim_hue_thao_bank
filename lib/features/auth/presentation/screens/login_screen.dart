@@ -4,12 +4,15 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sizer/sizer.dart';
+import 'package:toastification/toastification.dart';
 
 // Project imports:
 import 'package:kht_gold/core/app/colors/app_colors.dart';
 import 'package:kht_gold/core/app/languages/data/localization.dart';
+import 'package:kht_gold/core/app/styles/app_style_colors.dart';
 import 'package:kht_gold/core/constants/constants.dart';
 import 'package:kht_gold/core/navigator/app_router.dart';
+import 'package:kht_gold/core/types/extensions/string_extension.dart';
 import 'package:kht_gold/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:kht_gold/gen/assets.gen.dart';
 
@@ -61,9 +64,7 @@ class _LoginScreenState extends State<LoginScreen> {
           }
 
           if (state is AuthFailure) {
-            ScaffoldMessenger.of(
-              context,
-            ).showSnackBar(SnackBar(content: Text(Strings.loginFailed.i18n)));
+            Strings.loginFailed.i18n.showToast(ToastificationType.error);
           }
         },
         builder: (context, state) {
@@ -98,7 +99,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           appName,
                           textAlign: TextAlign.center,
                           style: TextStyle(
-                            color: const Color(0xFF5A0500),
+                            color: AppStyleColors.textSecondary,
                             fontSize: 18.sp,
                             fontWeight: .w800,
                           ),
@@ -156,7 +157,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     child: ElevatedButton(
                       onPressed: isLoading ? null : _login,
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color(0xFF5A0500),
+                        backgroundColor: AppStyleColors.textSecondary,
                         foregroundColor: colorText,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(12.sp),

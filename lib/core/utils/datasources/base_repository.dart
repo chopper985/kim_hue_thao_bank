@@ -11,15 +11,13 @@ import 'package:kht_gold/core/constants/api_endpoints.dart';
 import 'package:kht_gold/core/constants/http_status_code.dart';
 import 'package:kht_gold/core/types/extensions/int_extension.dart';
 import 'package:kht_gold/core/utils/dio_api/dio_configuration.dart';
+import 'package:kht_gold/features/auth/data/datasources/auth_local_data.dart';
 
 @lazySingleton
 class BaseRepository {
-  // final UserLocal _userLocal;
+  final AuthLocalData _authLocalData;
   final DioConfiguration _dioConfiguration;
-  BaseRepository(
-    // this._userLocal,
-    this._dioConfiguration,
-  );
+  BaseRepository(this._authLocalData, this._dioConfiguration);
 
   static Dio dio = Dio(
     BaseOptions(
@@ -96,8 +94,9 @@ class BaseRepository {
 
   Future<Response<dynamic>> putRoute(
     String gateway,
-    Map<String, dynamic> body, {
+    body, {
     String? query,
+    Options? options,
   }) async {
     try {
       final Map<String, String> paramsObject = {};
@@ -112,7 +111,7 @@ class BaseRepository {
       return await dio.put(
         gateway,
         data: convert.jsonEncode(body),
-        options: getOptions,
+        options: options ?? getOptions,
         queryParameters: query == null ? null : paramsObject,
       );
     } on DioException catch (exception) {
@@ -230,8 +229,8 @@ class BaseRepository {
 
   Map<String, String> get getHeaders {
     return {
-      // 'Authorization':
-      //     'Bearer ${_userLocal.getAccessToken.isEmpty ? _userLocal.getBackupToken()[0] : _userLocal.getAccessToken}',
+      'Authorization':
+          'Bearer ${_authLocalData.accessToken.isEmpty ? "" : _authLocalData.accessToken}',
       'Content-Type': 'application/json; charset=UTF-8',
       'Connection': 'keep-alive',
       'Accept': '*/*',

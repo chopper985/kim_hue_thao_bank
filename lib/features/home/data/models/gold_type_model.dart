@@ -18,4 +18,20 @@ class GoldTypeModel {
           : int.tryParse(json['sortOrder']?.toString() ?? '') ?? 0,
     );
   }
+
+  GoldTypeModel copyWith({String? id, String? name, int? sortOrder}) {
+    return GoldTypeModel(
+      id: id ?? this.id,
+      name: name ?? this.name,
+      sortOrder: sortOrder ?? this.sortOrder,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {'id': id, 'name': name, 'sortOrder': sortOrder};
+  }
+
+  Map<String, dynamic> toCreateJson() {
+    return {'name': name, 'sortOrder': sortOrder};
+  }
 }

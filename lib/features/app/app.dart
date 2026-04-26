@@ -10,6 +10,7 @@ import 'package:sizer/sizer.dart';
 import 'package:kht_gold/core/app/languages/service/service.dart';
 import 'package:kht_gold/core/app/themes/data/app_themes.dart';
 import 'package:kht_gold/core/navigator/app_router.dart';
+import 'package:kht_gold/core/navigator/app_scaffold.dart';
 import 'package:kht_gold/core/utils/sizer/sizer_util.dart';
 import 'package:kht_gold/features/app/cubit/cubit.dart';
 import 'package:kht_gold/features/theme/presentation/cubit/theme_cubit.dart';
@@ -55,6 +56,14 @@ class _AppState extends State<App> {
                       GlobalWidgetsLocalizations.delegate,
                       GlobalCupertinoLocalizations.delegate,
                     ],
+                    builder: (context, child) {
+                      return MediaQuery(
+                        data: MediaQuery.of(
+                          context,
+                        ).copyWith(textScaler: TextScaler.noScaling),
+                        child: AppScaffold(child: child ?? SizedBox()),
+                      );
+                    },
                   );
                 },
               );

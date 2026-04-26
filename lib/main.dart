@@ -8,6 +8,7 @@ import 'package:flutter/services.dart';
 // Package imports:
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:i18n_extension/i18n_extension.dart';
+import 'package:toastification/toastification.dart';
 
 // Project imports:
 import 'package:kht_gold/core/app/application/application.dart';
@@ -15,7 +16,7 @@ import 'package:kht_gold/core/app/languages/service/service.dart';
 import 'package:kht_gold/features/app/app.dart';
 
 Future<void> main() async {
-  await runZonedGuarded(
+  await runZoned(
     () async {
       final WidgetsBinding widgetsBinding =
           WidgetsFlutterBinding.ensureInitialized();
@@ -31,12 +32,12 @@ Future<void> main() async {
       runApp(
         I18n(
           initialLocale: LanguageService().getLocale().locale,
-          child: const App(),
+          child: const ToastificationWrapper(child: App()),
         ),
       );
     },
-    (error, stackTrack) {
-      debugPrint("stackTrack $error");
-    },
+    // (error, stackTrack) {
+    //   debugPrint("stackTrack $error");
+    // },
   );
 }
