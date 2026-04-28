@@ -194,6 +194,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 : null,
           ),
           drawer: Drawer(
+            width: 75.w,
             child: DrawerWidget(
               isAuthenticated: isAuthenticated,
               selectedDestination: selectedDestination,
@@ -206,7 +207,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 _selectDestination(HomeDrawerDestination.home);
               },
             ),
-            width: 75.w,
           ),
           body: _buildBody(selectedDestination),
         );
@@ -242,7 +242,7 @@ class _HomePriceBoardBody extends StatelessWidget {
                   vertical: 8.5.sp,
                 ),
                 decoration: BoxDecoration(
-                  color: const Color(0xFFFFFCF2),
+                  color: AppStyleColors.surfaceWarm,
                   borderRadius: BorderRadius.circular(10.sp),
                   border: Border.all(color: colorText, width: 1.5),
                 ),
@@ -273,7 +273,7 @@ class _HomePriceBoardBody extends StatelessWidget {
                             vertical: 8.5.sp,
                           ),
                           decoration: BoxDecoration(
-                            color: Colors.white,
+                            color: mCL,
                             borderRadius: BorderRadius.circular(8.sp),
                             border: Border.all(color: colorText, width: 1.5),
                             boxShadow: [
@@ -388,13 +388,13 @@ class _GoldPriceBoardContent extends StatelessWidget {
               '${Strings.lastUpdated.i18n}: $lastUpdatedText',
               style: TextStyle(
                 color: Colors.grey.shade600,
-                fontSize: 11.5.sp,
+                fontSize: 12.sp,
                 fontWeight: .w500,
               ),
             ),
           ),
         ),
-        SizedBox(height: 10.sp),
+        SizedBox(height: 12.sp),
         Expanded(
           child: PaginationListView(
             itemCount: priceBoard.isEmpty ? 1 : priceBoard.length,
@@ -441,7 +441,7 @@ class _GoldPriceHeader extends StatelessWidget {
               child: Text(
                 '${Strings.goldType.i18n.toUpperCase()} ($total)',
                 style: TextStyle(
-                  color: Colors.grey.shade700,
+                  color: fCD,
                   fontSize: 13.5.sp,
                   fontWeight: .w600,
                 ),
@@ -454,7 +454,7 @@ class _GoldPriceHeader extends StatelessWidget {
               Strings.buyPrice.i18n.toUpperCase(),
               textAlign: TextAlign.right,
               style: TextStyle(
-                color: Colors.grey.shade700,
+                color: fCD,
                 fontSize: 13.5.sp,
                 fontWeight: .w600,
               ),
@@ -466,7 +466,7 @@ class _GoldPriceHeader extends StatelessWidget {
               Strings.sellPrice.i18n.toUpperCase(),
               textAlign: TextAlign.right,
               style: TextStyle(
-                color: Colors.grey.shade700,
+                color: fCD,
                 fontSize: 13.5.sp,
                 fontWeight: .w600,
                 letterSpacing: 1,
@@ -490,7 +490,7 @@ class _GoldPriceCard extends StatelessWidget {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 14.sp, vertical: 12.sp),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: mCL,
         borderRadius: BorderRadius.circular(12.5.sp),
         border: Border.all(
           color: colorText.withValues(alpha: 0.45),
@@ -514,10 +514,10 @@ class _GoldPriceCard extends StatelessWidget {
                     fontWeight: FontWeight.w700,
                   ),
                 ),
-                SizedBox(height: 5.sp),
+                SizedBox(height: 6.sp),
                 Container(
                   padding: EdgeInsets.symmetric(
-                    horizontal: 8.sp,
+                    horizontal: 10.sp,
                     vertical: 4.sp,
                   ),
                   decoration: BoxDecoration(
@@ -527,8 +527,8 @@ class _GoldPriceCard extends StatelessWidget {
                   child: Text(
                     '${Strings.spread.i18n}: ${_spreadText(price)}',
                     style: TextStyle(
-                      color: Colors.grey.shade700,
-                      fontSize: 11.5.sp,
+                      color: fCD,
+                      fontSize: 12.sp,
                       fontWeight: FontWeight.w700,
                     ),
                   ),

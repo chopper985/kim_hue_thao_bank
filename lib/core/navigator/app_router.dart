@@ -73,7 +73,7 @@ class AppRouter {
         PageRouteBuilder(
           opaque: false,
           barrierColor: Colors.black26,
-          pageBuilder: (context, _, __) {
+          pageBuilder: (context, _, _) {
             return PopScope(canPop: false, child: CircleLoading(title: title));
           },
           transitionDuration: Duration.zero,

@@ -19,6 +19,7 @@ import 'package:kht_gold/features/management/presentation/cubit/management_cubit
 import 'package:kht_gold/features/management/presentation/widgets/daily_price_management_view.dart';
 import 'package:kht_gold/features/management/presentation/widgets/gold_types_management_view.dart';
 import 'package:kht_gold/features/management/presentation/widgets/management_menu_view.dart';
+import 'package:kht_gold/features/settings/presentation/widgets/text_with_obligatory.dart';
 
 class ManagementAppBarState {
   final String? title;
@@ -301,7 +302,7 @@ class _GoldTypeFormSheetState extends State<_GoldTypeFormSheet> {
       padding: EdgeInsets.only(bottom: viewInsets.bottom),
       child: Container(
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: mCL,
           borderRadius: BorderRadius.vertical(top: Radius.circular(16.sp)),
         ),
         child: SafeArea(
@@ -317,8 +318,12 @@ class _GoldTypeFormSheetState extends State<_GoldTypeFormSheet> {
                     width: double.infinity,
                     padding: EdgeInsets.all(16.sp),
                     decoration: BoxDecoration(
-                      color: const Color(0xFFA67C00),
-                      borderRadius: BorderRadius.circular(18.sp),
+                      gradient: LinearGradient(
+                        colors: [
+                          AppStyleColors.brandGoldBanner,
+                          AppStyleColors.brandGold,
+                        ],
+                      ),
                     ),
                     child: Row(
                       children: [
@@ -326,12 +331,12 @@ class _GoldTypeFormSheetState extends State<_GoldTypeFormSheet> {
                           height: 28.sp,
                           width: 28.sp,
                           decoration: BoxDecoration(
-                            color: Colors.white.withValues(alpha: 0.2),
+                            color: mCL.withValues(alpha: 0.2),
                             borderRadius: BorderRadius.circular(12.sp),
                           ),
                           child: Icon(
                             Icons.monetization_on_outlined,
-                            color: Colors.white,
+                            color: mCL,
                             size: 22.sp,
                           ),
                         ),
@@ -342,9 +347,9 @@ class _GoldTypeFormSheetState extends State<_GoldTypeFormSheet> {
                                 ? Strings.editGoldType.i18n
                                 : Strings.addNewGoldType.i18n,
                             style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: .w800,
-                              fontSize: 19.sp,
+                              color: mCL,
+                              fontWeight: .w700,
+                              fontSize: 18.sp,
                             ),
                           ),
                         ),
@@ -352,8 +357,8 @@ class _GoldTypeFormSheetState extends State<_GoldTypeFormSheet> {
                     ),
                   ),
                   SizedBox(height: 18.sp),
-                  _FormLabel(text: '${Strings.goldTypeName.i18n} *'),
-                  SizedBox(height: 6.sp),
+                  TextWithObligatory(title: Strings.goldTypeName.i18n),
+                  SizedBox(height: 10.sp),
                   TextFormField(
                     controller: _nameController,
                     textInputAction: TextInputAction.next,
@@ -365,14 +370,20 @@ class _GoldTypeFormSheetState extends State<_GoldTypeFormSheet> {
                     },
                     decoration: InputDecoration(
                       hintText: Strings.exampleGoldType.i18n,
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10.sp),
+                        borderSide: BorderSide(
+                          color: AppStyleColors.brandGoldDark,
+                        ),
+                      ),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10.sp),
                       ),
                     ),
                   ),
                   SizedBox(height: 14.sp),
-                  _FormLabel(text: '${Strings.sortOrder.i18n} *'),
-                  SizedBox(height: 6.sp),
+                  TextWithObligatory(title: Strings.sortOrder.i18n),
+                  SizedBox(height: 10.sp),
                   TextFormField(
                     controller: _sortOrderController,
                     keyboardType: TextInputType.number,
@@ -386,6 +397,12 @@ class _GoldTypeFormSheetState extends State<_GoldTypeFormSheet> {
                       return null;
                     },
                     decoration: InputDecoration(
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10.sp),
+                        borderSide: BorderSide(
+                          color: AppStyleColors.brandGoldDark,
+                        ),
+                      ),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10.sp),
                       ),
@@ -394,33 +411,43 @@ class _GoldTypeFormSheetState extends State<_GoldTypeFormSheet> {
                   SizedBox(height: 12.sp),
                   Container(
                     width: double.infinity,
-                    padding: EdgeInsets.all(12.sp),
                     decoration: BoxDecoration(
-                      color: const Color(0xFFFFF1C9),
+                      color: AppStyleColors.surfaceInfo.withValues(alpha: 0.75),
                       borderRadius: BorderRadius.circular(12.sp),
-                      border: Border(
-                        left: BorderSide(
-                          color: const Color(0xFFFFC107),
-                          width: 3.sp,
-                        ),
-                      ),
                     ),
                     child: Row(
                       children: [
-                        Icon(
-                          Icons.info_outline_rounded,
-                          color: const Color(0xFF9C7500),
-                          size: 17.sp,
-                        ),
-                        SizedBox(width: 8.sp),
-                        Expanded(
-                          child: Text(
-                            Strings.smallerSortOrderHint.i18n,
-                            style: TextStyle(
-                              color: const Color(0xFF9C7500),
-                              fontSize: 13.5.sp,
-                              fontWeight: .w600,
+                        Container(
+                          height: 24.sp,
+                          width: 8.5.sp,
+                          decoration: BoxDecoration(
+                            color: AppStyleColors.brandGoldBanner,
+                            borderRadius: BorderRadius.horizontal(
+                              left: Radius.circular(12.sp),
                             ),
+                          ),
+                        ),
+                        SizedBox(width: 12.sp),
+                        Expanded(
+                          child: Row(
+                            children: [
+                              Icon(
+                                Icons.info_outline_rounded,
+                                color: AppStyleColors.iconInfo,
+                                size: 17.sp,
+                              ),
+                              SizedBox(width: 8.sp),
+                              Expanded(
+                                child: Text(
+                                  Strings.smallerSortOrderHint.i18n,
+                                  style: TextStyle(
+                                    color: AppStyleColors.iconInfo,
+                                    fontSize: 14.sp,
+                                    fontWeight: .w600,
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                       ],
@@ -433,7 +460,7 @@ class _GoldTypeFormSheetState extends State<_GoldTypeFormSheet> {
                         child: OutlinedButton.icon(
                           onPressed: () => Navigator.of(context).pop(),
                           style: OutlinedButton.styleFrom(
-                            foregroundColor: Colors.grey.shade700,
+                            foregroundColor: fCD,
                             padding: EdgeInsets.symmetric(vertical: 12.sp),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(12.sp),
@@ -443,13 +470,13 @@ class _GoldTypeFormSheetState extends State<_GoldTypeFormSheet> {
                           label: Text(Strings.cancel.i18n),
                         ),
                       ),
-                      SizedBox(width: 10.sp),
+                      SizedBox(width: 14.sp),
                       Expanded(
                         child: FilledButton.icon(
                           onPressed: _submit,
                           style: FilledButton.styleFrom(
-                            backgroundColor: const Color(0xFFD4AF37),
-                            foregroundColor: Colors.white,
+                            backgroundColor: AppStyleColors.brandGoldBanner,
+                            foregroundColor: mCL,
                             padding: EdgeInsets.symmetric(vertical: 12.sp),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(12.sp),
@@ -466,24 +493,6 @@ class _GoldTypeFormSheetState extends State<_GoldTypeFormSheet> {
             ),
           ),
         ),
-      ),
-    );
-  }
-}
-
-class _FormLabel extends StatelessWidget {
-  const _FormLabel({required this.text});
-
-  final String text;
-
-  @override
-  Widget build(BuildContext context) {
-    return Text(
-      text,
-      style: TextStyle(
-        color: AppStyleColors.textPrimary,
-        fontWeight: .w800,
-        fontSize: 15.sp,
       ),
     );
   }

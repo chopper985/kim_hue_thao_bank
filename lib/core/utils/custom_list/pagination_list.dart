@@ -9,7 +9,6 @@ import 'package:flutter/services.dart';
 // Package imports:
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:sizer/sizer.dart';
-import 'package:super_sliver_list/super_sliver_list.dart';
 
 // Project imports:
 import 'package:kht_gold/core/types/extensions/int_extension.dart';
@@ -217,7 +216,7 @@ class _PaginationListViewState extends State<PaginationListView> {
     slivers: [
       SliverPadding(
         padding: widget.padding ?? EdgeInsets.zero,
-        sliver: SuperSliverList(
+        sliver: SliverList(
           delegate: SliverChildBuilderDelegate(
             (context, index) {
               if (widget.isLoadMore && index == widget.itemCount) {

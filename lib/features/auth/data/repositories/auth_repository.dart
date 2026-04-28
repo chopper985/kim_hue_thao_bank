@@ -58,7 +58,7 @@ class AuthRepository {
     _authLocalData.clearAuth();
   }
 
-  Map<String, dynamic> _decodeMapResponse(data) {
+  Map<String, dynamic> _decodeMapResponse(Object data) {
     if (data is String) {
       return Map<String, dynamic>.from(jsonDecode(data) as Map);
     }

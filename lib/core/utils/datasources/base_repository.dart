@@ -168,7 +168,6 @@ class BaseRepository {
         queryParameters: query == null ? null : paramsObject,
       );
     } on DioException catch (exception) {
-      print("exception $exception");
       return catchDioError(exception: exception, gateway: gateway);
     }
   }

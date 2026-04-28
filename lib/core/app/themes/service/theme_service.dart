@@ -21,7 +21,7 @@ class ThemeService {
     SystemChrome.setSystemUIOverlayStyle(systemBrightness);
   }
 
-  setStatusColor(isDark) {
+  void setStatusColor(bool isDark) {
     SystemChrome.setSystemUIOverlayStyle(
       SystemUiOverlayStyle(
         statusBarColor: Colors.transparent,

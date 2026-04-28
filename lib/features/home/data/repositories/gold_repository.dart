@@ -22,9 +22,6 @@ class GoldRepository {
       ApiEndpoints.priceBoard,
       query: 'date=$date',
     );
-    print(
-      "response ${response.data.map((item) => PriceBoardModel.fromJson(item)).toList()}",
-    );
 
     if (!StatusCode.success.contains(response.statusCode)) {
       return Result.failure(ServerFailure());
@@ -90,13 +87,11 @@ class GoldRepository {
   Future<Result<bool>> updateGoldPrices({
     required UpdateGoldPricesRequestModel request,
   }) async {
-    print("effectiveDate ${request.toJson()}");
-
     final response = await _baseRepository.putRoute(
       ApiEndpoints.goldPricesBatch,
       request.toJson(),
     );
-    print("response ${response.statusCode}");
+
     if (!StatusCode.success.contains(response.statusCode)) {
       return Result.failure(ServerFailure());
     }

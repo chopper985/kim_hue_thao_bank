@@ -119,6 +119,12 @@ class _LoginScreenState extends State<LoginScreen> {
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10.sp),
                       ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10.sp),
+                        borderSide: BorderSide(
+                          color: AppStyleColors.brandGoldDark,
+                        ),
+                      ),
                     ),
                   ),
                   SizedBox(height: 14.sp),
@@ -148,6 +154,12 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12.sp),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10.sp),
+                        borderSide: BorderSide(
+                          color: AppStyleColors.brandGoldDark,
+                        ),
                       ),
                     ),
                   ),

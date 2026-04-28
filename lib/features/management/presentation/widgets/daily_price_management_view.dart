@@ -14,11 +14,12 @@ import 'package:skeletonizer/skeletonizer.dart';
 import 'package:kht_gold/core/app/colors/app_colors.dart';
 import 'package:kht_gold/core/app/languages/data/localization.dart';
 import 'package:kht_gold/core/app/styles/app_style_colors.dart';
+import 'package:kht_gold/core/types/extensions/scroll_extension.dart';
 import 'package:kht_gold/core/utils/custom_list/pagination_list.dart';
 import 'package:kht_gold/features/management/presentation/cubit/management_cubit.dart';
 import 'package:kht_gold/gen/assets.gen.dart';
 
-class DailyPriceManagementView extends StatelessWidget {
+class DailyPriceManagementView extends StatefulWidget {
   const DailyPriceManagementView({
     super.key,
     required this.state,
@@ -55,10 +56,30 @@ class DailyPriceManagementView extends StatelessWidget {
   ];
 
   @override
+  State<DailyPriceManagementView> createState() =>
+      _DailyPriceManagementViewState();
+}
+
+class _DailyPriceManagementViewState extends State<DailyPriceManagementView> {
+  final ScrollController _scrollController = ScrollController();
+
+  @override
+  void initState() {
+    super.initState();
+    _scrollController.scrollToStartScreen;
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final List<ManagementPriceItem> items = state.isLoading
-        ? skeletonPriceItems
-        : state.priceItems;
+    final List<ManagementPriceItem> items = widget.state.isLoading
+        ? DailyPriceManagementView.skeletonPriceItems
+        : widget.state.priceItems;
 
     return Column(
       key: const ValueKey('management-daily-price'),
@@ -76,7 +97,7 @@ class DailyPriceManagementView extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  '${Strings.updateGoldPrice.i18n} - $effectiveDateText',
+                  '${Strings.updateGoldPrice.i18n} - ${widget.effectiveDateText}',
                   style: TextStyle(
                     color: AppStyleColors.textOnBrand,
                     fontSize: 15.5.sp,
@@ -85,7 +106,9 @@ class DailyPriceManagementView extends StatelessWidget {
                 ),
                 SizedBox(height: 10.sp),
                 OutlinedButton.icon(
-                  onPressed: state.isLoading ? null : onPickEffectiveDate,
+                  onPressed: widget.state.isLoading
+                      ? null
+                      : widget.onPickEffectiveDate,
                   style: OutlinedButton.styleFrom(
                     foregroundColor: AppStyleColors.textOnBrand,
                     side: const BorderSide(color: AppStyleColors.borderOnBrand),
@@ -101,20 +124,27 @@ class DailyPriceManagementView extends StatelessWidget {
           ),
         ),
         Expanded(
-          child: state.isLoading
+          child: widget.state.isLoading
               ? Skeletonizer(
                   child: ListView.builder(
                     padding: EdgeInsets.fromLTRB(14.sp, 14.sp, 14.sp, 24.sp),
-                    itemCount: skeletonPriceItems.length,
+                    itemCount:
+                        DailyPriceManagementView.skeletonPriceItems.length,
                     itemBuilder: (context, index) {
-                      return _PriceCard(item: skeletonPriceItems[index]);
+                      return _PriceCard(
+                        item:
+                            DailyPriceManagementView.skeletonPriceItems[index],
+                      );
                     },
                   ),
                 )
               : PaginationListView(
+                  controller: _scrollController,
                   padding: EdgeInsets.fromLTRB(14.sp, 14.sp, 14.sp, 24.sp),
                   itemCount: max(1, items.length),
-                  childShimmer: _PriceCard(item: skeletonPriceItems.first),
+                  childShimmer: _PriceCard(
+                    item: DailyPriceManagementView.skeletonPriceItems.first,
+                  ),
                   callBackRefresh: (done) async {
                     await context.read<ManagementCubit>().loadManagementData();
                     done();
@@ -147,9 +177,9 @@ class _PriceCard extends StatelessWidget {
       margin: EdgeInsets.only(bottom: 12.sp),
       padding: EdgeInsets.all(14.sp),
       decoration: BoxDecoration(
-        color: const Color(0xFFFAFAF7),
+        color: AppStyleColors.surfaceWarm,
         borderRadius: BorderRadius.circular(14.sp),
-        border: Border.all(color: Colors.grey.shade300),
+        border: Border.all(color: mCL),
         boxShadow: [
           BoxShadow(
             color: Colors.black.withValues(alpha: 0.05),
@@ -168,7 +198,7 @@ class _PriceCard extends StatelessWidget {
                 width: 26.sp,
                 padding: EdgeInsets.all(12.sp),
                 decoration: BoxDecoration(
-                  color: const Color(0xFFE8D086).withValues(alpha: 0.25),
+                  color: AppStyleColors.brandGoldSoft.withValues(alpha: 0.25),
                   shape: BoxShape.circle,
                 ),
                 child: Image.asset(
@@ -182,7 +212,7 @@ class _PriceCard extends StatelessWidget {
                 child: Text(
                   item.goldTypeName,
                   style: TextStyle(
-                    color: const Color(0xFF7A5C00),
+                    color: AppStyleColors.textSecondary,
                     fontSize: 17.5.sp,
                     fontWeight: .w800,
                   ),
@@ -298,15 +328,15 @@ class _EditablePriceFieldState extends State<_EditablePriceField> {
             ),
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(10.sp),
-              borderSide: BorderSide(color: Colors.amber.shade700),
+              borderSide: BorderSide(color: AppStyleColors.brandGoldDark),
             ),
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(10.sp),
-              borderSide: BorderSide(color: Colors.grey.shade300),
+              borderSide: BorderSide(color: mCL),
             ),
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(10.sp),
-              borderSide: BorderSide(color: Colors.grey.shade300),
+              borderSide: BorderSide(color: mCL),
             ),
           ),
         ),

@@ -34,6 +34,11 @@ class GoldTypesManagementView extends StatelessWidget {
     GoldTypeModel(id: 'skeleton-gold-1', name: 'Vang 9999', sortOrder: 1),
     GoldTypeModel(id: 'skeleton-gold-2', name: 'Vang 98', sortOrder: 2),
     GoldTypeModel(id: 'skeleton-gold-3', name: 'Vang 97', sortOrder: 3),
+    GoldTypeModel(id: 'skeleton-gold-4', name: 'Vang 9999', sortOrder: 4),
+    GoldTypeModel(id: 'skeleton-gold-5', name: 'Vang 98', sortOrder: 5),
+    GoldTypeModel(id: 'skeleton-gold-6', name: 'Vang 9999', sortOrder: 6),
+    GoldTypeModel(id: 'skeleton-gold-7', name: 'Vang 97', sortOrder: 7),
+    GoldTypeModel(id: 'skeleton-gold-8', name: 'Vang 98', sortOrder: 8),
   ];
 
   @override
@@ -82,17 +87,17 @@ class GoldTypesManagementView extends StatelessWidget {
 }
 
 class _GoldTypeCard extends StatelessWidget {
+  final GoldTypeModel item;
+  final bool isSavingGoldType;
+  final Future<void> Function(GoldTypeModel goldType) onEditGoldType;
+  final void Function(GoldTypeModel goldType) onDeleteGoldType;
+
   const _GoldTypeCard({
     required this.item,
     required this.isSavingGoldType,
     required this.onEditGoldType,
     required this.onDeleteGoldType,
   });
-
-  final GoldTypeModel item;
-  final bool isSavingGoldType;
-  final Future<void> Function(GoldTypeModel goldType) onEditGoldType;
-  final void Function(GoldTypeModel goldType) onDeleteGoldType;
 
   @override
   Widget build(BuildContext context) {
@@ -115,7 +120,7 @@ class _GoldTypeCard extends StatelessWidget {
             width: double.infinity,
             padding: EdgeInsets.symmetric(horizontal: 14.sp, vertical: 12.sp),
             decoration: BoxDecoration(
-              color: AppStyleColors.brandGold.withValues(alpha: 0.85),
+              color: Color(0xffA67C00),
               borderRadius: BorderRadius.vertical(top: Radius.circular(14.sp)),
             ),
             child: Row(

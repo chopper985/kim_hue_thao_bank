@@ -17,7 +17,7 @@ class ThemeCubit extends Cubit<ThemeState> {
 
   ThemeMode currentThemeMode = ThemeMode.light;
 
-  updateTheme(ThemeMode mode) {
+  void updateTheme(ThemeMode mode) {
     ThemeService().changeThemeMode(mode: currentThemeMode);
     emit(ThemeUpdated(mode: currentThemeMode));
   }

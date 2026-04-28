@@ -61,7 +61,7 @@ class _ManagementOptionCard extends StatelessWidget {
       child: Container(
         padding: EdgeInsets.all(14.sp),
         decoration: BoxDecoration(
-          color: const Color(0xFFFAFAF7),
+          color: AppStyleColors.surfaceWarm,
           borderRadius: BorderRadius.circular(16.sp),
           border: Border.all(color: AppStyleColors.borderBrand),
           boxShadow: const [

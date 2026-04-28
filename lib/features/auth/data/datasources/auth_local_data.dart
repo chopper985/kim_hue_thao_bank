@@ -17,21 +17,25 @@ abstract class AuthLocalData {
 class AuthLocalDataImpl extends AuthLocalData {
   final Box hiveBox = Hive.box(StorageKeys.authBox);
 
+  @override
   void saveAuth({required String accessToken, required DateTime expiresAt}) {
     hiveBox.put(StorageKeys.accessToken, accessToken);
     hiveBox.put(StorageKeys.expiresAt, expiresAt.toUtc().toIso8601String());
   }
 
+  @override
   String get accessToken {
     return hiveBox.get(StorageKeys.accessToken, defaultValue: '').toString();
   }
 
+  @override
   DateTime? get expiresAt {
     return DateTime.tryParse(
       hiveBox.get(StorageKeys.expiresAt, defaultValue: '').toString(),
     );
   }
 
+  @override
   bool get hasValidSession {
     final DateTime? expiry = expiresAt;
     return accessToken.isNotEmpty &&
@@ -39,6 +43,7 @@ class AuthLocalDataImpl extends AuthLocalData {
         expiry.toUtc().isAfter(DateTime.now().toUtc());
   }
 
+  @override
   void clearAuth() {
     hiveBox.delete(StorageKeys.accessToken);
     hiveBox.delete(StorageKeys.expiresAt);

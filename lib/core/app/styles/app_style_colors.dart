@@ -11,13 +11,14 @@ class AppStyleColors {
   static const Color brandGoldSurface = Color(0xFFFFF3C6);
 
   static const Color textPrimary = Color(0xFF2F3A4A);
-  static const Color textSecondary = Color(0xFF5A0500);
+  static const Color textSecondary = Color(0xFF7A5C00);
   static const Color textMuted = Color(0xFF9E9E9E);
   static const Color textMutedDark = Color(0xFF757575);
   static const Color textOnBrand = Colors.white;
+  static const Color textGoldOnLight = Color(0xFF7A5C00);
 
   static const Color surfacePrimary = Colors.white;
-  static const Color surfaceWarm = Color(0xFFFFFCF2);
+  static const Color surfaceWarm = Color(0xFFFAFAF7);
   static const Color surfaceInfo = Color(0xFFFFF1C9);
   static const Color surfaceOverlay = Color(0x40E8D086);
 

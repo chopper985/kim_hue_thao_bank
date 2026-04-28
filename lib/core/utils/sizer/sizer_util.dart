@@ -55,7 +55,11 @@ class SizerUtil {
   }
 
   // for responsive web
-  static getWebResponsiveSize({smallSize, mediumSize, largeSize}) {
+  static int getWebResponsiveSize({
+    required int smallSize,
+    required int mediumSize,
+    required int largeSize,
+  }) {
     return width < 600
         ? smallSize //'phone'
         : width >= 600 && width <= 1024

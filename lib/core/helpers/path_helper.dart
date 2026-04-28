@@ -18,15 +18,15 @@ class PathHelper {
     }
   }
 
-  static Future<void> createDirkht_gold() async {
+  static Future<void> createDirKHTGold() async {
     if (kIsWeb) return;
 
-    final String? tempkht_goldDir = await tempDirkht_gold;
-    final String? localStorekht_goldDir = await localStoreDirkht_gold;
-    if (tempkht_goldDir == null || localStorekht_goldDir == null) return;
+    final String? tempKHTGoldDir = await tempDirKHTGold;
+    final String? localStoreKHTGoldDir = await localStoreDirKHTGold;
+    if (tempKHTGoldDir == null || localStoreKHTGoldDir == null) return;
 
-    final Directory myDir = Directory(tempkht_goldDir);
-    final Directory localDir = Directory(localStorekht_goldDir);
+    final Directory myDir = Directory(tempKHTGoldDir);
+    final Directory localDir = Directory(localStoreKHTGoldDir);
     final Directory? appDirectory = await appDir;
 
     if (!myDir.existsSync()) {
@@ -42,13 +42,13 @@ class PathHelper {
     }
   }
 
-  static Future<String?> get tempDirkht_gold async {
+  static Future<String?> get tempDirKHTGold async {
     if (kIsWeb) return null;
 
     return '${(await getTemporaryDirectory()).path}/kht_gold';
   }
 
-  static Future<String?> get localStoreDirkht_gold async {
+  static Future<String?> get localStoreDirKHTGold async {
     if (kIsWeb) return null;
 
     return '${(await getTemporaryDirectory()).path}/hive';
@@ -76,11 +76,11 @@ class PathHelper {
   }
 
   static Future<int> getTempSize() async {
-    final String? tempkht_goldDir = await tempDirkht_gold;
+    final String? tempKHTGoldDir = await tempDirKHTGold;
 
-    if (tempkht_goldDir == null) return 0;
+    if (tempKHTGoldDir == null) return 0;
 
-    final Directory myDir = Directory(tempkht_goldDir);
+    final Directory myDir = Directory(tempKHTGoldDir);
 
     if (!myDir.existsSync()) return 0;
 
@@ -88,11 +88,11 @@ class PathHelper {
   }
 
   static Future<void> clearTempDir() async {
-    final String? tempkht_goldDir = await tempDirkht_gold;
+    final String? tempKHTGoldDir = await tempDirKHTGold;
 
-    if (tempkht_goldDir == null) return;
+    if (tempKHTGoldDir == null) return;
 
-    final Directory myDir = Directory(tempkht_goldDir);
+    final Directory myDir = Directory(tempKHTGoldDir);
 
     if (!myDir.existsSync()) return;
 

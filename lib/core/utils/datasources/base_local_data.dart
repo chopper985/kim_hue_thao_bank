@@ -7,7 +7,7 @@ import 'package:kht_gold/core/helpers/path_helper.dart';
 
 class BaseLocalData {
   static Future<void> initialBox() async {
-    final String? path = await PathHelper.localStoreDirkht_gold;
+    final String? path = await PathHelper.localStoreDirKHTGold;
     Hive.init(path);
 
     await openBoxApp();
