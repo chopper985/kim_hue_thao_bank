@@ -2,6 +2,8 @@ part of 'management_cubit.dart';
 
 enum ManagementView { menu, dailyPrice, goldTypes }
 
+enum GoldTypeMutationAction { create, update, delete }
+
 enum ManagementStatus {
   initial,
   loading,
@@ -23,6 +25,8 @@ class ManagementState extends Equatable {
     required this.goldTypes,
     required this.priceItems,
     required this.hasPendingPriceChanges,
+    this.activeGoldTypeMutation,
+    this.activeGoldTypeId,
     this.message,
   });
 
@@ -43,6 +47,8 @@ class ManagementState extends Equatable {
   final List<GoldTypeModel> goldTypes;
   final List<ManagementPriceItem> priceItems;
   final bool hasPendingPriceChanges;
+  final GoldTypeMutationAction? activeGoldTypeMutation;
+  final String? activeGoldTypeId;
   final String? message;
 
   bool get isLoading =>
@@ -50,6 +56,21 @@ class ManagementState extends Equatable {
 
   bool get isSavingPriceBoard => status == ManagementStatus.savingPriceBoard;
   bool get isSavingGoldType => status == ManagementStatus.savingGoldType;
+  bool get isCreatingGoldType =>
+      isSavingGoldType &&
+      activeGoldTypeMutation == GoldTypeMutationAction.create;
+  bool get hasGoldTypeMutation =>
+      isSavingGoldType && activeGoldTypeMutation != null;
+
+  bool isUpdatingGoldType(String id) =>
+      isSavingGoldType &&
+      activeGoldTypeMutation == GoldTypeMutationAction.update &&
+      activeGoldTypeId == id;
+
+  bool isDeletingGoldType(String id) =>
+      isSavingGoldType &&
+      activeGoldTypeMutation == GoldTypeMutationAction.delete &&
+      activeGoldTypeId == id;
 
   ManagementState copyWith({
     ManagementStatus? status,
@@ -58,8 +79,11 @@ class ManagementState extends Equatable {
     List<GoldTypeModel>? goldTypes,
     List<ManagementPriceItem>? priceItems,
     bool? hasPendingPriceChanges,
+    GoldTypeMutationAction? activeGoldTypeMutation,
+    String? activeGoldTypeId,
     String? message,
     bool clearMessage = false,
+    bool clearGoldTypeMutation = false,
   }) {
     return ManagementState(
       status: status ?? this.status,
@@ -69,6 +93,12 @@ class ManagementState extends Equatable {
       priceItems: priceItems ?? this.priceItems,
       hasPendingPriceChanges:
           hasPendingPriceChanges ?? this.hasPendingPriceChanges,
+      activeGoldTypeMutation: clearGoldTypeMutation
+          ? null
+          : (activeGoldTypeMutation ?? this.activeGoldTypeMutation),
+      activeGoldTypeId: clearGoldTypeMutation
+          ? null
+          : (activeGoldTypeId ?? this.activeGoldTypeId),
       message: clearMessage ? null : (message ?? this.message),
     );
   }
@@ -81,6 +111,8 @@ class ManagementState extends Equatable {
     goldTypes,
     priceItems,
     hasPendingPriceChanges,
+    activeGoldTypeMutation,
+    activeGoldTypeId,
     message,
   ];
 }

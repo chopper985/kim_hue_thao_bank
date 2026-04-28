@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:sizer/sizer.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
@@ -57,7 +58,7 @@ class GoldTypesManagementView extends StatelessWidget {
           itemCount: max(1, items.length),
           childShimmer: _GoldTypeCard(
             item: skeletonGoldTypes.first,
-            isSavingGoldType: true,
+            state: state,
             onEditGoldType: onEditGoldType,
             onDeleteGoldType: onDeleteGoldType,
           ),
@@ -75,7 +76,7 @@ class GoldTypesManagementView extends StatelessWidget {
 
             return _GoldTypeCard(
               item: items[index],
-              isSavingGoldType: state.isSavingGoldType,
+              state: state,
               onEditGoldType: onEditGoldType,
               onDeleteGoldType: onDeleteGoldType,
             );
@@ -88,19 +89,23 @@ class GoldTypesManagementView extends StatelessWidget {
 
 class _GoldTypeCard extends StatelessWidget {
   final GoldTypeModel item;
-  final bool isSavingGoldType;
+  final ManagementState state;
   final Future<void> Function(GoldTypeModel goldType) onEditGoldType;
   final void Function(GoldTypeModel goldType) onDeleteGoldType;
 
   const _GoldTypeCard({
     required this.item,
-    required this.isSavingGoldType,
+    required this.state,
     required this.onEditGoldType,
     required this.onDeleteGoldType,
   });
 
   @override
   Widget build(BuildContext context) {
+    final bool isUpdating = state.isUpdatingGoldType(item.id);
+    final bool isDeleting = state.isDeletingGoldType(item.id);
+    final bool isActionLocked = state.hasGoldTypeMutation;
+
     return Container(
       margin: EdgeInsets.only(bottom: 14.sp),
       decoration: BoxDecoration(
@@ -158,9 +163,7 @@ class _GoldTypeCard extends StatelessWidget {
                   ),
                 ),
                 OutlinedButton.icon(
-                  onPressed: isSavingGoldType
-                      ? null
-                      : () => onEditGoldType(item),
+                  onPressed: isActionLocked ? null : () => onEditGoldType(item),
                   style: OutlinedButton.styleFrom(
                     foregroundColor: const Color(0xFF2E6BC5),
                     side: const BorderSide(color: Color(0xFF2E6BC5)),
@@ -168,12 +171,19 @@ class _GoldTypeCard extends StatelessWidget {
                       borderRadius: BorderRadius.circular(10.sp),
                     ),
                   ),
-                  icon: const Icon(Icons.edit_outlined),
+                  icon: isUpdating
+                      ? SpinKitSpinningLines(
+                          color: const Color(0xFF2E6BC5),
+                          size: 18.sp,
+                        )
+                      : const Icon(Icons.edit_outlined),
                   label: Text(Strings.edit.i18n),
                 ),
                 SizedBox(width: 12.sp),
                 FilledButton.icon(
-                  onPressed: () => onDeleteGoldType(item),
+                  onPressed: isActionLocked
+                      ? null
+                      : () => onDeleteGoldType(item),
                   style: FilledButton.styleFrom(
                     backgroundColor: AppStyleColors.actionDanger,
                     foregroundColor: mCL,
@@ -181,7 +191,9 @@ class _GoldTypeCard extends StatelessWidget {
                       borderRadius: BorderRadius.circular(10.sp),
                     ),
                   ),
-                  icon: const Icon(Icons.delete_outline_rounded),
+                  icon: isDeleting
+                      ? SpinKitSpinningLines(color: mCL, size: 18.sp)
+                      : const Icon(Icons.delete_outline_rounded),
                   label: Text(Strings.delete.i18n),
                 ),
               ],

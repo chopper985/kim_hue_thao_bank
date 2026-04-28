@@ -106,7 +106,8 @@ class _DailyPriceManagementViewState extends State<DailyPriceManagementView> {
                 ),
                 SizedBox(height: 10.sp),
                 OutlinedButton.icon(
-                  onPressed: widget.state.isLoading
+                  onPressed:
+                      widget.state.isLoading || widget.state.isSavingPriceBoard
                       ? null
                       : widget.onPickEffectiveDate,
                   style: OutlinedButton.styleFrom(
@@ -134,6 +135,7 @@ class _DailyPriceManagementViewState extends State<DailyPriceManagementView> {
                       return _PriceCard(
                         item:
                             DailyPriceManagementView.skeletonPriceItems[index],
+                        isEnabled: false,
                       );
                     },
                   ),
@@ -157,7 +159,10 @@ class _DailyPriceManagementViewState extends State<DailyPriceManagementView> {
                       );
                     }
 
-                    return _PriceCard(item: items[index]);
+                    return _PriceCard(
+                      item: items[index],
+                      isEnabled: !widget.state.isSavingPriceBoard,
+                    );
                   },
                 ),
         ),
@@ -167,9 +172,10 @@ class _DailyPriceManagementViewState extends State<DailyPriceManagementView> {
 }
 
 class _PriceCard extends StatelessWidget {
-  const _PriceCard({required this.item});
+  const _PriceCard({required this.item, this.isEnabled = true});
 
   final ManagementPriceItem item;
+  final bool isEnabled;
 
   @override
   Widget build(BuildContext context) {
@@ -224,6 +230,7 @@ class _PriceCard extends StatelessWidget {
           _EditablePriceField(
             label: Strings.buyPricePerChi.i18n,
             initialValue: item.buyPrice,
+            enabled: isEnabled,
             onChanged: (value) => context
                 .read<ManagementCubit>()
                 .updatePriceField(item.goldTypeId, true, value),
@@ -232,6 +239,7 @@ class _PriceCard extends StatelessWidget {
           _EditablePriceField(
             label: Strings.sellPricePerChi.i18n,
             initialValue: item.sellPrice,
+            enabled: isEnabled,
             onChanged: (value) => context
                 .read<ManagementCubit>()
                 .updatePriceField(item.goldTypeId, false, value),
@@ -246,11 +254,13 @@ class _EditablePriceField extends StatefulWidget {
   const _EditablePriceField({
     required this.label,
     required this.initialValue,
+    required this.enabled,
     required this.onChanged,
   });
 
   final String label;
   final String initialValue;
+  final bool enabled;
   final ValueChanged<String> onChanged;
 
   @override
@@ -317,6 +327,7 @@ class _EditablePriceFieldState extends State<_EditablePriceField> {
         SizedBox(height: 10.sp),
         TextField(
           controller: _controller,
+          enabled: widget.enabled,
           keyboardType: TextInputType.number,
           onChanged: _handleChanged,
           decoration: InputDecoration(

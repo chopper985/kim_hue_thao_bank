@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:intl/intl.dart';
 import 'package:sizer/sizer.dart';
 import 'package:toastification/toastification.dart';
@@ -96,7 +97,11 @@ class _ManagementScreenState extends State<ManagementScreen> {
                 ? SizedBox(
                     height: 15.sp,
                     width: 15.sp,
-                    child: const CircularProgressIndicator(strokeWidth: 2),
+                    child: SpinKitSpinningLines(
+                      color: AppStyleColors.textSecondary,
+                      lineWidth: 2.2,
+                      size: 20.sp,
+                    ),
                   )
                 : Text(
                     Strings.save.i18n,
@@ -117,8 +122,14 @@ class _ManagementScreenState extends State<ManagementScreen> {
         onBackPressed: _backToMenu,
         actions: [
           IconButton(
-            onPressed: state.isSavingGoldType ? null : _showGoldTypeForm,
-            icon: const Icon(Icons.add_circle_outline_rounded),
+            onPressed: state.hasGoldTypeMutation ? null : _showGoldTypeForm,
+            icon: state.isCreatingGoldType
+                ? SpinKitSpinningLines(
+                    color: colorText,
+                    lineWidth: 2.2,
+                    size: 20.sp,
+                  )
+                : const Icon(Icons.add_circle_outline_rounded),
             tooltip: Strings.addNewGoldType.i18n,
           ),
         ],

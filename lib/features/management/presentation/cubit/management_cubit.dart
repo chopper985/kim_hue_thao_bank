@@ -159,6 +159,10 @@ class ManagementCubit extends Cubit<ManagementState> {
     emit(
       state.copyWith(
         status: ManagementStatus.savingGoldType,
+        activeGoldTypeMutation: existing == null
+            ? GoldTypeMutationAction.create
+            : GoldTypeMutationAction.update,
+        activeGoldTypeId: existing?.id,
         clearMessage: true,
       ),
     );
@@ -174,6 +178,8 @@ class ManagementCubit extends Cubit<ManagementState> {
     emit(
       state.copyWith(
         status: ManagementStatus.savingGoldType,
+        activeGoldTypeMutation: GoldTypeMutationAction.delete,
+        activeGoldTypeId: goldType.id,
         clearMessage: true,
       ),
     );
@@ -278,12 +284,19 @@ class ManagementCubit extends Cubit<ManagementState> {
         goldTypes: goldTypes,
         priceItems: _buildPriceItems(goldTypes, priceBoardResult.value ?? []),
         hasPendingPriceChanges: hasPendingPriceChanges,
+        clearGoldTypeMutation: true,
       ),
     );
   }
 
   void _emitFailure(String message) {
-    emit(state.copyWith(status: ManagementStatus.failure, message: message));
+    emit(
+      state.copyWith(
+        status: ManagementStatus.failure,
+        message: message,
+        clearGoldTypeMutation: true,
+      ),
+    );
   }
 
   List<GoldTypeModel> _sorted(List<GoldTypeModel> items) =>

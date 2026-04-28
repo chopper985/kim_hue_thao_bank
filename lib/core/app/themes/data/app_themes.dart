@@ -19,7 +19,6 @@ class AppTheme {
     final themeData = ThemeData(
       colorSchemeSeed: colorSeed.color,
       cardColor: Colors.black.withValues(alpha: 0.04),
-      textTheme: TextTheme(labelMedium: TextStyle(color: fCD)),
       pageTransitionsTheme: kIsWeb
           ? null
           : const PageTransitionsTheme(
@@ -68,6 +67,17 @@ class AppTheme {
         elevation: 0,
         shadowColor: Colors.transparent,
       ),
+      inputDecorationTheme: InputDecorationTheme(
+        labelStyle: TextStyle(color: colorBlack1),
+      ),
+      textTheme: TextTheme(
+        titleSmall: TextStyle(color: mCH),
+        titleMedium: TextStyle(color: mGB),
+        titleLarge: TextStyle(color: colorBlack.withValues(alpha: 0.65)),
+        bodySmall: TextStyle(color: colorBlack.withValues(alpha: 0.85)),
+        bodyMedium: TextStyle(color: mGD),
+        bodyLarge: TextStyle(color: colorBlack),
+      ),
       fontFamily: FontFamily.inter,
     );
     return AppTheme(data: themeData);
@@ -78,7 +88,17 @@ class AppTheme {
     final themeData = ThemeData(
       colorSchemeSeed: colorSeed.color,
       cardColor: mGD,
-      textTheme: TextTheme(labelMedium: TextStyle(color: mCU)),
+      textTheme: TextTheme(
+        titleSmall: TextStyle(color: mGD),
+        titleMedium: TextStyle(color: mCH),
+        titleLarge: TextStyle(color: mCU),
+        bodySmall: TextStyle(color: mCM),
+        bodyMedium: TextStyle(color: mCL),
+        bodyLarge: TextStyle(color: mCL),
+      ),
+      inputDecorationTheme: InputDecorationTheme(
+        labelStyle: TextStyle(color: mCL),
+      ),
       pageTransitionsTheme: kIsWeb
           ? null
           : const PageTransitionsTheme(
