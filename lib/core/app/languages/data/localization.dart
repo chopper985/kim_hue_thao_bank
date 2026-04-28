@@ -54,6 +54,9 @@ class Strings {
   static const String spread = 'spread';
   static const String username = 'username';
   static const String password = 'password';
+
+  //Failure
+  static const String serverFailure = "serverFailure";
 }
 
 class MyI18n {

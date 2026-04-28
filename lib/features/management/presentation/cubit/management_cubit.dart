@@ -50,19 +50,20 @@ class ManagementCubit extends Cubit<ManagementState> {
       ),
     );
 
-    final goldTypesResult = await _getGoldTypesUsecase();
-    if (goldTypesResult.isFailure) {
+    final result = await _getGoldTypesUsecase.call();
+
+    if (result.isFailure) {
       emit(
         state.copyWith(
           status: ManagementStatus.failure,
-          message: Strings.managementLoadFailed.i18n,
+          message: result.error?.message ?? Strings.serverFailure.i18n,
         ),
       );
       return;
     }
 
     final List<GoldTypeModel> goldTypes = _sortGoldTypes(
-      goldTypesResult.value ?? const [],
+      result.value ?? const [],
     );
     final priceBoardResult = await _getPriceBoardUsecase(
       date: _requestDateFormat.format(nextDate),
@@ -79,7 +80,7 @@ class ManagementCubit extends Cubit<ManagementState> {
         hasPendingPriceChanges:
             preservePendingPrices && state.hasPendingPriceChanges,
         message: priceBoardResult.isFailure
-            ? Strings.loadGoldPriceFailed.i18n
+            ? result.error?.message ?? Strings.serverFailure.i18n
             : null,
       ),
     );
@@ -141,7 +142,7 @@ class ManagementCubit extends Cubit<ManagementState> {
       emit(
         state.copyWith(
           status: ManagementStatus.failure,
-          message: Strings.saveFailed.i18n,
+          message: result.error?.message ?? Strings.serverFailure.i18n,
         ),
       );
       return;
@@ -177,11 +178,12 @@ class ManagementCubit extends Cubit<ManagementState> {
     );
 
     final result = await _updateGoldTypesUsecase(goldTypes: [updatedGoldType]);
+
     if (result.isFailure || result.value != true) {
       emit(
         state.copyWith(
           status: ManagementStatus.failure,
-          message: Strings.saveFailed.i18n,
+          message: result.error?.message ?? Strings.serverFailure.i18n,
         ),
       );
       return;
@@ -215,7 +217,7 @@ class ManagementCubit extends Cubit<ManagementState> {
       emit(
         state.copyWith(
           status: ManagementStatus.failure,
-          message: Strings.saveFailed.i18n,
+          message: createResult.error?.message ?? Strings.serverFailure.i18n,
         ),
       );
       return;
@@ -223,7 +225,7 @@ class ManagementCubit extends Cubit<ManagementState> {
 
     final GoldTypeModel newGoldType = createResult.value!;
 
-    final batchResult = await _updateGoldPricesUsecase(
+    final result = await _updateGoldPricesUsecase(
       request: UpdateGoldPricesRequestModel(
         items: [
           GoldTypeRequestModel(
@@ -236,11 +238,11 @@ class ManagementCubit extends Cubit<ManagementState> {
       ),
     );
 
-    if (batchResult.isFailure || batchResult.value != true) {
+    if (result.isFailure || result.value != true) {
       emit(
         state.copyWith(
           status: ManagementStatus.failure,
-          message: Strings.saveFailed.i18n,
+          message: result.error?.message ?? Strings.serverFailure.i18n,
         ),
       );
       return;
@@ -258,19 +260,19 @@ class ManagementCubit extends Cubit<ManagementState> {
     required String message,
     required bool hasPendingPriceChanges,
   }) async {
-    final goldTypesResult = await _getGoldTypesUsecase();
-    if (goldTypesResult.isFailure) {
+    final result = await _getGoldTypesUsecase();
+    if (result.isFailure) {
       emit(
         state.copyWith(
           status: ManagementStatus.failure,
-          message: Strings.managementLoadFailed.i18n,
+          message: result.error?.message ?? Strings.serverFailure.i18n,
         ),
       );
       return;
     }
 
     final List<GoldTypeModel> goldTypes = _sortGoldTypes(
-      goldTypesResult.value ?? const [],
+      result.value ?? const [],
     );
     final priceBoardResult = await _getPriceBoardUsecase(
       date: _requestDateFormat.format(state.effectiveDate),

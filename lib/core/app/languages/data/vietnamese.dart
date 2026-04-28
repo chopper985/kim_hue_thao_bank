@@ -51,4 +51,7 @@ Map<String, String> vietnamese = {
   Strings.spread: "Chênh",
   Strings.username: "Tên người dùng",
   Strings.password: "Mật khẩu",
+
+  // Failure
+  Strings.serverFailure: "Đã xảy ra lỗi hệ thống!",
 };

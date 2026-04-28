@@ -50,4 +50,7 @@ Map<String, String> english = {
   Strings.spread: "Spread",
   Strings.username: "Username",
   Strings.password: "Password",
+
+  // Failure
+  Strings.serverFailure: "A system error has occurred!",
 };

@@ -1,4 +1,5 @@
 // Package imports:
+import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 
 // Project imports:
@@ -24,7 +25,7 @@ class GoldRepository {
     );
 
     if (!StatusCode.success.contains(response.statusCode)) {
-      return Result.failure(ServerFailure());
+      return Result.failure(handleFailureMainSrc(response));
     }
 
     final List rawList = response.data;
@@ -38,7 +39,7 @@ class GoldRepository {
     final response = await _baseRepository.getRoute(ApiEndpoints.goldTypes);
 
     if (!StatusCode.success.contains(response.statusCode)) {
-      return Result.failure(ServerFailure());
+      return Result.failure(handleFailureMainSrc(response));
     }
     final List rawList = response.data;
     final List<GoldTypeModel> goldTypes = rawList
@@ -57,7 +58,7 @@ class GoldRepository {
     );
 
     if (!StatusCode.success.contains(response.statusCode)) {
-      return Result.failure(ServerFailure());
+      return Result.failure(handleFailureMainSrc(response));
     }
 
     return Result.success(
@@ -78,7 +79,7 @@ class GoldRepository {
     );
 
     if (!StatusCode.success.contains(response.statusCode)) {
-      return Result.failure(ServerFailure());
+      return Result.failure(handleFailureMainSrc(response));
     }
 
     return Result.success(true);
@@ -93,9 +94,19 @@ class GoldRepository {
     );
 
     if (!StatusCode.success.contains(response.statusCode)) {
-      return Result.failure(ServerFailure());
+      return Result.failure(handleFailureMainSrc(response));
     }
 
     return Result.success(true);
   }
+}
+
+Failure handleFailureMainSrc(Response response) {
+  if (response.data is! Map<String, dynamic>) {
+    return ServerFailure();
+  }
+
+  final String message = response.data['title']?.toString() ?? "";
+  print("message $message");
+  return GoldFailure(message: message);
 }
