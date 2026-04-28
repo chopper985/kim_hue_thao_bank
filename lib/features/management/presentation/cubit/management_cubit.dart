@@ -15,105 +15,105 @@ part 'management_state.dart';
 @lazySingleton
 class ManagementCubit extends Cubit<ManagementState> {
   ManagementCubit(
-    this._getGoldTypesUsecase,
-    this._getPriceBoardUsecase,
-    this._createGoldTypeUsecase,
-    this._updateGoldTypesUsecase,
-    this._updateGoldPricesUsecase,
+    this._getGoldTypes,
+    this._getPriceBoard,
+    this._createGoldType,
+    this._deleteGoldType,
+    this._updateGoldTypes,
+    this._updateGoldPrices,
   ) : super(ManagementState.initial());
 
-  final GetGoldTypesUsecase _getGoldTypesUsecase;
-  final GetPriceBoardUsecase _getPriceBoardUsecase;
-  final CreateGoldTypeUsecase _createGoldTypeUsecase;
-  final UpdateGoldTypesUsecase _updateGoldTypesUsecase;
-  final UpdateGoldPricesUsecase _updateGoldPricesUsecase;
+  final GetGoldTypesUsecase _getGoldTypes;
+  final GetPriceBoardUsecase _getPriceBoard;
+  final CreateGoldTypeUsecase _createGoldType;
+  final DeleteGoldTypeUsecase _deleteGoldType;
+  final UpdateGoldTypesUsecase _updateGoldTypes;
+  final UpdateGoldPricesUsecase _updateGoldPrices;
 
-  final DateFormat _requestDateFormat = DateFormat('yyyy-MM-dd');
+  static final _dateFormat = DateFormat('yyyy-MM-dd');
+
+  // ─── Navigation ───────────────────────────────────────────────────────────
 
   void setView(ManagementView view) {
     emit(state.copyWith(view: view, clearMessage: true));
   }
 
+  // ─── Data loading ─────────────────────────────────────────────────────────
+
   Future<void> loadManagementData({
     DateTime? effectiveDate,
     bool preservePendingPrices = false,
   }) async {
-    final DateTime nextDate = effectiveDate ?? state.effectiveDate;
+    final date = effectiveDate ?? state.effectiveDate;
 
     emit(
       state.copyWith(
         status: ManagementStatus.loading,
-        effectiveDate: nextDate,
+        effectiveDate: date,
         hasPendingPriceChanges:
             preservePendingPrices && state.hasPendingPriceChanges,
         clearMessage: true,
       ),
     );
 
-    final result = await _getGoldTypesUsecase.call();
-
-    if (result.isFailure) {
-      emit(
-        state.copyWith(
-          status: ManagementStatus.failure,
-          message: result.error?.message ?? Strings.serverFailure.i18n,
-        ),
+    final goldTypesResult = await _getGoldTypes();
+    if (goldTypesResult.isFailure) {
+      return _emitFailure(
+        goldTypesResult.error?.message ?? Strings.serverFailure.i18n,
       );
-      return;
     }
 
-    final List<GoldTypeModel> goldTypes = _sortGoldTypes(
-      result.value ?? const [],
+    final goldTypes = _sorted(goldTypesResult.value ?? []);
+    final priceBoardResult = await _getPriceBoard(
+      date: _dateFormat.format(date),
     );
-    final priceBoardResult = await _getPriceBoardUsecase(
-      date: _requestDateFormat.format(nextDate),
-    );
-
-    final List<PriceBoardModel> priceBoard = priceBoardResult.value ?? const [];
 
     emit(
       state.copyWith(
         status: ManagementStatus.loaded,
-        effectiveDate: nextDate,
+        effectiveDate: date,
         goldTypes: goldTypes,
-        priceItems: _buildPriceItems(goldTypes, priceBoard),
+        priceItems: _buildPriceItems(goldTypes, priceBoardResult.value ?? []),
         hasPendingPriceChanges:
             preservePendingPrices && state.hasPendingPriceChanges,
         message: priceBoardResult.isFailure
-            ? result.error?.message ?? Strings.serverFailure.i18n
+            ? Strings.loadGoldPriceFailed.i18n
             : null,
       ),
     );
   }
 
-  Future<void> changeEffectiveDate(DateTime date) async {
-    await loadManagementData(effectiveDate: date);
-  }
+  Future<void> changeEffectiveDate(DateTime date) =>
+      loadManagementData(effectiveDate: date);
+
+  // ─── Price editing ────────────────────────────────────────────────────────
 
   void updatePriceField(String goldTypeId, bool isBuyPrice, String value) {
-    final int index = state.priceItems.indexWhere(
-      (item) => item.goldTypeId == goldTypeId,
+    final index = state.priceItems.indexWhere(
+      (e) => e.goldTypeId == goldTypeId,
     );
     if (index < 0) return;
 
-    final ManagementPriceItem current = state.priceItems[index];
-    final ManagementPriceItem updated = current.copyWith(
-      buyPrice: isBuyPrice ? value : current.buyPrice,
-      sellPrice: isBuyPrice ? current.sellPrice : value,
-    );
+    final current = state.priceItems[index];
+    final newBuy = isBuyPrice ? value : current.buyPrice;
+    final newSell = isBuyPrice ? current.sellPrice : value;
 
-    final List<ManagementPriceItem> priceItems = [...state.priceItems];
-    priceItems[index] = updated;
+    if (newBuy == current.buyPrice && newSell == current.sellPrice) return;
+
+    final updated = List.of(state.priceItems)
+      ..[index] = current.copyWith(buyPrice: newBuy, sellPrice: newSell);
 
     emit(
       state.copyWith(
         status: ManagementStatus.loaded,
-        priceItems: priceItems,
+        priceItems: updated,
         hasPendingPriceChanges: true,
         clearMessage: true,
       ),
     );
   }
+
+  // ─── Save price board ─────────────────────────────────────────────────────
 
   Future<void> savePriceBoard() async {
     emit(
@@ -123,40 +123,36 @@ class ManagementCubit extends Cubit<ManagementState> {
       ),
     );
 
-    final result = await _updateGoldPricesUsecase(
+    final result = await _updateGoldPrices(
       request: UpdateGoldPricesRequestModel(
+        effectiveDate: _dateFormat.format(state.effectiveDate),
         items: state.priceItems
             .map(
-              (item) => GoldTypeRequestModel(
-                goldTypeId: item.goldTypeId,
-                buyPrice: _priceToInt(item.buyPrice),
-                sellPrice: _priceToInt(item.sellPrice),
+              (e) => GoldTypeRequestModel(
+                goldTypeId: e.goldTypeId,
+                buyPrice: _toInt(e.buyPrice),
+                sellPrice: _toInt(e.sellPrice),
               ),
             )
             .toList(),
-        effectiveDate: _requestDateFormat.format(state.effectiveDate),
       ),
     );
 
     if (result.isFailure || result.value != true) {
-      emit(
-        state.copyWith(
-          status: ManagementStatus.failure,
-          message: result.error?.message ?? Strings.serverFailure.i18n,
-        ),
-      );
-      return;
+      return _emitFailure(Strings.saveFailed.i18n);
     }
 
-    await _reloadAfterSuccessfulMutation(
+    await _reloadAfterMutation(
       status: ManagementStatus.priceBoardSaved,
       message: Strings.changesSaved.i18n,
       hasPendingPriceChanges: false,
     );
   }
 
+  // ─── Gold type CRUD ───────────────────────────────────────────────────────
+
   Future<void> saveGoldType({
-    GoldTypeModel? goldType,
+    GoldTypeModel? existing,
     required String name,
     required int sortOrder,
   }) async {
@@ -167,168 +163,159 @@ class ManagementCubit extends Cubit<ManagementState> {
       ),
     );
 
-    if (goldType == null) {
-      await _createGoldType(name: name, sortOrder: sortOrder);
-      return;
+    if (existing == null) {
+      await _createNewGoldType(name: name, sortOrder: sortOrder);
+    } else {
+      await _updateExistingGoldType(existing, name: name, sortOrder: sortOrder);
     }
-
-    final GoldTypeModel updatedGoldType = goldType.copyWith(
-      name: name,
-      sortOrder: sortOrder,
-    );
-
-    final result = await _updateGoldTypesUsecase(goldTypes: [updatedGoldType]);
-
-    if (result.isFailure || result.value != true) {
-      emit(
-        state.copyWith(
-          status: ManagementStatus.failure,
-          message: result.error?.message ?? Strings.serverFailure.i18n,
-        ),
-      );
-      return;
-    }
-
-    await _reloadAfterSuccessfulMutation(
-      status: ManagementStatus.goldTypeSaved,
-      message: Strings.goldTypeSaved.i18n,
-      hasPendingPriceChanges: state.hasPendingPriceChanges,
-    );
   }
 
-  void showDeleteUnavailable() {
+  Future<void> deleteGoldType(GoldTypeModel goldType) async {
     emit(
       state.copyWith(
-        status: ManagementStatus.info,
-        message: Strings.deleteGoldTypeUnavailable.i18n,
+        status: ManagementStatus.savingGoldType,
+        clearMessage: true,
       ),
+    );
+
+    final result = await _deleteGoldType(id: goldType.id);
+    if (result.isFailure || result.value != true) {
+      return _emitFailure(result.error?.message ?? Strings.serverFailure.i18n);
+    }
+
+    await _reloadAfterMutation(
+      status: ManagementStatus.goldTypeDeleted,
+      message: Strings.goldTypeDeleted.i18n,
+      hasPendingPriceChanges: false,
     );
   }
 
-  Future<void> _createGoldType({
+  // ─── Private: gold type mutations ─────────────────────────────────────────
+
+  Future<void> _createNewGoldType({
     required String name,
     required int sortOrder,
   }) async {
-    final createResult = await _createGoldTypeUsecase(
+    final createResult = await _createGoldType(
       request: CreateGoldTypeRequestModel(name: name, sortOrder: sortOrder),
     );
 
     if (createResult.isFailure || createResult.value == null) {
-      emit(
-        state.copyWith(
-          status: ManagementStatus.failure,
-          message: createResult.error?.message ?? Strings.serverFailure.i18n,
-        ),
+      return _emitFailure(
+        createResult.error?.message ?? Strings.serverFailure.i18n,
       );
-      return;
     }
 
-    final GoldTypeModel newGoldType = createResult.value!;
-
-    final result = await _updateGoldPricesUsecase(
+    final priceResult = await _updateGoldPrices(
       request: UpdateGoldPricesRequestModel(
+        effectiveDate: _dateFormat.format(state.effectiveDate),
         items: [
           GoldTypeRequestModel(
-            goldTypeId: newGoldType.id,
+            goldTypeId: createResult.value!.id,
             buyPrice: 0,
             sellPrice: 0,
           ),
         ],
-        effectiveDate: _requestDateFormat.format(state.effectiveDate),
       ),
     );
 
-    if (result.isFailure || result.value != true) {
-      emit(
-        state.copyWith(
-          status: ManagementStatus.failure,
-          message: result.error?.message ?? Strings.serverFailure.i18n,
-        ),
+    if (priceResult.isFailure || priceResult.value != true) {
+      return _emitFailure(
+        priceResult.error?.message ?? Strings.serverFailure.i18n,
       );
-      return;
     }
 
-    await _reloadAfterSuccessfulMutation(
+    await _reloadAfterMutation(
       status: ManagementStatus.goldTypeSaved,
       message: Strings.goldTypeSaved.i18n,
       hasPendingPriceChanges: false,
     );
   }
 
-  Future<void> _reloadAfterSuccessfulMutation({
+  Future<void> _updateExistingGoldType(
+    GoldTypeModel existing, {
+    required String name,
+    required int sortOrder,
+  }) async {
+    final result = await _updateGoldTypes(
+      goldTypes: [existing.copyWith(name: name, sortOrder: sortOrder)],
+    );
+
+    if (result.isFailure || result.value != true) {
+      return _emitFailure(Strings.saveFailed.i18n);
+    }
+
+    await _reloadAfterMutation(
+      status: ManagementStatus.goldTypeSaved,
+      message: Strings.goldTypeSaved.i18n,
+      hasPendingPriceChanges: state.hasPendingPriceChanges,
+    );
+  }
+
+  // ─── Private: shared helpers ──────────────────────────────────────────────
+
+  Future<void> _reloadAfterMutation({
     required ManagementStatus status,
     required String message,
     required bool hasPendingPriceChanges,
   }) async {
-    final result = await _getGoldTypesUsecase();
-    if (result.isFailure) {
-      emit(
-        state.copyWith(
-          status: ManagementStatus.failure,
-          message: result.error?.message ?? Strings.serverFailure.i18n,
-        ),
+    final goldTypesResult = await _getGoldTypes();
+    if (goldTypesResult.isFailure) {
+      return _emitFailure(
+        goldTypesResult.error?.message ?? Strings.serverFailure.i18n,
       );
-      return;
     }
 
-    final List<GoldTypeModel> goldTypes = _sortGoldTypes(
-      result.value ?? const [],
-    );
-    final priceBoardResult = await _getPriceBoardUsecase(
-      date: _requestDateFormat.format(state.effectiveDate),
+    final goldTypes = _sorted(goldTypesResult.value ?? []);
+    final priceBoardResult = await _getPriceBoard(
+      date: _dateFormat.format(state.effectiveDate),
     );
 
     emit(
       state.copyWith(
         status: status,
-        goldTypes: goldTypes,
-        priceItems: _buildPriceItems(
-          goldTypes,
-          priceBoardResult.value ?? const [],
-        ),
-        hasPendingPriceChanges: hasPendingPriceChanges,
         message: message,
+        goldTypes: goldTypes,
+        priceItems: _buildPriceItems(goldTypes, priceBoardResult.value ?? []),
+        hasPendingPriceChanges: hasPendingPriceChanges,
       ),
     );
   }
 
-  List<GoldTypeModel> _sortGoldTypes(List<GoldTypeModel> items) {
-    final List<GoldTypeModel> sorted = [...items];
-    sorted.sort((a, b) {
-      final int sortOrder = a.sortOrder.compareTo(b.sortOrder);
-      if (sortOrder != 0) return sortOrder;
-      return a.name.compareTo(b.name);
-    });
-    return sorted;
+  void _emitFailure(String message) {
+    emit(state.copyWith(status: ManagementStatus.failure, message: message));
   }
+
+  List<GoldTypeModel> _sorted(List<GoldTypeModel> items) =>
+      [...items]..sort((a, b) {
+        final cmp = a.sortOrder.compareTo(b.sortOrder);
+        return cmp != 0 ? cmp : a.name.compareTo(b.name);
+      });
 
   List<ManagementPriceItem> _buildPriceItems(
     List<GoldTypeModel> goldTypes,
     List<PriceBoardModel> priceBoard,
   ) {
-    return goldTypes.map((goldType) {
-      final PriceBoardModel? matched = priceBoard.firstWhereOrNull(
-        (item) => item.goldTypeId == goldType.id,
+    return goldTypes.map((type) {
+      final matched = priceBoard.firstWhereOrNull(
+        (p) => p.goldTypeId == type.id,
       );
-
       return ManagementPriceItem(
-        goldTypeId: goldType.id,
-        goldTypeName: goldType.name,
-        sortOrder: goldType.sortOrder,
-        buyPrice: _normalizePriceText(matched?.buyPriceDisplay ?? '0'),
-        sellPrice: _normalizePriceText(matched?.sellPriceDisplay ?? '0'),
+        goldTypeId: type.id,
+        goldTypeName: type.name,
+        sortOrder: type.sortOrder,
+        buyPrice: _formatPrice(matched?.buyPriceDisplay ?? '0'),
+        sellPrice: _formatPrice(matched?.sellPriceDisplay ?? '0'),
       );
     }).toList();
   }
 
-  String _normalizePriceText(String value) {
-    final String digits = value.replaceAll(RegExp('[^0-9]'), '');
+  String _formatPrice(String value) {
+    final digits = value.replaceAll(RegExp('[^0-9]'), '');
     if (digits.isEmpty) return '0';
     return NumberFormat.decimalPattern('vi_VN').format(int.parse(digits));
   }
 
-  int _priceToInt(String value) {
-    final String digits = value.replaceAll(RegExp('[^0-9]'), '');
-    return int.tryParse(digits) ?? 0;
-  }
+  int _toInt(String value) =>
+      int.tryParse(value.replaceAll(RegExp('[^0-9]'), '')) ?? 0;
 }

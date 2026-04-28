@@ -158,14 +158,39 @@ class _ManagementScreenState extends State<ManagementScreen> {
     if (!mounted || result == null) return;
 
     await context.read<ManagementCubit>().saveGoldType(
-      goldType: goldType,
+      existing: goldType,
       name: result.name,
       sortOrder: result.sortOrder,
     );
   }
 
-  void _deleteGoldType(GoldTypeModel goldType) {
-    context.read<ManagementCubit>().showDeleteUnavailable();
+  Future<void> _deleteGoldType(GoldTypeModel goldType) async {
+    final bool? shouldDelete = await showDialog<bool>(
+      context: context,
+      builder: (dialogContext) {
+        return AlertDialog(
+          title: Text(Strings.confirmDeleteGoldType.i18n),
+          content: Text(Strings.confirmDeleteGoldTypeMessage.i18n),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(dialogContext).pop(false),
+              child: Text(Strings.cancel.i18n),
+            ),
+            TextButton(
+              onPressed: () => Navigator.of(dialogContext).pop(true),
+              child: Text(
+                Strings.delete.i18n,
+                style: const TextStyle(color: Colors.red),
+              ),
+            ),
+          ],
+        );
+      },
+    );
+
+    if (!mounted || shouldDelete != true) return;
+
+    await context.read<ManagementCubit>().deleteGoldType(goldType);
   }
 
   PreferredSizeWidget _buildStandaloneAppBar(ManagementState state) {
@@ -205,7 +230,8 @@ class _ManagementScreenState extends State<ManagementScreen> {
         }
 
         if (state.status == ManagementStatus.priceBoardSaved ||
-            state.status == ManagementStatus.goldTypeSaved) {
+            state.status == ManagementStatus.goldTypeSaved ||
+            state.status == ManagementStatus.goldTypeDeleted) {
           context.read<HomeCubit>().refreshIfViewingDate(
             date: state.effectiveDate,
           );
@@ -319,10 +345,7 @@ class _GoldTypeFormSheetState extends State<_GoldTypeFormSheet> {
                     padding: EdgeInsets.all(16.sp),
                     decoration: BoxDecoration(
                       gradient: LinearGradient(
-                        colors: [
-                          AppStyleColors.brandGoldBanner,
-                          AppStyleColors.brandGold,
-                        ],
+                        colors: [Color(0xffA67C00), AppStyleColors.brandGold],
                       ),
                     ),
                     child: Row(
@@ -443,7 +466,7 @@ class _GoldTypeFormSheetState extends State<_GoldTypeFormSheet> {
                                   style: TextStyle(
                                     color: AppStyleColors.iconInfo,
                                     fontSize: 14.sp,
-                                    fontWeight: .w600,
+                                    fontWeight: .w500,
                                   ),
                                 ),
                               ),
@@ -475,7 +498,7 @@ class _GoldTypeFormSheetState extends State<_GoldTypeFormSheet> {
                         child: FilledButton.icon(
                           onPressed: _submit,
                           style: FilledButton.styleFrom(
-                            backgroundColor: AppStyleColors.brandGoldBanner,
+                            backgroundColor: Color(0xffA67C00),
                             foregroundColor: mCL,
                             padding: EdgeInsets.symmetric(vertical: 12.sp),
                             shape: RoundedRectangleBorder(

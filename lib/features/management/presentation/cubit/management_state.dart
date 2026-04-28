@@ -10,6 +10,7 @@ enum ManagementStatus {
   savingGoldType,
   priceBoardSaved,
   goldTypeSaved,
+  goldTypeDeleted,
   failure,
   info,
 }

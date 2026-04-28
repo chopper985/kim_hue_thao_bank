@@ -43,6 +43,9 @@ Map<String, String> vietnamese = {
   Strings.managementLoadFailed: "Không tải được dữ liệu quản lý",
   Strings.chooseDate: "Chọn ngày",
   Strings.deleteGoldTypeUnavailable: "Tạm thời chưa hỗ trợ xóa loại vàng",
+  Strings.confirmDeleteGoldType: "Xác nhận xóa loại vàng",
+  Strings.confirmDeleteGoldTypeMessage:
+      "Bạn có chắc muốn xóa loại vàng này không?",
   Strings.goldTypeNameRequired: "Vui lòng nhập tên loại vàng",
   Strings.sortOrderRequired: "Vui lòng nhập thứ tự sắp xếp",
   Strings.managementChooseFeature: "Chọn chức năng quản lý",

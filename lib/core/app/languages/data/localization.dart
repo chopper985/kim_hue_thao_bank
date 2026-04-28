@@ -46,6 +46,9 @@ class Strings {
   static const String managementLoadFailed = 'managementLoadFailed';
   static const String chooseDate = 'chooseDate';
   static const String deleteGoldTypeUnavailable = 'deleteGoldTypeUnavailable';
+  static const String confirmDeleteGoldType = 'confirmDeleteGoldType';
+  static const String confirmDeleteGoldTypeMessage =
+      'confirmDeleteGoldTypeMessage';
   static const String goldTypeNameRequired = 'goldTypeNameRequired';
   static const String sortOrderRequired = 'sortOrderRequired';
   static const String managementChooseFeature = 'managementChooseFeature';

@@ -29,6 +29,8 @@ import '../utils/dio_api/dio_configuration.dart' as _i721;
 
 import '../../features/home/domain/usecase/create_gold_type_usecase.dart'
     as _i712;
+import '../../features/home/domain/usecase/delete_gold_type_usecase.dart'
+    as _i815;
 import '../../features/home/domain/usecase/get_gold_types_usecase.dart'
     as _i460;
 import '../../features/home/domain/usecase/get_price_board_usecase.dart'
@@ -68,6 +70,9 @@ _i174.GetIt $initGetIt(
   gh.lazySingleton<_i712.CreateGoldTypeUsecase>(
     () => _i712.CreateGoldTypeUsecase(gh<_i386.GoldRepository>()),
   );
+  gh.lazySingleton<_i815.DeleteGoldTypeUsecase>(
+    () => _i815.DeleteGoldTypeUsecase(gh<_i386.GoldRepository>()),
+  );
   gh.lazySingleton<_i460.GetGoldTypesUsecase>(
     () => _i460.GetGoldTypesUsecase(gh<_i386.GoldRepository>()),
   );
@@ -91,6 +96,7 @@ _i174.GetIt $initGetIt(
       gh<_i490.GetGoldTypesUsecase>(),
       gh<_i490.GetPriceBoardUsecase>(),
       gh<_i490.CreateGoldTypeUsecase>(),
+      gh<_i490.DeleteGoldTypeUsecase>(),
       gh<_i490.UpdateGoldTypesUsecase>(),
       gh<_i490.UpdateGoldPricesUsecase>(),
     ),

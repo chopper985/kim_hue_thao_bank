@@ -99,6 +99,18 @@ class GoldRepository {
 
     return Result.success(true);
   }
+
+  Future<Result<bool>> deleteGoldType({required String id}) async {
+    final response = await _baseRepository.deleteRoute(
+      '${ApiEndpoints.goldTypes}/$id',
+    );
+
+    if (!StatusCode.success.contains(response.statusCode)) {
+      return Result.failure(handleFailureMainSrc(response));
+    }
+
+    return Result.success(true);
+  }
 }
 
 Failure handleFailureMainSrc(Response response) {
@@ -107,6 +119,6 @@ Failure handleFailureMainSrc(Response response) {
   }
 
   final String message = response.data['title']?.toString() ?? "";
-  print("message $message");
+
   return GoldFailure(message: message);
 }

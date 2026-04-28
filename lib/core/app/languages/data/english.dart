@@ -42,6 +42,9 @@ Map<String, String> english = {
   Strings.managementLoadFailed: "Could not load management data",
   Strings.chooseDate: "Choose date",
   Strings.deleteGoldTypeUnavailable: "Deleting gold types is not supported yet",
+  Strings.confirmDeleteGoldType: "Confirm gold type deletion",
+  Strings.confirmDeleteGoldTypeMessage:
+      "Are you sure you want to delete this gold type?",
   Strings.goldTypeNameRequired: "Please enter a gold type name",
   Strings.sortOrderRequired: "Please enter a sort order",
   Strings.managementChooseFeature: "Choose a management feature",
